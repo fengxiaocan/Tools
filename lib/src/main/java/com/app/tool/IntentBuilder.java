@@ -300,6 +300,114 @@ public class IntentBuilder extends Intent{
         return this;
     }
 
+    @NonNull
+    @Override
+    public IntentBuilder setAction(@Nullable String action) {
+        return (IntentBuilder)super.setAction(action);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setData(@Nullable Uri data) {
+        return (IntentBuilder)super.setData(data);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setDataAndNormalize(@NonNull Uri data) {
+        return (IntentBuilder)super.setDataAndNormalize(data);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setType(@Nullable String type) {
+        return (IntentBuilder)super.setType(type);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setTypeAndNormalize(@Nullable String type) {
+        return (IntentBuilder)super.setTypeAndNormalize(type);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setDataAndType(@Nullable Uri data, @Nullable String type) {
+        return (IntentBuilder)super.setDataAndType(data, type);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setDataAndTypeAndNormalize(@NonNull Uri data, @Nullable String type) {
+        return (IntentBuilder)super.setDataAndTypeAndNormalize(data, type);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setIdentifier(@Nullable String identifier) {
+        return (IntentBuilder)super.setIdentifier(identifier);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder addCategory(String category) {
+        return (IntentBuilder)super.addCategory(category);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder replaceExtras(@NonNull Intent src) {
+        return (IntentBuilder)super.replaceExtras(src);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder replaceExtras(@Nullable Bundle extras) {
+        return (IntentBuilder)super.replaceExtras(extras);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setFlags(int flags) {
+        return (IntentBuilder)super.setFlags(flags);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder addFlags(int flags) {
+        return (IntentBuilder)super.addFlags(flags);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setPackage(@Nullable String packageName) {
+        return (IntentBuilder)super.setPackage(packageName);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setComponent(@Nullable ComponentName component) {
+        return (IntentBuilder)super.setComponent(component);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setClassName(@NonNull Context packageContext, @NonNull String className) {
+        return (IntentBuilder)super.setClassName(packageContext, className);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setClassName(@NonNull String packageName, @NonNull String className) {
+        return (IntentBuilder)super.setClassName(packageName, className);
+    }
+
+    @NonNull
+    @Override
+    public IntentBuilder setClass(@NonNull Context packageContext, @NonNull Class<?> cls) {
+        return (IntentBuilder)super.setClass(packageContext, cls);
+    }
+
     public static class Builder{
         private Context context;
         private Fragment fragment;
