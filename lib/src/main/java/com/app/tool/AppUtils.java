@@ -12,6 +12,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
@@ -832,6 +833,38 @@ class AppUtils extends Util {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getContext().startActivity(intent);
         }
+    }
+
+    /**
+     * 打开HuaWei电池优化
+     */
+    @RequiresPermission(value = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+    public static void openHuaWeiIgnoreBatteryOptimization() {
+            Intent intent = new Intent(getAppPackageName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity");
+            intent.setComponent(comp);
+            //检测是否有能接受该Intent的Activity存在
+            List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfos.size() > 0) {
+                getContext().startActivity(intent);
+            }
+    }
+    /**
+     * 打开XiaoMi电池优化
+     */
+    @RequiresPermission(value = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+    public static void openXiaoMiIgnoreBatteryOptimization() {
+            Intent intent = new Intent(getAppPackageName());
+            ComponentName componentName = new ComponentName("com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity");
+            intent.setComponent(componentName);
+            intent.putExtra("package_name", getAppPackageName());
+            intent.putExtra("package_label", getAppName());
+            //检测是否有能接受该Intent的Activity存在
+            List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfos.size() > 0) {
+                getContext().startActivity(intent);
+            }
     }
 
     /**
