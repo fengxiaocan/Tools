@@ -1,11 +1,13 @@
 package com.app.tool;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -13,10 +15,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
+import android.os.PowerManager;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
-
+import androidx.annotation.RequiresPermission;
 
 import com.app.encrypt.SHACoder;
 
@@ -801,6 +806,32 @@ class AppUtils extends Util {
      */
     public static long getRuntimeTotalMemory() {
         return Runtime.getRuntime().totalMemory();
+    }
+
+    /**
+     * 是否忽略电池优化
+     *
+     * @return
+     */
+    public static boolean isIgnoreBatteryOptimization() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PowerManager powerManager = (PowerManager) getContext().getSystemService(Context.POWER_SERVICE);
+            return powerManager.isIgnoringBatteryOptimizations(getAppPackageName());
+        }
+        return true;
+    }
+
+    /**
+     * 打开电池优化
+     */
+    @RequiresPermission(value = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+    public static void openIgnoreBatteryOptimization() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + getAppPackageName()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+        }
     }
 
     /**

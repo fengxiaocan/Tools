@@ -155,6 +155,10 @@ public final class LifeHelper implements LifecycleEventObserver {
         }
     }
 
+    public String getTag() {
+        return mTag;
+    }
+
     public interface LifeRecycler {
         void recycler();
     }
