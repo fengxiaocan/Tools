@@ -141,14 +141,7 @@ class FileType {
         }
         /* 获取文件的后缀名 */
         String end = file.substring(dotIndex).toLowerCase();
-        //在MIME和文件类型的匹配表中找到对应的MIME类型。
-        MimeType[] mimeTypes = MimeType.values();
-        for (int i = 0; i < mimeTypes.length; i++) {
-            if (end.equals(mimeTypes[i].type)) {
-                return mimeTypes[i].mime;
-            }
-        }
-        return type;
+        return MimeType.getMimeType(end);
     }
 
     public static String getMimeType(File file) {
@@ -220,78 +213,6 @@ class FileType {
         T(String value, String name) {
             this.value = value;
             this.name = name;
-        }
-    }
-
-    public enum MimeType {
-        _3gp(".3gp", "video/3gpp"),
-        apk(".apk", "application/vnd.android.package-archive"),
-        asf(".asf", "video/x-ms-asf"),
-        avi(".avi", "video/x-msvideo"),
-        bin(".bin", "application/octet-stream"),
-        bmp(".bmp", "image/bmp"),
-        c(".c", "text/plain"),
-        CLASS(".class", "application/octet-stream"),
-        conf(".conf", "text/plain"),
-        cpp(".cpp", "text/plain"),
-        doc(".doc", "application/msword"),
-        exe(".exe", "application/octet-stream"),
-        gif(".gif", "image/gif"),
-        gtar(".gtar", "application/x-gtar"),
-        gz(".gz", "application/x-gzip"),
-        h(".h", "text/plain"),
-        htm(".htm", "text/html"),
-        html(".html", "text/html"),
-        jar(".jar", "application/java-archive"),
-        java(".java", "text/plain"),
-        jpeg(".jpeg", "image/jpeg"),
-        jpg(".jpg", "image/jpeg"),
-        js(".js", "application/x-javascript"),
-        log(".log", "text/plain"),
-        m3u(".m3u", "audio/x-mpegurl"),
-        m4a(".m4a", "audio/mp4a-latm"),
-        m4b(".m4b", "audio/mp4a-latm"),
-        m4p(".m4p", "audio/mp4a-latm"),
-        m4u(".m4u", "video/vnd.mpegurl"),
-        m4v(".m4v", "video/x-m4v"),
-        mov(".mov", "video/quicktime"),
-        mp2(".mp2", "audio/x-mpeg"),
-        mp3(".mp3", "audio/x-mpeg"),
-        mp4(".mp4", "video/mp4"),
-        mpc(".mpc", "application/vnd.mpohun.certificate"),
-        mpe(".mpe", "video/mpeg"),
-        mpeg(".mpeg", "video/mpeg"),
-        mpg(".mpg", "video/mpeg"),
-        mpg4(".mpg4", "video/mp4"),
-        mpga(".mpga", "audio/mpeg"),
-        msg(".msg", "application/vnd.ms-outlook"),
-        ogg(".ogg", "audio/ogg"),
-        pdf(".pdf", "application/pdf"),
-        png(".png", "image/png"),
-        pps(".pps", "application/vnd.ms-powerpoint"),
-        ppt(".ppt", "application/vnd.ms-powerpoint"),
-        prop(".prop", "text/plain"),
-        rar(".rar", "application/x-rar-compressed"),
-        rc(".rc", "text/plain"),
-        rmvb(".rmvb", "audio/x-pn-realaudio"),
-        rtf(".rtf", "application/rtf"),
-        sh(".sh", "text/plain"),
-        tar(".tar", "application/x-tar"),
-        tgz(".tgz", "application/x-compressed"),
-        txt(".txt", "text/plain"),
-        wav(".wav", "audio/x-wav"),
-        wma(".wma", "audio/x-ms-wma"),
-        wmv(".wmv", "audio/x-ms-wmv"),
-        wps(".wps", "application/vnd.ms-works"),
-        xml(".xml", "text/plain"),
-        z(".z", "application/x-compress"),
-        zip(".zip", "application/zip");
-        String type;
-        String mime;
-
-        MimeType(String type, String mime) {
-            this.type = type;
-            this.mime = mime;
         }
     }
 }

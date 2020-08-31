@@ -3,6 +3,7 @@ package com.app.tool;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -211,13 +212,6 @@ class FileUtils extends Util {
         if (file == null) {
             return false;
         }
-        // 如果存在，是文件则返回true，是目录则返回false
-        if (file.exists()) {
-            return file.isFile();
-        }
-        if (!createOrExistsDir(file.getParentFile())) {
-            return false;
-        }
         try {
             return file.createNewFile();
         } catch (IOException e) {
@@ -247,11 +241,7 @@ class FileUtils extends Util {
             return false;
         }
         // 文件存在并且删除失败返回false
-        if (file.exists() && file.isFile() && !file.delete()) {
-            return false;
-        }
-        // 创建目录失败返回false
-        if (!createOrExistsDir(file.getParentFile())) {
+        if (file.exists() && !file.delete()) {
             return false;
         }
         try {
@@ -300,9 +290,8 @@ class FileUtils extends Util {
             return false;
         }
         // 目标目录不存在返回false
-        if (!createOrExistsDir(destDir)) {
-            return false;
-        }
+        destDir.mkdirs();
+
         File[] files = srcDir.listFiles();
         for (File file : files) {
             File oneDestFile = new File(destPath, file.getName());
@@ -349,17 +338,11 @@ class FileUtils extends Util {
         if (!srcFile.exists() || !srcFile.isFile()) {
             return false;
         }
-        // 目标文件存在且是文件则返回false
-        if (destFile.exists() && destFile.isFile()) {
-            return false;
-        }
         // 目标目录不存在返回false
-        if (!createOrExistsDir(destFile.getParentFile())) {
-            return false;
-        }
+        destFile.getParentFile().mkdirs();
         try {
             return writeFileFromIS(destFile, new FileInputStream(srcFile), false) && !(isMove && !deleteFile(srcFile));
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -369,14 +352,9 @@ class FileUtils extends Util {
         if (uri == null || destFile == null) {
             return false;
         }
-        // 目标文件存在且是文件则返回false
-        if (destFile.exists() && destFile.isFile()) {
-            return false;
-        }
         // 目标目录不存在返回false
-        if (!createOrExistsDir(destFile.getParentFile())) {
-            return false;
-        }
+        destFile.getParentFile().mkdirs();
+
         try {
             InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
             return writeFileFromIS(destFile, inputStream, false);
@@ -829,9 +807,6 @@ class FileUtils extends Util {
             CloseUtils.closeIO(is);
             return false;
         }
-        if (!createOrExistsFile(file)) {
-            return false;
-        }
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
@@ -842,7 +817,7 @@ class FileUtils extends Util {
             }
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("noah",e.getMessage());
             return false;
         } finally {
             CloseUtils.closeIO(is, os);
@@ -871,9 +846,6 @@ class FileUtils extends Util {
      */
     public static boolean writeFileFromBytes(File file, byte[] bytes, boolean append) {
         if (file == null || bytes == null) {
-            return false;
-        }
-        if (!createOrExistsFile(file)) {
             return false;
         }
         BufferedOutputStream bos = null;
@@ -913,13 +885,11 @@ class FileUtils extends Util {
         if (file == null || content == null) {
             return false;
         }
-        if (!createOrExistsFile(file)) {
-            return false;
-        }
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(file, append));
             bw.write(content);
+            bw.flush();
             return true;
         } catch (IOException e) {
             e.printStackTrace();
