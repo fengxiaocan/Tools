@@ -66,9 +66,6 @@ public class Tools {
     public static class Animations extends com.app.tool.AnimationUtils {
     }
 
-    public static class Apk extends com.app.tool.ApkUtils {
-    }
-
     public static class App extends com.app.tool.AppUtils {
     }
 
@@ -300,11 +297,4 @@ public class Tools {
     public static class Zip extends com.app.tool.ZipUtils {
     }
 
-    public static class Encrypt {
-        public static class Caesar extends com.app.tool.CaesarUtils {
-        }
-
-        public static class CRC16 extends com.app.tool.CRC16Check {
-        }
-    }
 }

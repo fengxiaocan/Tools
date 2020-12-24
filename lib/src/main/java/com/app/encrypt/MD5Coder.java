@@ -8,6 +8,7 @@ import java.io.InputStream;
 public class MD5Coder {
     /**
      * 加密算法
+     *
      * @return 密文
      */
     public static byte[] code(byte[] data) {

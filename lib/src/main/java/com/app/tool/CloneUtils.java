@@ -1,11 +1,16 @@
 package com.app.tool;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  * 克隆
  */
-class CloneUtils{
+class CloneUtils {
 
     /**
      * Deep clone.
@@ -14,45 +19,45 @@ class CloneUtils{
      * @param <T>  The value type.
      * @return The object of cloned
      */
-    public static <T> T deepClone(Serializable data){
-        if(data == null)
+    public static <T> T deepClone(Serializable data) {
+        if (data == null)
             return null;
-        return (T)bytes2Object(serializable2Bytes(data));
+        return (T) bytes2Object(serializable2Bytes(data));
     }
 
-    private static byte[] serializable2Bytes(Serializable serializable){
-        if(serializable == null)
+    private static byte[] serializable2Bytes(Serializable serializable) {
+        if (serializable == null)
             return null;
         ByteArrayOutputStream baos;
         ObjectOutputStream oos = null;
-        try{
+        try {
             oos = new ObjectOutputStream(baos = new ByteArrayOutputStream());
             oos.writeObject(serializable);
             return baos.toByteArray();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally{
+        } finally {
             CloseUtils.closeIO(oos);
         }
     }
 
-    private static Object bytes2Object(final byte[] bytes){
-        if(bytes == null)
+    private static Object bytes2Object(final byte[] bytes) {
+        if (bytes == null)
             return null;
         ObjectInputStream ois = null;
-        try{
+        try {
             ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
             return ois.readObject();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally{
-            try{
-                if(ois != null){
+        } finally {
+            try {
+                if (ois != null) {
                     ois.close();
                 }
-            } catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

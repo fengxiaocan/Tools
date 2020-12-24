@@ -1,8 +1,8 @@
 package com.app.tool;
 
 import android.Manifest;
-import android.content.*;
-import android.os.*;
+import android.content.Context;
+import android.os.Vibrator;
 
 import androidx.annotation.RequiresPermission;
 
@@ -12,7 +12,7 @@ import androidx.annotation.RequiresPermission;
  *     desc  : 震动相关工具类
  * </pre>
  */
- class VibrationUtils{
+class VibrationUtils {
 
     /**
      * 震动
@@ -22,8 +22,8 @@ import androidx.annotation.RequiresPermission;
      * @param milliseconds 振动时长
      */
     @RequiresPermission(value = Manifest.permission.VIBRATE)
-    public static void vibrate(Context context,long milliseconds){
-        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+    public static void vibrate(Context context, long milliseconds) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(milliseconds);
     }
 
@@ -35,9 +35,9 @@ import androidx.annotation.RequiresPermission;
      * @param repeat  指定pattern数组的索引，指定pattern数组中从repeat索引开始的振动进行循环。-1表示只振动一次，非-1表示从 pattern的指定下标开始重复振动。
      */
     @RequiresPermission(value = Manifest.permission.VIBRATE)
-    public static void vibrate(Context context,long[] pattern,int repeat){
-        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(pattern,repeat);
+    public static void vibrate(Context context, long[] pattern, int repeat) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(pattern, repeat);
     }
 
     /**
@@ -46,7 +46,7 @@ import androidx.annotation.RequiresPermission;
      * @param context 上下文
      */
     @RequiresPermission(value = Manifest.permission.VIBRATE)
-    public static void cancel(Context context){
-        ((Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE)).cancel();
+    public static void cancel(Context context) {
+        ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).cancel();
     }
 }

@@ -15,7 +15,7 @@ import java.io.InputStream;
 /**
  * The type Image type.
  */
-class ImageType extends Util{
+class ImageType extends Util {
 
     /**
      * 获取文件的mimeType

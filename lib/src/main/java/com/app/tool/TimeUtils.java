@@ -17,7 +17,7 @@ import java.util.Locale;
  *     desc  : 时间相关工具类
  * </pre>
  */
- class TimeUtils {
+class TimeUtils {
 
     /**
      * <p>在工具类中经常使用到工具类的格式化描述，这个主要是一个日期的操作类，所以日志格式主要使用 SimpleDateFormat的定义格式.</p>
@@ -275,9 +275,6 @@ import java.util.Locale;
     public static final int HOUR = 60 * MIN;
     public static final int DAY = 24 * HOUR;
     public static final int WEEK = 7 * DAY;
-
-    private static final String[] ZODIAC = {"水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔羯座"};
-    private static final int[] ZODIAC_FLAGS = {20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22};
 
     /**
      * 获取当前时间
@@ -1363,7 +1360,9 @@ import java.util.Locale;
      * @return 星座
      */
     public static String getZodiac(int month, int day) {
-        return ZODIAC[day >= ZODIAC_FLAGS[month - 1] ? month - 1 : (month + 10) % 12];
+        return new String[]{"水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔羯座"}
+                [day >= new int[]{20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22}
+                [month - 1] ? month - 1 : (month + 10) % 12];
     }
 
     /**

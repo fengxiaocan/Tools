@@ -1,7 +1,10 @@
 package com.app.tool;
 
-import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Environment;
+
+import androidx.annotation.RequiresApi;
+
 
 public enum PublicDirectory {
 
@@ -11,16 +14,18 @@ public enum PublicDirectory {
     Music(Environment.DIRECTORY_MUSIC),
     Notifications(Environment.DIRECTORY_NOTIFICATIONS),
     Pictures(Environment.DIRECTORY_PICTURES),
-    Podcasts(Environment.DIRECTORY_PODCASTS),
-    Ringtones(Environment.DIRECTORY_RINGTONES),
+    PodCasts(Environment.DIRECTORY_PODCASTS),
+    RingTones(Environment.DIRECTORY_RINGTONES),
 
-    @SuppressLint("NewApi") Audiobooks(Environment.DIRECTORY_AUDIOBOOKS),
-    @SuppressLint("NewApi") DCIM(Environment.DIRECTORY_DOCUMENTS),
-    @SuppressLint("NewApi") Documents(Environment.DIRECTORY_DOCUMENTS),
-    @SuppressLint("NewApi") Screenshots(Environment.DIRECTORY_SCREENSHOTS);
+    AudioBooks(Environment.DIRECTORY_AUDIOBOOKS),
+    DCIM(Environment.DIRECTORY_DCIM),
+    Screenshots(Environment.DIRECTORY_SCREENSHOTS),
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    Documents(Environment.DIRECTORY_DOCUMENTS);
 
 
-    private String type;
+    private final String type;
 
     PublicDirectory(java.lang.String type) {
         this.type = type;

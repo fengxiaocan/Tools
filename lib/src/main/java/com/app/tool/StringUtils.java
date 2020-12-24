@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  *     desc  : 字符串相关工具类
  * </pre>
  */
- class StringUtils extends CharSequenceUtils{
+class StringUtils extends CharSequenceUtils {
 
 
     /**
@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
      * @param s 待校验字符串
      * @return {@code true}: null或全空格<br> {@code false}: 不为null且不全空格
      */
-    public static boolean isTrimEmpty(String s){
+    public static boolean isTrimEmpty(String s) {
         return (s == null || s.trim().length() == 0);
     }
 
@@ -49,12 +49,12 @@ import java.util.regex.Pattern;
      * @param s 待校验字符串
      * @return {@code true}: null或全空白字符<br> {@code false}: 不为null且不全空白字符
      */
-    public static boolean isSpace(String s){
-        if(s == null){
+    public static boolean isSpace(String s) {
+        if (s == null) {
             return true;
         }
-        for(int i = 0, len = s.length();i < len;++ i){
-            if(! Character.isWhitespace(s.charAt(i))){
+        for (int i = 0, len = s.length(); i < len; ++i) {
+            if (!Character.isWhitespace(s.charAt(i))) {
                 return false;
             }
         }
@@ -69,7 +69,7 @@ import java.util.regex.Pattern;
      * @param b 待校验字符串b
      * @return {@code true}: 相等<br>{@code false}: 不相等
      */
-    public static boolean equalsIgnoreCase(String a,String b){
+    public static boolean equalsIgnoreCase(String a, String b) {
         return a == null ? b == null : a.equalsIgnoreCase(b);
     }
 
@@ -80,12 +80,12 @@ import java.util.regex.Pattern;
      * @param b      待替换字符串b
      * @param length 限制长度
      */
-    public static String limitString(String a,String b,int length){
-        if(isEmpty(a)){
+    public static String limitString(String a, String b, int length) {
+        if (isEmpty(a)) {
             return a;
         }
-        if(a.length() > length){
-            String sub = a.substring(0,length - 1) + b;
+        if (a.length() > length) {
+            String sub = a.substring(0, length - 1) + b;
             return sub;
         }
         return a;
@@ -97,8 +97,8 @@ import java.util.regex.Pattern;
      * @param a      待限制长度字符串a
      * @param length 限制长度
      */
-    public static String limitString(String a,int length){
-        return limitString(a,"...",length);
+    public static String limitString(String a, int length) {
+        return limitString(a, "...", length);
     }
 
     /**
@@ -107,7 +107,7 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return s为null转为长度为0字符串，否则不改变
      */
-    public static CharSequence noNull(CharSequence s){
+    public static CharSequence noNull(CharSequence s) {
         return s == null ? "" : s;
     }
 
@@ -117,7 +117,7 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return s为null转为长度为0字符串，否则不改变
      */
-    public static String noNull(String s){
+    public static String noNull(String s) {
         return s == null ? "" : s;
     }
 
@@ -127,7 +127,7 @@ import java.util.regex.Pattern;
      * @param str 待转字符串
      * @return s为null转为长度为0字符串，否则不改变
      */
-    public static CharSequence noNull(CharSequence str,CharSequence defaultStr){
+    public static CharSequence noNull(CharSequence str, CharSequence defaultStr) {
         return str == null ? defaultStr : str;
     }
 
@@ -138,7 +138,7 @@ import java.util.regex.Pattern;
      * @param str 待转字符串
      * @return s为null转为长度为0字符串，否则不改变
      */
-    public static String noNull(String str,String defaultStr){
+    public static String noNull(String str, String defaultStr) {
         return str == null ? defaultStr : str;
     }
 
@@ -149,11 +149,11 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return 首字母大写字符串
      */
-    public static String upperFirstLetter(String s){
-        if(isEmpty(s) || ! Character.isLowerCase(s.charAt(0))){
+    public static String upperFirstLetter(String s) {
+        if (isEmpty(s) || !Character.isLowerCase(s.charAt(0))) {
             return s;
         }
-        return (char)(s.charAt(0) - 32) + s.substring(1);
+        return (char) (s.charAt(0) - 32) + s.substring(1);
     }
 
 
@@ -163,11 +163,11 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return 首字母小写字符串
      */
-    public static String lowerFirstLetter(String s){
-        if(isEmpty(s) || ! Character.isUpperCase(s.charAt(0))){
+    public static String lowerFirstLetter(String s) {
+        if (isEmpty(s) || !Character.isUpperCase(s.charAt(0))) {
             return s;
         }
-        return (char)(s.charAt(0) + 32) + s.substring(1);
+        return (char) (s.charAt(0) + 32) + s.substring(1);
     }
 
     /**
@@ -176,15 +176,15 @@ import java.util.regex.Pattern;
      * @param s 待反转字符串
      * @return 反转字符串
      */
-    public static String reverse(String s){
+    public static String reverse(String s) {
         int len = length(s);
-        if(len <= 1){
+        if (len <= 1) {
             return s;
         }
         int mid = len >> 1;
         char[] chars = s.toCharArray();
         char c;
-        for(int i = 0;i < mid;++ i){
+        for (int i = 0; i < mid; ++i) {
             c = chars[i];
             chars[i] = chars[len - i - 1];
             chars[len - i - 1] = c;
@@ -198,17 +198,17 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return 半角字符串
      */
-    public static String toDBC(String s){
-        if(isEmpty(s)){
+    public static String toDBC(String s) {
+        if (isEmpty(s)) {
             return s;
         }
         char[] chars = s.toCharArray();
-        for(int i = 0, len = chars.length;i < len;i++){
-            if(chars[i] == 12288){
+        for (int i = 0, len = chars.length; i < len; i++) {
+            if (chars[i] == 12288) {
                 chars[i] = ' ';
-            } else if(65281 <= chars[i] && chars[i] <= 65374){
-                chars[i] = (char)(chars[i] - 65248);
-            } else{
+            } else if (65281 <= chars[i] && chars[i] <= 65374) {
+                chars[i] = (char) (chars[i] - 65248);
+            } else {
                 chars[i] = chars[i];
             }
         }
@@ -221,17 +221,17 @@ import java.util.regex.Pattern;
      * @param s 待转字符串
      * @return 全角字符串
      */
-    public static String toSBC(String s){
-        if(isEmpty(s)){
+    public static String toSBC(String s) {
+        if (isEmpty(s)) {
             return s;
         }
         char[] chars = s.toCharArray();
-        for(int i = 0, len = chars.length;i < len;i++){
-            if(chars[i] == ' '){
-                chars[i] = (char)12288;
-            } else if(33 <= chars[i] && chars[i] <= 126){
-                chars[i] = (char)(chars[i] + 65248);
-            } else{
+        for (int i = 0, len = chars.length; i < len; i++) {
+            if (chars[i] == ' ') {
+                chars[i] = (char) 12288;
+            } else if (33 <= chars[i] && chars[i] <= 126) {
+                chars[i] = (char) (chars[i] + 65248);
+            } else {
                 chars[i] = chars[i];
             }
         }
@@ -241,14 +241,14 @@ import java.util.regex.Pattern;
     /**
      * 判断多个字符串是否相等，如果其中有一个为空字符串或者null，则返回false，只有全相等才返回true
      */
-    public static boolean isEquals(String... agrs){
+    public static boolean isEquals(String... agrs) {
         String last = null;
-        for(int i = 0;i < agrs.length;i++){
+        for (int i = 0; i < agrs.length; i++) {
             String str = agrs[i];
-            if(isEmpty(str)){
+            if (isEmpty(str)) {
                 return false;
             }
-            if(last != null && ! str.equals(last)){
+            if (last != null && !str.equals(last)) {
                 return false;
             }
             last = str;
@@ -256,14 +256,14 @@ import java.util.regex.Pattern;
         return true;
     }
 
-    public static boolean isEqualsIgnoreCase(String... agrs){
+    public static boolean isEqualsIgnoreCase(String... agrs) {
         String last = null;
-        for(int i = 0;i < agrs.length;i++){
+        for (int i = 0; i < agrs.length; i++) {
             String str = agrs[i];
-            if(isEmpty(str)){
+            if (isEmpty(str)) {
                 return false;
             }
-            if(last != null && ! str.equalsIgnoreCase(last)){
+            if (last != null && !str.equalsIgnoreCase(last)) {
                 return false;
             }
             last = str;
@@ -278,16 +278,16 @@ import java.util.regex.Pattern;
      * @param agrs
      * @return
      */
-    public static boolean isContains(String main,String... agrs){
-        if(isEmpty(main)){
+    public static boolean isContains(String main, String... agrs) {
+        if (isEmpty(main)) {
             return false;
         }
-        for(int i = 0;i < agrs.length;i++){
+        for (int i = 0; i < agrs.length; i++) {
             String str = agrs[i];
-            if(isEmpty(str)){
+            if (isEmpty(str)) {
                 return false;
             }
-            if(! main.contains(str)){
+            if (!main.contains(str)) {
                 return false;
             }
         }
@@ -297,21 +297,21 @@ import java.util.regex.Pattern;
     /**
      * 把Stream转换成String
      */
-    public static String convertStreamToString(InputStream is){
+    public static String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String line = null;
 
-        try{
-            while((line = reader.readLine()) != null){
+        try {
+            while ((line = reader.readLine()) != null) {
                 sb.append(line + "/n");
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-        } finally{
-            try{
+        } finally {
+            try {
                 is.close();
-            } catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -321,27 +321,29 @@ import java.util.regex.Pattern;
     /**
      * 使用字符缓冲区来拼接字符串
      */
-    public static String join(String... s){
+    public static String join(String... s) {
         StringBuffer sb = new StringBuffer();
-        for(String s1: s){
+        for (String s1 : s) {
             sb.append(s1);
         }
         return sb.toString();
     }
+
     /**
      * 使用字符缓冲区来拼接字符串
      */
-    public static String join(Object... objects){
+    public static String join(Object... objects) {
         StringBuffer sb = new StringBuffer();
-        for(Object s1: objects){
+        for (Object s1 : objects) {
             sb.append(s1);
         }
         return sb.toString();
     }
+
     /**
      * 使用字符缓冲区来拼接字符串
      */
-    public static StringBuffer builder(String insert,Object... objects) {
+    public static StringBuffer builder(String insert, Object... objects) {
         if (objects == null || objects.length == 0) {
             return new StringBuffer();
         }
@@ -357,12 +359,13 @@ import java.util.regex.Pattern;
         }
         return sb;
     }
-    public static StringBuffer builder(Object... objects){
-        if(objects == null || objects.length == 0){
+
+    public static StringBuffer builder(Object... objects) {
+        if (objects == null || objects.length == 0) {
             return new StringBuffer();
         }
         StringBuffer sb = new StringBuffer();
-        for(int i = 0;i < objects.length;i++){
+        for (int i = 0; i < objects.length; i++) {
             Object object = objects[i];
             sb.append(object);
         }
@@ -377,11 +380,11 @@ import java.util.regex.Pattern;
      * @param lenght
      * @return
      */
-    public static String substring(String content,int lenght){
-        if(content != null){
-            if(content.length() > lenght){
-                return content.substring(0,lenght);
-            } else{
+    public static String substring(String content, int lenght) {
+        if (content != null) {
+            if (content.length() > lenght) {
+                return content.substring(0, lenght);
+            } else {
                 return content;
             }
         }
@@ -391,11 +394,11 @@ import java.util.regex.Pattern;
     /**
      * 获取流编码
      */
-    public static String getTextCode(String filePath){// 转码
-        try{
+    public static String getTextCode(String filePath) {// 转码
+        try {
             File file = new File(filePath);
             return getTextCode(file);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -404,11 +407,11 @@ import java.util.regex.Pattern;
     /**
      * 获取流编码
      */
-    public static String getTextCode(File file){
-        try{
+    public static String getTextCode(File file) {
+        try {
             FileInputStream is = new FileInputStream(file);
             return getTextCode(is);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -417,29 +420,29 @@ import java.util.regex.Pattern;
     /**
      * 获取流编码
      */
-    public static String getTextCode(InputStream is){// 转码
+    public static String getTextCode(InputStream is) {// 转码
         String text = "GBK";
-        try{
+        try {
             BufferedInputStream in = new BufferedInputStream(is);
             in.mark(4);
             byte[] first3bytes = new byte[3];
             in.read(first3bytes);//找到文档的前三个字节并自动判断文档类型。
             in.reset();
-            if(first3bytes[0] == (byte)0xEF && first3bytes[1] == (byte)0xBB && first3bytes[2] == (byte)0xBF){// utf-8
+            if (first3bytes[0] == (byte) 0xEF && first3bytes[1] == (byte) 0xBB && first3bytes[2] == (byte) 0xBF) {// utf-8
 
                 text = "utf-8";
-            } else if(first3bytes[0] == (byte)0xFF && first3bytes[1] == (byte)0xFE){
+            } else if (first3bytes[0] == (byte) 0xFF && first3bytes[1] == (byte) 0xFE) {
                 text = "unicode";
-            } else if(first3bytes[0] == (byte)0xFE && first3bytes[1] == (byte)0xFF){
+            } else if (first3bytes[0] == (byte) 0xFE && first3bytes[1] == (byte) 0xFF) {
                 text = "utf-16be";
-            } else if(first3bytes[0] == (byte)0xFF && first3bytes[1] == (byte)0xFF){
+            } else if (first3bytes[0] == (byte) 0xFF && first3bytes[1] == (byte) 0xFF) {
                 text = "utf-16le";
-            } else{
+            } else {
                 text = "GBK";
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             CloseUtils.closeIO(is);
         }
         return text;
@@ -448,13 +451,13 @@ import java.util.regex.Pattern;
     /**
      * 字符串转换unicode
      */
-    public static String str2Unicode(String string){
-        if(string == null){
+    public static String str2Unicode(String string) {
+        if (string == null) {
             return string;
         }
-        try{
+        try {
             StringBuffer unicode = new StringBuffer();
-            for(int i = 0;i < string.length();i++){
+            for (int i = 0; i < string.length(); i++) {
                 // 取出每一个字符
                 char c = string.charAt(i);
                 // 转换为unicode
@@ -462,7 +465,7 @@ import java.util.regex.Pattern;
                 unicode.append("\\u" + hexString);
             }
             return unicode.toString();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return string;
@@ -471,22 +474,22 @@ import java.util.regex.Pattern;
     /**
      * unicode 转字符串
      */
-    public static String unicode2String(String unicode){
-        if(unicode == null){
+    public static String unicode2String(String unicode) {
+        if (unicode == null) {
             return unicode;
         }
         String[] hex = unicode.split("\\\\u");
-        if(hex == null){
+        if (hex == null) {
             return unicode;
-        } else{
+        } else {
             StringBuffer string = new StringBuffer();
-            for(int i = 0;i < hex.length;i++){
-                try{
+            for (int i = 0; i < hex.length; i++) {
+                try {
                     // 转换出每一个代码点
-                    int data = Integer.parseInt(hex[i],16);
+                    int data = Integer.parseInt(hex[i], 16);
                     // 追加成string
-                    string.append((char)data);
-                } catch(Exception e){
+                    string.append((char) data);
+                } catch (Exception e) {
                     string.append(hex[i]);
                 }
 
@@ -498,15 +501,15 @@ import java.util.regex.Pattern;
     /**
      * 获取url的后缀
      */
-    public static String getUrlSuffix(String url){
-        if(isEmpty(url)){
+    public static String getUrlSuffix(String url) {
+        if (isEmpty(url)) {
             return "";
-        } else{
+        } else {
             int of = url.lastIndexOf('.');
             String fix = null;
-            try{
+            try {
                 fix = url.substring(of);
-            } catch(Exception e){
+            } catch (Exception e) {
                 return "";
             }
             return fix;
@@ -516,10 +519,10 @@ import java.util.regex.Pattern;
     /**
      * 获取url的中的文件名
      */
-    public static String getUrlFileName(String url){
-        if(isEmpty(url)){
+    public static String getUrlFileName(String url) {
+        if (isEmpty(url)) {
             return "";
-        } else{
+        } else {
             int of = url.lastIndexOf('/');
             String fix = url.substring(of + 1);
             return fix;
@@ -529,9 +532,9 @@ import java.util.regex.Pattern;
     /**
      * 汉字排序
      */
-    public static List<String> ChineseCharacterSort(List<String> list){
+    public static List<String> ChineseCharacterSort(List<String> list) {
         Comparator<Object> com = Collator.getInstance(Locale.CHINA);
-        Collections.sort(list,com);
+        Collections.sort(list, com);
         return list;
     }
 
@@ -542,10 +545,10 @@ import java.util.regex.Pattern;
      * @param seed 加密的密码
      * @return 还原后的信息
      */
-    public static String encode(String code,int seed){
+    public static String encode(String code, int seed) {
         // 加密密码
         byte[] bytes = code.getBytes();
-        for(int i = 0;i < bytes.length;i++){
+        for (int i = 0; i < bytes.length; i++) {
             bytes[i] ^= seed;
         }
         String string = new String(bytes);
@@ -559,8 +562,8 @@ import java.util.regex.Pattern;
      * @param seed 解密的密码
      * @return 还原后的信息
      */
-    public static String decode(String code,int seed){
-        return encode(code,seed);
+    public static String decode(String code, int seed) {
+        return encode(code, seed);
     }
 
 
@@ -570,13 +573,13 @@ import java.util.regex.Pattern;
      * @param content
      * @return int
      */
-    public static int getCharLength(String content){
-        if(content == null || content.length() == 0){
+    public static int getCharLength(String content) {
+        if (content == null || content.length() == 0) {
             return 0;
         }
         int len = 0;
         char[] chars = content.toCharArray();
-        for(char c: chars){
+        for (char c : chars) {
             //UTF-8编码格式中文占三个字节，GBK编码格式 中文占两个字节 ;
             len += c > 255 ? 2 : 1;
         }
@@ -593,15 +596,15 @@ import java.util.regex.Pattern;
      * @param end     结束位置
      * @return 高亮spannable
      */
-    public static CharSequence getHighLightText(String content,int color,int start,int end){
-        if(TextUtils.isEmpty(content)){
+    public static CharSequence getHighLightText(String content, int color, int start, int end) {
+        if (TextUtils.isEmpty(content)) {
             return "";
         }
         start = Math.max(start, 0);
         end = Math.min(end, content.length());
         SpannableString spannable = new SpannableString(content);
         CharacterStyle span = new ForegroundColorSpan(color);
-        spannable.setSpan(span,start,end,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(span, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 
@@ -611,7 +614,7 @@ import java.util.regex.Pattern;
      * @param txt 文本
      * @return 返回链接样式的字符串
      */
-    public static Spanned getHtmlStyleString(String txt){
+    public static Spanned getHtmlStyleString(String txt) {
         StringBuilder sb = new StringBuilder();
         sb.append("<a href=\"\"><u><b>").append(txt).append(" </b></u></a>");
         return Html.fromHtml(sb.toString());
@@ -623,8 +626,8 @@ import java.util.regex.Pattern;
      * @param len 大小
      * @return
      */
-    public static String formatFileSize(long len){
-        return formatFileSize(len,false);
+    public static String formatFileSize(long len) {
+        return formatFileSize(len, false);
     }
 
     /**
@@ -634,41 +637,41 @@ import java.util.regex.Pattern;
      * @param keepZero 是否保留小数点
      * @return
      */
-    public static String formatFileSize(long len,boolean keepZero){
+    public static String formatFileSize(long len, boolean keepZero) {
         String size;
         DecimalFormat formatKeepTwoZero = new DecimalFormat("#.00");
         DecimalFormat formatKeepOneZero = new DecimalFormat("#.0");
-        if(len < 1024){
+        if (len < 1024) {
             size = len + "B";
-        } else if(len < 10 * 1024){
+        } else if (len < 10 * 1024) {
             // [0, 10KB)，保留两位小数
-            size = len * 100 / 1024 / (float)100 + "KB";
-        } else if(len < 100 * 1024){
+            size = len * 100 / 1024 / (float) 100 + "KB";
+        } else if (len < 100 * 1024) {
             // [10KB, 100KB)，保留一位小数
-            size = len * 10 / 1024 / (float)10 + "KB";
-        } else if(len < 1024 * 1024){
+            size = len * 10 / 1024 / (float) 10 + "KB";
+        } else if (len < 1024 * 1024) {
             // [100KB, 1MB)，个位四舍五入
             size = len / 1024 + "KB";
-        } else if(len < 10 * 1024 * 1024){
+        } else if (len < 10 * 1024 * 1024) {
             // [1MB, 10MB)，保留两位小数
-            if(keepZero){
-                size = formatKeepTwoZero.format(len * 100 / 1024 / 1024 / (float)100) + "MB";
-            } else{
-                size = len * 100 / 1024 / 1024 / (float)100 + "MB";
+            if (keepZero) {
+                size = formatKeepTwoZero.format(len * 100 / 1024 / 1024 / (float) 100) + "MB";
+            } else {
+                size = len * 100 / 1024 / 1024 / (float) 100 + "MB";
             }
-        } else if(len < 100 * 1024 * 1024){
+        } else if (len < 100 * 1024 * 1024) {
             // [10MB, 100MB)，保留一位小数
-            if(keepZero){
-                size = formatKeepOneZero.format(len * 10 / 1024 / 1024 / (float)10) + "MB";
-            } else{
-                size = len * 10 / 1024 / 1024 / (float)10 + "MB";
+            if (keepZero) {
+                size = formatKeepOneZero.format(len * 10 / 1024 / 1024 / (float) 10) + "MB";
+            } else {
+                size = len * 10 / 1024 / 1024 / (float) 10 + "MB";
             }
-        } else if(len < 1024 * 1024 * 1024){
+        } else if (len < 1024 * 1024 * 1024) {
             // [100MB, 1GB)，个位四舍五入
             size = len / 1024 / 1024 + "MB";
-        } else{
+        } else {
             // [1GB, ...)，保留两位小数
-            size = len * 100 / 1024 / 1024 / 1024 / (float)100 + "GB";
+            size = len * 100 / 1024 / 1024 / 1024 / (float) 100 + "GB";
         }
         return size;
     }
@@ -680,26 +683,26 @@ import java.util.regex.Pattern;
      * @param time
      * @return
      */
-    public static String formatMusicTime(long time){
+    public static String formatMusicTime(long time) {
         time = time / 1000;
         String formatTime;
-        if(time < 10){
+        if (time < 10) {
             formatTime = "00:0" + time;
             return formatTime;
-        } else if(time < 60){
+        } else if (time < 60) {
             formatTime = "00:" + time;
             return formatTime;
-        } else{
+        } else {
             long i = time / 60;
-            if(i < 10){
+            if (i < 10) {
                 formatTime = "0" + i + ":";
-            } else{
+            } else {
                 formatTime = i + ":";
             }
             long j = time % 60;
-            if(j < 10){
+            if (j < 10) {
                 formatTime += "0" + j;
-            } else{
+            } else {
                 formatTime += j;
             }
 
@@ -707,16 +710,16 @@ import java.util.regex.Pattern;
         }
     }
 
-    public static String formatK(int number){
-        if(number < 1000){
+    public static String formatK(int number) {
+        if (number < 1000) {
             return String.valueOf(number);
-        } else{
+        } else {
             final int i = number / 100;
             final int i1 = i % 10;
-            if(i1 == 0){
+            if (i1 == 0) {
                 return i + "k";
-            } else{
-                return StringUtils.join(i,".",i1,"k");
+            } else {
+                return StringUtils.join(i, ".", i1, "k");
             }
         }
     }
@@ -726,17 +729,17 @@ import java.util.regex.Pattern;
      *
      * @param phone
      */
-    public static boolean checkPhone(String phone){
-        if(isEmpty(phone)){
+    public static boolean checkPhone(String phone) {
+        if (isEmpty(phone)) {
             return false;
         }
-        if(phone.length() < 11){
+        if (phone.length() < 11) {
             return false;
         }
-        if(! phone.startsWith("1")){
+        if (!phone.startsWith("1")) {
             return false;
         }
-        return ! phone.startsWith("10") && ! phone.startsWith("11") && ! phone.startsWith("12");
+        return !phone.startsWith("10") && !phone.startsWith("11") && !phone.startsWith("12");
     }
 
     /**
@@ -744,8 +747,8 @@ import java.util.regex.Pattern;
      *
      * @param email
      */
-    public static boolean checkEmail(String email){
-        if(isEmpty(email)){
+    public static boolean checkEmail(String email) {
+        if (isEmpty(email)) {
             return false;
         }
         return Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*").matcher(email).matches();
@@ -756,12 +759,12 @@ import java.util.regex.Pattern;
      *
      * @param postCode
      */
-    public static boolean checkIsPostCode(String postCode){
-        if(isEmpty(postCode)){
+    public static boolean checkIsPostCode(String postCode) {
+        if (isEmpty(postCode)) {
             return false;
         }
         String reg = "[1-9]\\d{5}";
-        return Pattern.matches(reg,postCode);
+        return Pattern.matches(reg, postCode);
     }
 
 
@@ -772,10 +775,10 @@ import java.util.regex.Pattern;
      * @param defValue
      * @return
      */
-    public static int toInt(String str,int defValue){
-        try{
+    public static int toInt(String str, int defValue) {
+        try {
             return Integer.parseInt(str);
-        } catch(Exception e){
+        } catch (Exception e) {
             return defValue;
         }
     }
@@ -786,18 +789,18 @@ import java.util.regex.Pattern;
      * @param obj
      * @return 转换异常返回 0
      */
-    public static int toInt(Object obj){
-        if(obj == null){
+    public static int toInt(Object obj) {
+        if (obj == null) {
             return 0;
         }
-        return toInt(obj.toString(),0);
+        return toInt(obj.toString(), 0);
     }
 
-    public static int toInt(String obj){
-        if(obj == null){
+    public static int toInt(String obj) {
+        if (obj == null) {
             return 0;
         }
-        return toInt(obj,0);
+        return toInt(obj, 0);
     }
 
     /**
@@ -806,10 +809,10 @@ import java.util.regex.Pattern;
      * @param obj
      * @return 转换异常返回 0
      */
-    public static long toLong(String obj){
-        try{
+    public static long toLong(String obj) {
+        try {
             return Long.parseLong(obj);
-        } catch(Exception e){
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -820,10 +823,10 @@ import java.util.regex.Pattern;
      * @param obj
      * @return 转换异常返回 0
      */
-    public static double toDouble(String obj){
-        try{
+    public static double toDouble(String obj) {
+        try {
             return Double.parseDouble(obj);
-        } catch(Exception e){
+        } catch (Exception e) {
             return 0D;
         }
     }
@@ -834,10 +837,10 @@ import java.util.regex.Pattern;
      * @param b
      * @return 转换异常返回 false
      */
-    public static boolean toBoolean(String b){
-        try{
+    public static boolean toBoolean(String b) {
+        try {
             return Boolean.parseBoolean(b);
-        } catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -849,11 +852,11 @@ import java.util.regex.Pattern;
      * @param data 要转换的字节数组。
      * @return 转换后的结果。
      */
-    public static String byteArrayToHexString(byte[] data){
+    public static String byteArrayToHexString(byte[] data) {
         StringBuilder sb = new StringBuilder(data.length * 2);
-        for(byte b: data){
+        for (byte b : data) {
             int v = b & 0xff;
-            if(v < 16){
+            if (v < 16) {
                 sb.append('0');
             }
             sb.append(Integer.toHexString(v));
@@ -867,12 +870,12 @@ import java.util.regex.Pattern;
      * @param s 16进制表示的字符串
      * @return byte[] 字节数组
      */
-    public static byte[] hexStringToByteArray(String s){
+    public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         byte[] d = new byte[len / 2];
-        for(int i = 0;i < len;i += 2){
+        for (int i = 0; i < len; i += 2) {
             // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个进制字节
-            d[i / 2] = (byte)((Character.digit(s.charAt(i),16) << 4) + Character.digit(s.charAt(i + 1),16));
+            d[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character.digit(s.charAt(i + 1), 16));
         }
         return d;
     }
@@ -884,23 +887,23 @@ import java.util.regex.Pattern;
      * @return 文件名中的名字部分
      * @since 0.5
      */
-    public static String getNamePart(String fileName){
+    public static String getNamePart(String fileName) {
         int point = getPathLastIndex(fileName);
         int length = fileName.length();
-        if(point == - 1){
+        if (point == -1) {
             return fileName;
-        } else if(point == length - 1){
-            int secondPoint = getPathLastIndex(fileName,point - 1);
-            if(secondPoint == - 1){
-                if(length == 1){
+        } else if (point == length - 1) {
+            int secondPoint = getPathLastIndex(fileName, point - 1);
+            if (secondPoint == -1) {
+                if (length == 1) {
                     return fileName;
-                } else{
-                    return fileName.substring(0,point);
+                } else {
+                    return fileName.substring(0, point);
                 }
-            } else{
-                return fileName.substring(secondPoint + 1,point);
+            } else {
+                return fileName.substring(secondPoint + 1, point);
             }
-        } else{
+        } else {
             return fileName.substring(point + 1);
         }
     }
@@ -911,12 +914,12 @@ import java.util.regex.Pattern;
      * @param fileName 文件路径
      * @return 处理结果
      */
-    public static String getNameDelLastPath(String fileName){
+    public static String getNameDelLastPath(String fileName) {
         int point = getPathLastIndex(fileName);
-        if(point == - 1){
+        if (point == -1) {
             return fileName;
-        } else{
-            return fileName.substring(0,point);
+        } else {
+            return fileName.substring(0, point);
         }
     }
 
@@ -927,9 +930,9 @@ import java.util.regex.Pattern;
      * @return 路径分隔符在路径中最后出现的位置，没有出现时返回-1。
      * @since 0.5
      */
-    public static int getPathLastIndex(String fileName){
+    public static int getPathLastIndex(String fileName) {
         int point = fileName.lastIndexOf('/');
-        if(point == - 1){
+        if (point == -1) {
             point = fileName.lastIndexOf('\\');
         }
         return point;
@@ -943,10 +946,10 @@ import java.util.regex.Pattern;
      * @return 路径分隔符在路径中指定位置前最后出现的位置，没有出现时返回-1。
      * @since 0.5
      */
-    public static int getPathLastIndex(String fileName,int fromIndex){
-        int point = fileName.lastIndexOf('/',fromIndex);
-        if(point == - 1){
-            point = fileName.lastIndexOf('\\',fromIndex);
+    public static int getPathLastIndex(String fileName, int fromIndex) {
+        int point = fileName.lastIndexOf('/', fromIndex);
+        if (point == -1) {
+            point = fileName.lastIndexOf('\\', fromIndex);
         }
         return point;
     }
@@ -957,20 +960,20 @@ import java.util.regex.Pattern;
      * @param filename 文件名
      * @return 去掉类型部分的结果
      */
-    public static String stringByDeletingPathExtension(String filename){
+    public static String stringByDeletingPathExtension(String filename) {
         int index = filename.lastIndexOf(".");
-        if(index != - 1){
-            return filename.substring(0,index);
-        } else{
+        if (index != -1) {
+            return filename.substring(0, index);
+        } else {
             return filename;
         }
     }
 
-    public static String FileNamePathExtension(String filename){
+    public static String FileNamePathExtension(String filename) {
         int index = filename.lastIndexOf(".");
-        if(index != - 1){
+        if (index != -1) {
             return filename.substring(index);
-        } else{
+        } else {
             return "";
         }
     }
@@ -982,33 +985,33 @@ import java.util.regex.Pattern;
      * @param str
      * @return
      */
-    public static int getTextWidth(Paint paint,String str){
+    public static int getTextWidth(Paint paint, String str) {
         int iRet = 0;
-        if(str != null && str.length() > 0){
+        if (str != null && str.length() > 0) {
             int len = str.length();
             float[] widths = new float[len];
-            paint.getTextWidths(str,widths);
-            for(int j = 0;j < len;j++){
-                iRet += (int)Math.ceil(widths[j]);
+            paint.getTextWidths(str, widths);
+            for (int j = 0; j < len; j++) {
+                iRet += (int) Math.ceil(widths[j]);
             }
         }
         return iRet;
     }
 
-    public static String replaceAll(String text,String regex,String replaceContent){
-        if(! TextUtils.isEmpty(text)){
-            return text.replaceAll(regex,replaceContent);
+    public static String replaceAll(String text, String regex, String replaceContent) {
+        if (!TextUtils.isEmpty(text)) {
+            return text.replaceAll(regex, replaceContent);
         }
         return null;
     }
 
 
-    public static String replaceAll(String text,String regex,char replaceContent){
-        if(! TextUtils.isEmpty(text)){
+    public static String replaceAll(String text, String regex, char replaceContent) {
+        if (!TextUtils.isEmpty(text)) {
             StringBuilder builder = new StringBuilder(text);
             int index = text.indexOf(regex);
-            while(index > 0){
-                builder.replace(index,index + regex.length(),String.valueOf(replaceContent));
+            while (index > 0) {
+                builder.replace(index, index + regex.length(), String.valueOf(replaceContent));
                 index = builder.indexOf(regex);
             }
             return builder.toString();
@@ -1016,12 +1019,12 @@ import java.util.regex.Pattern;
         return null;
     }
 
-    public static String replaceAll(String text,char regex,String replaceContent){
-        if(! TextUtils.isEmpty(text)){
+    public static String replaceAll(String text, char regex, String replaceContent) {
+        if (!TextUtils.isEmpty(text)) {
             StringBuilder builder = new StringBuilder(text);
             int index = text.indexOf(regex);
-            while(index > 0){
-                builder.replace(index,index + 1,replaceContent);
+            while (index > 0) {
+                builder.replace(index, index + 1, replaceContent);
                 index = builder.toString().indexOf(regex);
             }
             return builder.toString();
@@ -1031,6 +1034,7 @@ import java.util.regex.Pattern;
 
     /**
      * 隐藏中间的手机号码
+     *
      * @param phoneNumber
      * @param regex
      * @return
@@ -1059,6 +1063,7 @@ import java.util.regex.Pattern;
 
     /**
      * 隐藏中间的邮箱号码
+     *
      * @param email
      * @param regex
      * @return

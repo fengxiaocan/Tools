@@ -31,11 +31,11 @@ public enum DES3 implements ICipher {
 
     public static final String algorithm = "DESEDE";
 
-    private String transformation;
+    private final String transformation;
     private boolean isParameterMode = false;
     private boolean isNoPadding = false;
-    private int vectorSize = 8;//8
-    private int keySize = 168;//112或168
+    private final int vectorSize = 8;//8
+    private final int keySize = 168;//112或168
 
     DES3(String transformation) {
         this.transformation = transformation;
@@ -49,14 +49,7 @@ public enum DES3 implements ICipher {
 
     /**
      * 获取秘钥
-     * @return
-     */
-    public Key getKey() {
-        return getKey(keySize);
-    }
-
-    /**
-     * 获取秘钥
+     *
      * @param keySize
      * @return
      */
@@ -64,6 +57,14 @@ public enum DES3 implements ICipher {
         return CipherCoder.createKey(algorithm, keySize);
     }
 
+    /**
+     * 获取秘钥
+     *
+     * @return
+     */
+    public Key getKey() {
+        return getKey(keySize);
+    }
 
     @Override
     public String getTransformation() {

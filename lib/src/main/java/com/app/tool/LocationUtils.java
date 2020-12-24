@@ -21,48 +21,6 @@ import java.util.List;
 import java.util.Locale;
 
 class LocationUtils extends Util {
-    public static class Builder{
-        private LocationManager mManager;
-        private LocationListener mListener;
-        /**
-         * 注册
-         * @param minTime     位置信息更新周期（单位：毫秒）
-         * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息（单位：米）
-         * @param listener    位置刷新的回调接口
-         * @return {@code true}: 初始化成功<br>{@code false}: 初始化失败
-         */
-        @RequiresPermission(allOf = {Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
-        public boolean register(long minTime, long minDistance, LocationListener listener) {
-            mManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-            mListener = listener;
-            if (!isLocationEnabled()) {
-                return false;
-            }
-            Criteria criteria = getCriteria();
-            String provider = mManager.getBestProvider(criteria, true);
-            android.location.Location location = getGPSLocation(getContext(), mManager);
-            if (location != null) {
-                listener.onLocationChanged(location);
-            }
-            mManager.requestLocationUpdates(provider, minTime, minDistance, mListener);
-            return true;
-        }
-
-        /**
-         * 注销
-         */
-        @RequiresPermission(allOf = {Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
-        public  void unregister() {
-            if (mManager != null) {
-                if (mListener != null) {
-                    mManager.removeUpdates(mListener);
-                    mListener = null;
-                }
-                mManager = null;
-            }
-        }
-    }
-
     /**
      * 判断Gps是否可用
      *
@@ -92,7 +50,6 @@ class LocationUtils extends Util {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getContext().startActivity(intent);
     }
-
 
     /**
      * GPS获取定位方式
@@ -155,8 +112,6 @@ class LocationUtils extends Util {
         }
         return location;
     }
-
-
 
     /**
      * 设置定位参数
@@ -298,6 +253,7 @@ class LocationUtils extends Util {
 
     /**
      * 获取地址信息
+     *
      * @param location
      * @return
      */
@@ -312,6 +268,50 @@ class LocationUtils extends Util {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static class Builder {
+        private LocationManager mManager;
+        private LocationListener mListener;
+
+        /**
+         * 注册
+         *
+         * @param minTime     位置信息更新周期（单位：毫秒）
+         * @param minDistance 位置变化最小距离：当位置距离变化超过此值时，将更新位置信息（单位：米）
+         * @param listener    位置刷新的回调接口
+         * @return {@code true}: 初始化成功<br>{@code false}: 初始化失败
+         */
+        @RequiresPermission(allOf = {Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
+        public boolean register(long minTime, long minDistance, LocationListener listener) {
+            mManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+            mListener = listener;
+            if (!isLocationEnabled()) {
+                return false;
+            }
+            Criteria criteria = getCriteria();
+            String provider = mManager.getBestProvider(criteria, true);
+            android.location.Location location = getGPSLocation(getContext(), mManager);
+            if (location != null) {
+                listener.onLocationChanged(location);
+            }
+            mManager.requestLocationUpdates(provider, minTime, minDistance, mListener);
+            return true;
+        }
+
+        /**
+         * 注销
+         */
+        @RequiresPermission(allOf = {Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
+        public void unregister() {
+            if (mManager != null) {
+                if (mListener != null) {
+                    mManager.removeUpdates(mListener);
+                    mListener = null;
+                }
+                mManager = null;
+            }
+        }
     }
 
 }

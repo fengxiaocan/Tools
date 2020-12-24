@@ -13,8 +13,9 @@ import java.util.Map;
  */
 public final class LifeHelper implements LifecycleEventObserver {
     private static Map<String, LifeHelper> sHelper;//String:Context.class.getName()
-    private Map<String, Object> map;//String:Class<T>.getName()
-    private String mTag;
+    private final String mTag;
+    ;//String:Class<T>.getName()
+    private Map<String, Object> map = new HashMap<>();
 
     private LifeHelper(String tag) {
         mTag = tag;
@@ -31,10 +32,7 @@ public final class LifeHelper implements LifecycleEventObserver {
     }
 
     public static LifeHelper with(@NonNull LifecycleOwner owner) {
-        final String key = owner.toString();
-        LifeHelper helper = with(key);
-        helper.bindLifeOwner(owner);
-        return helper;
+        return with(owner.toString()).bindLifeOwner(owner);
     }
 
     public static void destroy(@NonNull String tag) {
@@ -48,15 +46,9 @@ public final class LifeHelper implements LifecycleEventObserver {
         destroy(owner.toString());
     }
 
-    private static void checkHelper() {
+    private static synchronized void checkHelper() {
         if (sHelper == null) {
             sHelper = new HashMap<>();
-        }
-    }
-
-    private void checkMaps() {
-        if (map == null) {
-            map = new HashMap<>();
         }
     }
 
@@ -69,7 +61,6 @@ public final class LifeHelper implements LifecycleEventObserver {
      */
     public <T> T get(Class<T> tClass) {
         String className = tClass.getName();
-        checkMaps();
         Object o = map.get(className);
         if (o == null) {
             return null;
@@ -85,7 +76,6 @@ public final class LifeHelper implements LifecycleEventObserver {
      * @param <T>
      */
     public <T> void set(Class<T> tClass, @NonNull T life) {
-        checkMaps();
         map.put(tClass.getName(), life);
     }
 
@@ -131,25 +121,21 @@ public final class LifeHelper implements LifecycleEventObserver {
     @Override
     public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
         if (event == Lifecycle.Event.ON_DESTROY) {
-            if (map != null) {
-                for (String key : map.keySet()) {
-                    Object helper = map.get(key);
-                    if (helper instanceof LifecycleEventObserver) {
-                        ((LifecycleEventObserver) helper).onStateChanged(source, event);
-                    }
-                    if (helper instanceof LifeRecycler) {
-                        ((LifeRecycler) helper).recycler();
-                    }
+            for (String key : map.keySet()) {
+                Object helper = map.get(key);
+                if (helper instanceof LifecycleEventObserver) {
+                    ((LifecycleEventObserver) helper).onStateChanged(source, event);
+                }
+                if (helper instanceof LifeRecycler) {
+                    ((LifeRecycler) helper).recycler();
                 }
             }
             destroy();
         } else {
-            if (map != null) {
-                for (String key : map.keySet()) {
-                    Object helper = map.get(key);
-                    if (helper instanceof LifecycleEventObserver) {
-                        ((LifecycleEventObserver) helper).onStateChanged(source, event);
-                    }
+            for (String key : map.keySet()) {
+                Object helper = map.get(key);
+                if (helper instanceof LifecycleEventObserver) {
+                    ((LifecycleEventObserver) helper).onStateChanged(source, event);
                 }
             }
         }

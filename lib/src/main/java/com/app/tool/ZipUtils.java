@@ -27,9 +27,7 @@ import java.util.zip.ZipOutputStream;
  *     desc  : 压缩相关工具类
  * </pre>
  */
- class ZipUtils {
-
-    private static final int KB = 1024;
+class ZipUtils {
 
     /**
      * 批量压缩文件
@@ -198,9 +196,9 @@ import java.util.zip.ZipOutputStream;
                     entry.setComment(comment);
                 }
                 zos.putNextEntry(entry);
-                byte[] buffer = new byte[KB];
+                byte[] buffer = new byte[1024];
                 int len;
-                while ((len = is.read(buffer, 0, KB)) != -1) {
+                while ((len = is.read(buffer, 0, 1024)) != -1) {
                     zos.write(buffer, 0, len);
                     zos.flush();
                 }
@@ -318,7 +316,7 @@ import java.util.zip.ZipOutputStream;
                     try {
                         in = new BufferedInputStream(zf.getInputStream(entry));
                         out = new BufferedOutputStream(new FileOutputStream(file));
-                        byte[] buffer = new byte[KB];
+                        byte[] buffer = new byte[1024];
                         int len;
                         while ((len = in.read(buffer)) != -1) {
                             out.write(buffer, 0, len);
@@ -453,12 +451,12 @@ import java.util.zip.ZipOutputStream;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            CloseUtils.closeIO(is,os);
+        } finally {
+            CloseUtils.closeIO(is, os);
         }
     }
 
-    public static void zipFile(InputStream is, File osFile)  {
+    public static void zipFile(InputStream is, File osFile) {
         GZIPOutputStream gos = null;
         try {
             // 包装输出流
@@ -474,7 +472,7 @@ import java.util.zip.ZipOutputStream;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIO(is,gos);
+            CloseUtils.closeIO(is, gos);
         }
     }
 
@@ -500,7 +498,7 @@ import java.util.zip.ZipOutputStream;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIO(gis,os);
+            CloseUtils.closeIO(gis, os);
         }
     }
 

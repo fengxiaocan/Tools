@@ -1,12 +1,8 @@
 package com.app.encrypt;
 
-import java.security.InvalidKeyException;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
-import java.security.spec.InvalidKeySpecException;
 
-import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
@@ -36,11 +32,11 @@ public enum DES implements ICipher {
 
     public static final String algorithm = "DES";
 
-    private String transformation;
+    private final String transformation;
     private boolean isParameterMode = false;
     private boolean isNoPadding = false;
-    private int vectorSize = 8;
-    private int keySize = 64;
+    private final int vectorSize = 8;
+    private final int keySize = 64;
 
     DES(String transformation) {
         this.transformation = transformation;
@@ -52,12 +48,12 @@ public enum DES implements ICipher {
         this.isNoPadding = isNoPadding;
     }
 
-    public Key getKey() {
-        return getKey(keySize);
-    }
-
     public static Key getKey(int keySize) {
         return CipherCoder.createKey(algorithm, keySize);
+    }
+
+    public Key getKey() {
+        return getKey(keySize);
     }
 
     @Override

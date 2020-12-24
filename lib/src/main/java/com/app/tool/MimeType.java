@@ -33,6 +33,7 @@ public enum MimeType {
     anim(".anim[1-9j]", "video/x-anim"),
     anx(".anx", "application/annodex"),
     ape(".ape", "audio/x-ape"),
+    apk(".apk", "application/vnd.android"),
     arj(".arj", "application/x-arj"),
     arw(".arw", "image/x-sony-arw"),
     as(".as", "application/x-applix-spreadsheet"),
@@ -703,8 +704,8 @@ public enum MimeType {
     zoo(".zoo", "application/x-zoo");
 
 
-    private String type;
-    private String mime;
+    private final String type;
+    private final String mime;
 
     MimeType(String type, String mime) {
         this.type = type;
@@ -713,12 +714,13 @@ public enum MimeType {
 
     /**
      * 获取Content-Type
+     *
      * @param type
      * @return
      */
-    public static String getMimeType(String type){
-        if (!type.startsWith(".")){
-            type = "."+type;
+    public static String getMimeType(String type) {
+        if (!type.startsWith(".")) {
+            type = "." + type;
         }
         MimeType[] values = MimeType.values();
         for (MimeType value : values) {
@@ -731,98 +733,99 @@ public enum MimeType {
 
     /**
      * 根据Content-Type获取文件类型
+     *
      * @param mimeType
      * @return
      */
     public static String getType(String mimeType) {
-        if (mimeType ==null){
+        if (mimeType == null) {
             return ".unknow";
-        }else if (mimeType.startsWith("text")){
-            if (txt.mime.equals(mimeType)){
+        } else if (mimeType.startsWith("text")) {
+            if (txt.mime.equals(mimeType)) {
                 return tex.type;
-            }else if (css.mime.equals(mimeType)){
+            } else if (css.mime.equals(mimeType)) {
                 return css.type;
-            }else if (html.mime.equals(mimeType)){
+            } else if (html.mime.equals(mimeType)) {
                 return html.type;
-            }else if (java.mime.equals(mimeType)){
+            } else if (java.mime.equals(mimeType)) {
                 return java.type;
-            }else if (log.mime.equals(mimeType)){
+            } else if (log.mime.equals(mimeType)) {
                 return log.type;
             }
-        }else if (mimeType.startsWith("image")){
-            if (jpg.mime.equals(mimeType)){
+        } else if (mimeType.startsWith("image")) {
+            if (jpg.mime.equals(mimeType)) {
                 return jpg.type;
-            }else  if (webp.mime.equals(mimeType)){
+            } else if (webp.mime.equals(mimeType)) {
                 return webp.type;
-            }else  if (gif.mime.equals(mimeType)){
+            } else if (gif.mime.equals(mimeType)) {
                 return gif.type;
-            }else  if (png.mime.equals(mimeType)){
+            } else if (png.mime.equals(mimeType)) {
                 return png.type;
-            }else  if (bmp.mime.equals(mimeType)){
+            } else if (bmp.mime.equals(mimeType)) {
                 return bmp.type;
             }
-        }else if (mimeType.startsWith("video")){
-            if (mp4.mime.equals(mimeType)){
+        } else if (mimeType.startsWith("video")) {
+            if (mp4.mime.equals(mimeType)) {
                 return mp4.type;
-            }else  if (mpeg.mime.equals(mimeType)){
+            } else if (mpeg.mime.equals(mimeType)) {
                 return mpeg.type;
-            }else  if (avi.mime.equals(mimeType)){
+            } else if (avi.mime.equals(mimeType)) {
                 return avi.type;
-            }else  if (_3gpp.mime.equals(mimeType)){
+            } else if (_3gpp.mime.equals(mimeType)) {
                 return _3gpp.type;
-            }else  if (flv.mime.equals(mimeType)){
+            } else if (flv.mime.equals(mimeType)) {
                 return flv.type;
-            }else  if (wmv.mime.equals(mimeType)){
+            } else if (wmv.mime.equals(mimeType)) {
                 return wmv.type;
-            }else  if (mov.mime.equals(mimeType)){
+            } else if (mov.mime.equals(mimeType)) {
                 return mov.type;
             }
-        }else if (mimeType.startsWith("audio")){
-            if (mp3.mime.equals(mimeType)){
+        } else if (mimeType.startsWith("audio")) {
+            if (mp3.mime.equals(mimeType)) {
                 return mp3.type;
-            }else if (aac.mime.equals(mimeType)){
+            } else if (aac.mime.equals(mimeType)) {
                 return aac.type;
             }
-        }else if (mimeType.startsWith("application")){
-            if (zip.mime.equals(mimeType)){
+        } else if (mimeType.startsWith("application")) {
+            if (zip.mime.equals(mimeType)) {
                 return zip.type;
-            }else if (rar.mime.equals(mimeType)){
+            } else if (rar.mime.equals(mimeType)) {
                 return rar.type;
-            }else if (_7z.mime.equals(mimeType)){
+            } else if (_7z.mime.equals(mimeType)) {
                 return _7z.type;
-            }else if (gz.mime.equals(mimeType)){
+            } else if (gz.mime.equals(mimeType)) {
                 return gz.type;
-            }else  if (bz.mime.equals(mimeType)){
+            } else if (bz.mime.equals(mimeType)) {
                 return bz.type;
-            }else  if (doc.mime.equals(mimeType)){
+            } else if (doc.mime.equals(mimeType)) {
                 return doc.type;
-            }else  if (docx.mime.equals(mimeType)){
+            } else if (docx.mime.equals(mimeType)) {
                 return docx.type;
-            }else  if (exe.mime.equals(mimeType)){
+            } else if (exe.mime.equals(mimeType)) {
                 return exe.type;
-            }else  if (iso.mime.equals(mimeType)){
+            } else if (iso.mime.equals(mimeType)) {
                 return iso.type;
-            }else  if (jar.mime.equals(mimeType)){
+            } else if (jar.mime.equals(mimeType)) {
                 return jar.type;
-            }else  if (js.mime.equals(mimeType)){
+            } else if (js.mime.equals(mimeType)) {
                 return js.type;
-            }else  if (json.mime.equals(mimeType)){
+            } else if (json.mime.equals(mimeType)) {
                 return json.type;
-            }else  if (jsonp.mime.equals(mimeType)){
+            } else if (jsonp.mime.equals(mimeType)) {
                 return jsonp.type;
-            }else  if (php.mime.equals(mimeType)){
+            } else if (php.mime.equals(mimeType)) {
                 return php.type;
-            }else  if (ppt.mime.equals(mimeType)){
+            } else if (ppt.mime.equals(mimeType)) {
                 return ppt.type;
-            }else  if (rmvb.mime.equals(mimeType)){
+            } else if (rmvb.mime.equals(mimeType)) {
                 return rmvb.type;
-            }else  if (sis.mime.equals(mimeType)){
+            } else if (sis.mime.equals(mimeType)) {
                 return sis.type;
-            }else  if (sisx.mime.equals(mimeType)){
+            } else if (sisx.mime.equals(mimeType)) {
                 return sisx.type;
-            }else  if (swf.mime.equals(mimeType)){
+            } else if (swf.mime.equals(mimeType)) {
                 return swf.type;
-            }else  if (xls.mime.equals(mimeType)){
+            } else if (xls.mime.equals(mimeType)) {
                 return xls.type;
             }
         }

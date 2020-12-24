@@ -504,7 +504,7 @@ class IDCardUtil {
             sProvinNum = idCard.substring(0, 2);
         }
         for (China value : China.values()) {
-            if (value.code .equals(sProvinNum)) {
+            if (value.code.equals(sProvinNum)) {
                 sProvince = value.city;
                 break;
             }

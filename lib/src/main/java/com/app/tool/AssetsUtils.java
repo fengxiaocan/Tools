@@ -21,7 +21,7 @@ import java.nio.charset.Charset;
  * @desc: Assets获取的相关操作类
  */
 
-class AssetsUtils extends Util{
+class AssetsUtils extends Util {
 
     /**
      * 解析xml
@@ -29,8 +29,27 @@ class AssetsUtils extends Util{
      * @param xmlName
      * @param handler
      */
-    public static void parseXml(String xmlName,DefaultHandler handler) throws IOException, SAXException{
-        Xml.parse(getFileFromAssets(xmlName),Xml.Encoding.UTF_8,handler);
+    public static void parseXml(String xmlName, DefaultHandler handler) throws IOException, SAXException {
+        Xml.parse(getFileFromAssets(xmlName), Xml.Encoding.UTF_8, handler);
+    }
+
+    /**
+     * 异步解析xml
+     *
+     * @param xmlName
+     * @param handler
+     */
+    public static void parseAsyXml(final String xmlName, final DefaultHandler handler) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Xml.parse(getFileFromAssets(xmlName), Xml.Encoding.UTF_8, handler);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     /**
@@ -40,8 +59,8 @@ class AssetsUtils extends Util{
      * @return
      * @throws IOException
      */
-    public static InputStream getFileFromAssets(String fileName) throws IOException{
-        AssetManager am=getContext().getAssets();
+    public static InputStream getFileFromAssets(String fileName) throws IOException {
+        AssetManager am = getContext().getAssets();
         return am.open(fileName);
     }
 
@@ -51,17 +70,17 @@ class AssetsUtils extends Util{
      * @param fileName
      * @return
      */
-    public static String getTextFromAssets(String fileName,Charset charset){
-        try{
-            InputStreamReader inputReader=new InputStreamReader(getFileFromAssets(fileName),charset);
-            BufferedReader bufReader=new BufferedReader(inputReader);
-            String line="";
-            StringBuilder result=new StringBuilder();
-            while((line=bufReader.readLine()) != null){
+    public static String getTextFromAssets(String fileName, Charset charset) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(getFileFromAssets(fileName), charset);
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line = "";
+            StringBuilder result = new StringBuilder();
+            while ((line = bufReader.readLine()) != null) {
                 result.append(line);
             }
             return result.toString();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
@@ -73,7 +92,7 @@ class AssetsUtils extends Util{
      * @param fileName
      * @return
      */
-    public static String getTextFromAssets(String fileName){
+    public static String getTextFromAssets(String fileName) {
         return getTextFromAssets(fileName, Charsets.UTF_8);
     }
 }

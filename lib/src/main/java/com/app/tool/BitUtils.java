@@ -42,7 +42,6 @@ class BitUtils {
         return source;
     }
 
-
     /**
      * 将运算数指定位置取反值<br>
      * 例： 0000 1011 指定第 3 位取反, 结果为 0000 0011; 指定第2位取反, 结果为 0000 1111<br>
@@ -56,7 +55,6 @@ class BitUtils {
         return (byte) (source ^ mask);
 
     }
-
 
     /**
      * 检查运算数的指定位置是否为1<br>

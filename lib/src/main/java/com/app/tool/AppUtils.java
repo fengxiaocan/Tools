@@ -140,7 +140,6 @@ class AppUtils extends Util {
     }
 
 
-
     /**
      * 判断App是否有root权限
      *
@@ -229,6 +228,44 @@ class AppUtils extends Util {
         } catch (PackageManager.NameNotFoundException e) {
             return null;
         }
+    }
+
+    /**
+     * 获取已安装Apk文件的源Apk文件
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static String getSourceApkPath(Context context, String packageName) {
+        if (StringUtils.isEmpty(packageName)) {
+            return null;
+        }
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(packageName, 0);
+            return appInfo.sourceDir;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * APK版本比较
+     *
+     * @param info 下载的apk信息
+     * @return 下载的apk版本号大于当前版本号时返回true，反之返回false
+     */
+    public static boolean compareApkInfo(PackageInfo info) {
+        if (info == null) {
+            return false;
+        }
+
+        if (info.packageName.equals(AppUtils.getAppPackageName())) {
+            return info.versionCode > AppUtils.getVersionCode();
+        }
+        return false;
     }
 
     /**
@@ -510,7 +547,7 @@ class AppUtils extends Util {
      * @return the value of meta-data in receiver
      */
     public static String getReceiverMetaData(@NonNull final Class<? extends BroadcastReceiver> clz,
-                                               @NonNull final String key) {
+                                             @NonNull final String key) {
         String value = "";
         PackageManager pm = getContext().getPackageManager();
         ComponentName componentName = new ComponentName(getContext(), clz);
@@ -733,7 +770,6 @@ class AppUtils extends Util {
     }
 
 
-
     /**
      * 关闭自身app
      */
@@ -840,31 +876,32 @@ class AppUtils extends Util {
      */
     @RequiresPermission(value = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
     public static void openHuaWeiIgnoreBatteryOptimization() {
-            Intent intent = new Intent(getAppPackageName());
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity");
-            intent.setComponent(comp);
-            //检测是否有能接受该Intent的Activity存在
-            List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfos.size() > 0) {
-                getContext().startActivity(intent);
-            }
+        Intent intent = new Intent(getAppPackageName());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity");
+        intent.setComponent(comp);
+        //检测是否有能接受该Intent的Activity存在
+        List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (resolveInfos.size() > 0) {
+            getContext().startActivity(intent);
+        }
     }
+
     /**
      * 打开XiaoMi电池优化
      */
     @RequiresPermission(value = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
     public static void openXiaoMiIgnoreBatteryOptimization() {
-            Intent intent = new Intent(getAppPackageName());
-            ComponentName componentName = new ComponentName("com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity");
-            intent.setComponent(componentName);
-            intent.putExtra("package_name", getAppPackageName());
-            intent.putExtra("package_label", getAppName());
-            //检测是否有能接受该Intent的Activity存在
-            List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfos.size() > 0) {
-                getContext().startActivity(intent);
-            }
+        Intent intent = new Intent(getAppPackageName());
+        ComponentName componentName = new ComponentName("com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity");
+        intent.setComponent(componentName);
+        intent.putExtra("package_name", getAppPackageName());
+        intent.putExtra("package_label", getAppName());
+        //检测是否有能接受该Intent的Activity存在
+        List<ResolveInfo> resolveInfos = getContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (resolveInfos.size() > 0) {
+            getContext().startActivity(intent);
+        }
     }
 
     /**
@@ -1221,18 +1258,19 @@ class AppUtils extends Util {
         return new File(getExternalFilesDir(dirName), fileName);
     }
 
+
     /**
      * 封装App信息的Bean类
      */
     public static class AppInfo {
 
-        private String name;
-        private Drawable icon;
-        private String packageName;
-        private String packagePath;
-        private String versionName;
-        private int versionCode;
-        private boolean isSystem;
+        public final String name;
+        public final Drawable icon;
+        public final String packageName;
+        public final String packagePath;
+        public final String versionName;
+        public final int versionCode;
+        public final boolean isSystem;
 
         /**
          * @param name        名称
@@ -1245,74 +1283,25 @@ class AppUtils extends Util {
          */
         public AppInfo(String packageName, String name, Drawable icon, String packagePath, String versionName,
                        int versionCode, boolean isSystem) {
-            this.setName(name);
-            this.setIcon(icon);
-            this.setPackageName(packageName);
-            this.setPackagePath(packagePath);
-            this.setVersionName(versionName);
-            this.setVersionCode(versionCode);
-            this.setSystem(isSystem);
-        }
-
-        public Drawable getIcon() {
-            return icon;
-        }
-
-        public void setIcon(Drawable icon) {
-            this.icon = icon;
-        }
-
-        public boolean isSystem() {
-            return isSystem;
-        }
-
-        public void setSystem(boolean isSystem) {
-            this.isSystem = isSystem;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
             this.name = name;
-        }
-
-        public String getPackageName() {
-            return packageName;
-        }
-
-        public void setPackageName(String packageName) {
+            this.icon = icon;
             this.packageName = packageName;
-        }
-
-        public String getPackagePath() {
-            return packagePath;
-        }
-
-        public void setPackagePath(String packagePath) {
             this.packagePath = packagePath;
-        }
-
-        public int getVersionCode() {
-            return versionCode;
-        }
-
-        public void setVersionCode(int versionCode) {
-            this.versionCode = versionCode;
-        }
-
-        public String getVersionName() {
-            return versionName;
-        }
-
-        public void setVersionName(String versionName) {
             this.versionName = versionName;
+            this.versionCode = versionCode;
+            this.isSystem = isSystem;
         }
 
         @Override
         public String toString() {
-            return "pkg name: " + getPackageName() + "\napp name: " + getName() + "\napp path: " + getPackagePath() + "\napp v name: " + getVersionName() + "\napp v code: " + getVersionCode() + "\nis system: " + isSystem();
+            return "AppInfo{" +
+                    "name='" + name + '\'' +
+                    ", packageName='" + packageName + '\'' +
+                    ", packagePath='" + packagePath + '\'' +
+                    ", versionName='" + versionName + '\'' +
+                    ", versionCode=" + versionCode +
+                    ", isSystem=" + isSystem +
+                    '}';
         }
     }
 }

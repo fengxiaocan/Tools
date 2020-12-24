@@ -1,10 +1,12 @@
 package com.app.tool;
 
-import android.app.*;
-import android.app.ActivityManager.*;
-import android.content.*;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * <pre>
@@ -14,15 +16,15 @@ import java.util.*;
  *     desc  : 服务相关工具类
  * </pre>
  */
- class ServiceUtils extends Util{
+class ServiceUtils extends Util {
 
     /**
      * 获取所有运行的服务
      *
      * @return 服务名集合
      */
-    public static List<RunningServiceInfo> getAllRunningService(){
-        ActivityManager activityManager = (ActivityManager)getContext().getSystemService(Context.ACTIVITY_SERVICE);
+    public static List<RunningServiceInfo> getAllRunningService() {
+        ActivityManager activityManager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
         return activityManager.getRunningServices(0x7FFFFFFF);
     }
 
@@ -31,10 +33,10 @@ import java.util.*;
      *
      * @param className 完整包名的服务类名
      */
-    public static void startService(String className){
-        try{
+    public static void startService(String className) {
+        try {
             startService(Class.forName(className));
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -44,8 +46,8 @@ import java.util.*;
      *
      * @param cls 服务类
      */
-    public static void startService(Class<?> cls){
-        Intent intent = new Intent(getContext(),cls);
+    public static void startService(Class<?> cls) {
+        Intent intent = new Intent(getContext(), cls);
         getContext().startService(intent);
     }
 
@@ -55,10 +57,10 @@ import java.util.*;
      * @param className 完整包名的服务类名
      * @return {@code true}: 停止成功<br>{@code false}: 停止失败
      */
-    public static boolean stopService(String className){
-        try{
+    public static boolean stopService(String className) {
+        try {
             return stopService(Class.forName(className));
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -70,8 +72,8 @@ import java.util.*;
      * @param cls 服务类
      * @return {@code true}: 停止成功<br>{@code false}: 停止失败
      */
-    public static boolean stopService(Class<?> cls){
-        Intent intent = new Intent(getContext(),cls);
+    public static boolean stopService(Class<?> cls) {
+        Intent intent = new Intent(getContext(), cls);
         return getContext().stopService(intent);
     }
 
@@ -90,10 +92,10 @@ import java.util.*;
      *                  <li>{@link Context#BIND_WAIVE_PRIORITY}</li>
      *                  </ul>
      */
-    public static void bindService(String className,ServiceConnection conn,int flags){
-        try{
-            bindService(Class.forName(className),conn,flags);
-        } catch(Exception e){
+    public static void bindService(String className, ServiceConnection conn, int flags) {
+        try {
+            bindService(Class.forName(className), conn, flags);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -113,9 +115,9 @@ import java.util.*;
      *              <li>{@link Context#BIND_WAIVE_PRIORITY}</li>
      *              </ul>
      */
-    public static void bindService(Class<?> cls,ServiceConnection conn,int flags){
-        Intent intent = new Intent(getContext(),cls);
-        getContext().bindService(intent,conn,flags);
+    public static void bindService(Class<?> cls, ServiceConnection conn, int flags) {
+        Intent intent = new Intent(getContext(), cls);
+        getContext().bindService(intent, conn, flags);
     }
 
     /**
@@ -123,7 +125,7 @@ import java.util.*;
      *
      * @param conn 服务连接对象
      */
-    public static void unbindService(ServiceConnection conn){
+    public static void unbindService(ServiceConnection conn) {
         getContext().unbindService(conn);
     }
 
@@ -133,12 +135,12 @@ import java.util.*;
      * @param className 完整包名的服务类名
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    public static boolean isServiceRunning(String className){
+    public static boolean isServiceRunning(String className) {
         List<RunningServiceInfo> info = getAllRunningService();
-        if(info == null || info.size() == 0)
+        if (info == null || info.size() == 0)
             return false;
-        for(RunningServiceInfo aInfo: info){
-            if(className.equals(aInfo.service.getClassName()))
+        for (RunningServiceInfo aInfo : info) {
+            if (className.equals(aInfo.service.getClassName()))
                 return true;
         }
         return false;

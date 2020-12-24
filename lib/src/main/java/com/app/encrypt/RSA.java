@@ -40,15 +40,13 @@ public enum RSA {
     OAEPWITHSHA512ANDMGF1PADDING("RSA/ECB/OAEPWITHSHA-512ANDMGF1PADDING"),
     OAEPWITHSHA384ANDMGF1PADDING("RSA/ECB/OAEPWITHSHA-384ANDMGF1PADDING");
 
-    private String transformation;
-
-    RSA(String transformation) {
-        this.transformation = transformation;
-    }
-
     public static final String algorithm = "RSA";
     public static final int DEFAULT_KEYSIZE = 2048;
     public static final String SECURE_RANDOM_ALGORITHM = "SHA1PRNG";
+    private final String transformation;
+    RSA(String transformation) {
+        this.transformation = transformation;
+    }
 
     /**
      * 获取公钥跟私钥
@@ -76,6 +74,7 @@ public enum RSA {
     public static KeyPair initKey() {
         return initKey(DEFAULT_KEYSIZE, new SecureRandom());
     }
+
     /**
      * 获取公钥跟私钥
      *
@@ -624,6 +623,7 @@ public enum RSA {
 
     /**
      * 通过公钥加密数据
+     *
      * @param data
      * @return base64密文
      */
@@ -811,7 +811,6 @@ public enum RSA {
     /**
      * 通过私钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -821,7 +820,6 @@ public enum RSA {
 
     /**
      * 通过公钥解密
-     *
      *
      * @param data
      * @return
@@ -833,7 +831,6 @@ public enum RSA {
     /**
      * 通过私钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -843,7 +840,6 @@ public enum RSA {
 
     /**
      * 通过公钥解密
-     *
      *
      * @param data
      * @return
@@ -855,7 +851,6 @@ public enum RSA {
     /**
      * 通过私钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -865,7 +860,6 @@ public enum RSA {
 
     /**
      * 通过公钥解密
-     *
      *
      * @param data
      * @return
@@ -877,7 +871,6 @@ public enum RSA {
     /**
      * 通过私钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -887,7 +880,6 @@ public enum RSA {
 
     /**
      * 通过公钥解密
-     *
      *
      * @param data
      * @return
@@ -899,7 +891,6 @@ public enum RSA {
     /**
      * 通过私钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -910,7 +901,6 @@ public enum RSA {
     /**
      * 通过公钥解密
      *
-     *
      * @param data
      * @return
      */
@@ -920,7 +910,6 @@ public enum RSA {
 
     /**
      * 通过私钥解密
-     *
      *
      * @param data
      * @return

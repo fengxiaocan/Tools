@@ -11,8 +11,6 @@ import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 /**
  * PBEWITHSHAAND128BITRC2-CBC
@@ -474,7 +472,6 @@ public class CipherCoder {
     }
 
 
-
     /*************************  解密  *************************/
 
     /**
@@ -683,7 +680,7 @@ public class CipherCoder {
      * @return
      */
     public static String decryptToString(ICipher iCipher, byte[] data, Key key, byte[] vectorKey) {
-        return new String(decrypt(iCipher, data, key,vectorKey));
+        return new String(decrypt(iCipher, data, key, vectorKey));
     }
 
     /**
@@ -741,7 +738,7 @@ public class CipherCoder {
      * @return
      */
     public static String decryptHexToString(ICipher iCipher, String data, Key key, byte[] vectorKey) {
-        return new String(decryptHex(iCipher,data, key, vectorKey));
+        return new String(decryptHex(iCipher, data, key, vectorKey));
     }
 
     /**
@@ -752,7 +749,7 @@ public class CipherCoder {
      * @return
      */
     public static String decryptHexToString(ICipher iCipher, String data, byte[] key) {
-        return new String(decryptHex(iCipher,data, key));
+        return new String(decryptHex(iCipher, data, key));
     }
 
     /**

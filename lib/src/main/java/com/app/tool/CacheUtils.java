@@ -35,9 +35,6 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * <pre>
- *
- *
- *     time  : 2017/04/30
  *     desc  : 缓存相关工具类
  * </pre>
  */
@@ -47,8 +44,8 @@ class CacheUtils extends Util {
     private static final int DEFAULT_MAX_SIZE = 1024 * 1024 * 100; // 100Mb
     private static final int DEFAULT_MAX_COUNT = Integer.MAX_VALUE;
 
-    private static Map<String, CacheUtils> sCacheMap = new HashMap<>();
-    private CacheManager mCacheManager;
+    private static final Map<String, CacheUtils> sCacheMap = new HashMap<>();
+    private final CacheManager mCacheManager;
 
     CacheUtils(File cacheDir, long maxSize, int maxCount) {
         if (!cacheDir.exists() && !cacheDir.mkdirs()) {

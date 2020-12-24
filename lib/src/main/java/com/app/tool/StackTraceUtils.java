@@ -7,12 +7,12 @@ import androidx.annotation.IntRange;
 /**
  * The type Stack trace utils.
  */
-class StackTraceUtils{
+class StackTraceUtils {
 
-    public static void printStackTraces(@IntRange(from = Log.VERBOSE,to = Log.ASSERT) int priority, String tag){
+    public static void printStackTraces(@IntRange(from = Log.VERBOSE, to = Log.ASSERT) int priority, String tag) {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         for (StackTraceElement element : stackTrace) {
-            Log.println(priority,tag,element.toString());
+            Log.println(priority, tag, element.toString());
         }
     }
 
@@ -21,7 +21,7 @@ class StackTraceUtils{
      *
      * @return stack trace element [ ]
      */
-    public static StackTraceElement[] getStackTrace(){
+    public static StackTraceElement[] getStackTrace() {
         return Thread.currentThread().getStackTrace();
     }
 
@@ -32,10 +32,10 @@ class StackTraceUtils{
      * @param index the index 第几个区间
      * @return the method name 方法名
      */
-    public static String getMethodName(int index){
-        try{
+    public static String getMethodName(int index) {
+        try {
             return getStackTrace()[index].getMethodName();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -48,10 +48,10 @@ class StackTraceUtils{
      * @param index the index 第几个区间
      * @return the line number
      */
-    public static int getLineNumber(int index){
-        try{
+    public static int getLineNumber(int index) {
+        try {
             return getStackTrace()[index].getLineNumber();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
@@ -64,10 +64,10 @@ class StackTraceUtils{
      * @param index the index 第几个区间
      * @return the file name
      */
-    public static String getFileName(int index){
-        try{
+    public static String getFileName(int index) {
+        try {
             return getStackTrace()[index].getFileName();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -80,10 +80,10 @@ class StackTraceUtils{
      * @param index the index 第几个区间
      * @return the class name
      */
-    public static String getClassName(int index){
-        try{
+    public static String getClassName(int index) {
+        try {
             return getStackTrace()[index].getClassName();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
@@ -95,7 +95,7 @@ class StackTraceUtils{
      *
      * @return the current method name
      */
-    public static String getCurrentMethodName(){
+    public static String getCurrentMethodName() {
         return getMethodName(6);
     }
 
@@ -105,7 +105,7 @@ class StackTraceUtils{
      *
      * @return the current line number
      */
-    public static int getCurrentLineNumber(){
+    public static int getCurrentLineNumber() {
         return getLineNumber(6);
     }
 
@@ -115,7 +115,7 @@ class StackTraceUtils{
      *
      * @return the current file name
      */
-    public static String getCurrentFileName(){
+    public static String getCurrentFileName() {
         return getFileName(6);
     }
 
@@ -125,7 +125,7 @@ class StackTraceUtils{
      *
      * @return the current class name
      */
-    public static String getCurrentClassName(){
+    public static String getCurrentClassName() {
         return getClassName(6);
     }
 }

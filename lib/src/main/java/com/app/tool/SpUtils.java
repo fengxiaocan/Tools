@@ -1,14 +1,15 @@
 package com.app.tool;
 
-import android.content.*;
-import android.content.SharedPreferences.*;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * sharedPreferences快速保存数据/获取数据
  */
-class SpUtils extends Util{
+class SpUtils extends Util {
 
     private static SharedPreferences sp;
     private static String sName = AppUtils.getAppPackageName();
@@ -18,13 +19,13 @@ class SpUtils extends Util{
      *
      * @param name
      */
-    public static void trans(String name){
+    public static void trans(String name) {
         sName = name;
     }
 
-    private static SharedPreferences getPreferences(){
-        if(sp == null){
-            sp = getContext().getSharedPreferences(sName,Context.MODE_PRIVATE);
+    private static SharedPreferences getPreferences() {
+        if (sp == null) {
+            sp = getContext().getSharedPreferences(sName, Context.MODE_PRIVATE);
         }
         return sp;
     }
@@ -32,28 +33,28 @@ class SpUtils extends Util{
     /**
      * 保存各种类型的信息
      */
-    public static void save(Object... list){
-        if(list == null){
+    public static void save(Object... list) {
+        if (list == null) {
             return;
         }
         sp = getPreferences();
         // 获取编辑器
         Editor edit = sp.edit();
-        for(int i = 0;i < list.length;i += 2){
-            String key = (String)list[i];
+        for (int i = 0; i < list.length; i += 2) {
+            String key = (String) list[i];
             Object object = list[i + 1];
-            if(object instanceof String){
-                edit.putString(key,(String)object);
-            } else if(object instanceof Integer){
-                edit.putInt(key,(Integer)object);
-            } else if(object instanceof Boolean){
-                edit.putBoolean(key,(Boolean)object);
-            } else if(object instanceof Float){
-                edit.putFloat(key,(Float)object);
-            } else if(object instanceof Long){
-                edit.putLong(key,(Long)object);
-            } else{
-                edit.putString(key,object.toString());
+            if (object instanceof String) {
+                edit.putString(key, (String) object);
+            } else if (object instanceof Integer) {
+                edit.putInt(key, (Integer) object);
+            } else if (object instanceof Boolean) {
+                edit.putBoolean(key, (Boolean) object);
+            } else if (object instanceof Float) {
+                edit.putFloat(key, (Float) object);
+            } else if (object instanceof Long) {
+                edit.putLong(key, (Long) object);
+            } else {
+                edit.putString(key, object.toString());
             }
         }
         // 提交数据
@@ -63,12 +64,12 @@ class SpUtils extends Util{
     /**
      * 保存String类型的信息
      */
-    public static void save(String key,String value){
+    public static void save(String key, String value) {
         sp = getPreferences();
         // 获取编辑器
         Editor edit = sp.edit();
         // 写入数据
-        edit.putString(key,value);
+        edit.putString(key, value);
         // 提交数据
         edit.commit();
     }
@@ -76,16 +77,16 @@ class SpUtils extends Util{
     /**
      * 保存String类型的信息
      */
-    public static void save(String... list){
-        if(list == null){
+    public static void save(String... list) {
+        if (list == null) {
             return;
         }
         sp = getPreferences();
         // 获取编辑器
         Editor edit = sp.edit();
-        for(int i = 0;i < list.length;i += 2){
+        for (int i = 0; i < list.length; i += 2) {
             // 写入数据
-            edit.putString(list[i],list[i + 1]);
+            edit.putString(list[i], list[i + 1]);
         }
         // 提交数据
         edit.commit();
@@ -96,10 +97,10 @@ class SpUtils extends Util{
     /**
      * 获取String类型的数据信息
      */
-    public static String getInfo(String key,String defValue){
+    public static String getInfo(String key, String defValue) {
         sp = getPreferences();
 
-        String value = sp.getString(key,defValue);
+        String value = sp.getString(key, defValue);
 
         return value;
     }
@@ -107,12 +108,12 @@ class SpUtils extends Util{
     /**
      * 保存boolean类型的置
      */
-    public static void save(String key,boolean value){
+    public static void save(String key, boolean value) {
         sp = getPreferences();
         // 获取编辑器
         Editor edit = sp.edit();
         // 写入数据
-        edit.putBoolean(key,value);
+        edit.putBoolean(key, value);
         // 提交数据
         edit.commit();
     }
@@ -120,10 +121,10 @@ class SpUtils extends Util{
     /**
      * 获取boolean的值
      */
-    public static boolean getInfo(String key,boolean defValue){
+    public static boolean getInfo(String key, boolean defValue) {
         sp = getPreferences();
 
-        boolean value = sp.getBoolean(key,defValue);
+        boolean value = sp.getBoolean(key, defValue);
 
         return value;
     }
@@ -131,12 +132,12 @@ class SpUtils extends Util{
     /**
      * 获取int类型的值
      */
-    public static void save(String key,int value){
+    public static void save(String key, int value) {
         sp = getPreferences();
         // 获取编辑器
         Editor edit = sp.edit();
         // 写入数据
-        edit.putInt(key,value);
+        edit.putInt(key, value);
         // 提交数据
         edit.commit();
     }
@@ -144,10 +145,10 @@ class SpUtils extends Util{
     /**
      * 获取int类型的值
      */
-    public static int getInfo(String key,int defValue){
+    public static int getInfo(String key, int defValue) {
         sp = getPreferences();
 
-        int value = sp.getInt(key,defValue);
+        int value = sp.getInt(key, defValue);
 
         return value;
     }
@@ -156,22 +157,22 @@ class SpUtils extends Util{
     /**
      * 获取int类型的值
      */
-    public static <T> T getInfo(String key,T defValue){
+    public static <T> T getInfo(String key, T defValue) {
         sp = getPreferences();
         // 获取编辑器
         T value;
-        if(defValue instanceof String){
-            value = (T)sp.getString(key,(String)defValue);
-        } else if(defValue instanceof Integer){
-            value = (T)Integer.valueOf(sp.getInt(key,(Integer)defValue));
-        } else if(defValue instanceof Boolean){
-            value = (T)Boolean.valueOf(sp.getBoolean(key,(Boolean)defValue));
-        } else if(defValue instanceof Float){
-            value = (T)Float.valueOf(sp.getFloat(key,(Float)defValue));
-        } else if(defValue instanceof Long){
-            value = (T)Long.valueOf(sp.getLong(key,(Long)defValue));
-        } else{
-            value = (T)sp.getString(key,defValue.toString());
+        if (defValue instanceof String) {
+            value = (T) sp.getString(key, (String) defValue);
+        } else if (defValue instanceof Integer) {
+            value = (T) Integer.valueOf(sp.getInt(key, (Integer) defValue));
+        } else if (defValue instanceof Boolean) {
+            value = (T) Boolean.valueOf(sp.getBoolean(key, (Boolean) defValue));
+        } else if (defValue instanceof Float) {
+            value = (T) Float.valueOf(sp.getFloat(key, (Float) defValue));
+        } else if (defValue instanceof Long) {
+            value = (T) Long.valueOf(sp.getLong(key, (Long) defValue));
+        } else {
+            value = (T) sp.getString(key, defValue.toString());
         }
         return value;
     }
@@ -181,7 +182,7 @@ class SpUtils extends Util{
      *
      * @param key
      */
-    public static void remove(String key){
+    public static void remove(String key) {
         SharedPreferences sp = getPreferences();
         Editor editor = sp.edit();
         editor.remove(key);
@@ -191,7 +192,7 @@ class SpUtils extends Util{
     /**
      * 清除所有数据
      */
-    public static void clear(){
+    public static void clear() {
         SharedPreferences sp = getPreferences();
         Editor editor = sp.edit();
         editor.clear();
@@ -204,7 +205,7 @@ class SpUtils extends Util{
      * @param key
      * @return
      */
-    public static boolean contains(String key){
+    public static boolean contains(String key) {
         SharedPreferences sp = getPreferences();
         return sp.contains(key);
     }
@@ -214,7 +215,7 @@ class SpUtils extends Util{
      *
      * @return
      */
-    public static Map<String,?> getAll(){
+    public static Map<String, ?> getAll() {
         SharedPreferences sp = getPreferences();
         return sp.getAll();
     }

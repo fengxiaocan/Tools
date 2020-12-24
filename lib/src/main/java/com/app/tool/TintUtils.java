@@ -1,13 +1,15 @@
 package com.app.tool;
 
-import android.content.res.*;
-import android.graphics.drawable.*;
-import android.os.*;
-import android.widget.*;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.core.graphics.drawable.*;
+import androidx.core.graphics.drawable.DrawableCompat;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
 
 /**
  * @Description:主要功能: Drawable 着色工具类
@@ -20,25 +22,25 @@ import java.lang.reflect.*;
  * @version: 1.0.0
  */
 
-class TintUtils{
+class TintUtils {
     /**
      * 给ImageView着色
      */
-    public static void tintImageView(ImageView imageView,ColorStateList colorStateList){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+    public static void tintImageView(ImageView imageView, ColorStateList colorStateList) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             imageView.setImageTintList(colorStateList);
         }
     }
 
-    public static void tintImageView(ImageView imageView,int color){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+    public static void tintImageView(ImageView imageView, int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             imageView.setImageTintList(ColorStateList.valueOf(color));
         }
     }
 
-    public static Drawable tintDrawable(Drawable drawable,ColorStateList colorStateList){
+    public static Drawable tintDrawable(Drawable drawable, ColorStateList colorStateList) {
         final Drawable wrappedDrawable = DrawableCompat.wrap(drawable.mutate());
-        DrawableCompat.setTintList(wrappedDrawable,colorStateList);
+        DrawableCompat.setTintList(wrappedDrawable, colorStateList);
         return wrappedDrawable;
     }
 
@@ -49,10 +51,10 @@ class TintUtils{
      * @param color    ColorStateList,如 ColorStateList.valueOf(Color.RED)
      * @return 完成着色的 Drawable
      */
-    public static Drawable tintDrawable(Drawable drawable,int color){
-        if(drawable != null){
+    public static Drawable tintDrawable(Drawable drawable, int color) {
+        if (drawable != null) {
             final Drawable wrappedDrawable = DrawableCompat.wrap(drawable.mutate());
-            DrawableCompat.setTint(wrappedDrawable,color);
+            DrawableCompat.setTint(wrappedDrawable, color);
             return wrappedDrawable;
         }
         return null;
@@ -64,8 +66,8 @@ class TintUtils{
      * @param editText EditText对象
      * @param color    Color,如Color.RED
      */
-    public static void tintCursorDrawable(EditText editText,int color){
-        try{
+    public static void tintCursorDrawable(EditText editText, int color) {
+        try {
             Field fCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
             fCursorDrawableRes.setAccessible(true);
             int mCursorDrawableRes = fCursorDrawableRes.getInt(editText);
@@ -76,19 +78,19 @@ class TintUtils{
             Field fCursorDrawable = clazz.getDeclaredField("mCursorDrawable");
             fCursorDrawable.setAccessible(true);
 
-            if(mCursorDrawableRes <= 0){
+            if (mCursorDrawableRes <= 0) {
                 return;
             }
 
             Drawable cursorDrawable = editText.getContext().getResources().getDrawable(mCursorDrawableRes);
-            if(cursorDrawable == null){
+            if (cursorDrawable == null) {
                 return;
             }
 
-            Drawable tintDrawable = tintDrawable(cursorDrawable,ColorStateList.valueOf(color));
-            Drawable[] drawables = new Drawable[]{tintDrawable,tintDrawable};
-            fCursorDrawable.set(editor,drawables);
-        } catch(Throwable ignored){
+            Drawable tintDrawable = tintDrawable(cursorDrawable, ColorStateList.valueOf(color));
+            Drawable[] drawables = new Drawable[]{tintDrawable, tintDrawable};
+            fCursorDrawable.set(editor, drawables);
+        } catch (Throwable ignored) {
         }
     }
 }

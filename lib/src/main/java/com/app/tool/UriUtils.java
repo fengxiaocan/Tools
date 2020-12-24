@@ -276,12 +276,10 @@ public final class UriUtils extends Util {
         File uriToFile = uriToFile(uri);
         String name = uriToFile.getName();
         File file = new File(getContext().getCacheDir(), name);
-        if (file.exists() && file.length() == uriToFile.length()) {
-            return file;
-        } else {
+        if (!file.exists() || file.length() != uriToFile.length()) {
             FileUtils.copyFile(uri, file);
-            return file;
         }
+        return file;
     }
 
     /**

@@ -12,7 +12,7 @@ import java.io.IOException;
  *     desc  : 图片相关工具类
  * </pre>
  */
- class ImageUtils{
+class ImageUtils {
 
     /**
      * 获取图片旋转角度
@@ -20,13 +20,13 @@ import java.io.IOException;
      * @param filePath 文件路径
      * @return 旋转角度
      */
-    public static int getRotateDegree(String filePath){
+    public static int getRotateDegree(String filePath) {
         int degree = 0;
-        try{
+        try {
             ExifInterface exifInterface = new ExifInterface(filePath);
             int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                     ExifInterface.ORIENTATION_NORMAL);
-            switch(orientation){
+            switch (orientation) {
                 default:
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     degree = 90;
@@ -38,7 +38,7 @@ import java.io.IOException;
                     degree = 270;
                     break;
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return degree;

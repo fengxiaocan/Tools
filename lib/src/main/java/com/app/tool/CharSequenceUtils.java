@@ -111,11 +111,11 @@ class CharSequenceUtils {
      * @param lenght
      * @return
      */
-    public static CharSequence substring(CharSequence content,int lenght){
-        if(content != null){
-            if(content.length() > lenght){
-                return content.subSequence(0,lenght);
-            } else{
+    public static CharSequence substring(CharSequence content, int lenght) {
+        if (content != null) {
+            if (content.length() > lenght) {
+                return content.subSequence(0, lenght);
+            } else {
                 return content;
             }
         }
@@ -125,7 +125,7 @@ class CharSequenceUtils {
     /**
      * 判断一个字符串是不是数字
      */
-    public static boolean isNumber(CharSequence str){
+    public static boolean isNumber(CharSequence str) {
         Pattern pattern = Pattern.compile("-?[0-9]+.?[0-9]+");
         Matcher isNum = pattern.matcher(str);
         return isNum.matches();

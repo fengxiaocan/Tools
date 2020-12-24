@@ -23,7 +23,7 @@ class KeyboardUtils extends Util {
      *
      * @param mContext 上下文
      */
-    public static void openKeybord(Context mContext) {
+    public static void openKeyboard(Context mContext) {
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
@@ -41,7 +41,7 @@ class KeyboardUtils extends Util {
      * @param mEditText 输入框
      * @param mContext  上下文
      */
-    public static void hideKeybord(Context mContext, EditText mEditText) {
+    public static void hideKeyboard(Context mContext, EditText mEditText) {
         if (mEditText.requestFocus()) {
             InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);

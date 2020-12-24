@@ -1,11 +1,9 @@
 package com.app.tool;
 
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
-import android.util.SparseLongArray;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
@@ -32,29 +30,26 @@ class EmptyUtils {
         if (obj == null) {
             return true;
         }
-        if (obj instanceof String && obj.toString().length() == 0) {
-            return true;
+        if (obj instanceof CharSequence) {
+            return ((CharSequence) obj).length() == 0;
         }
-        if (obj instanceof Collection && ((Collection) obj).isEmpty()) {
-            return true;
+        if (obj instanceof Collection ) {
+            return ((Collection) obj).isEmpty();
         }
-        if (obj instanceof Map && ((Map) obj).isEmpty()) {
-            return true;
+        if (obj instanceof Map ) {
+            return ((Map) obj).isEmpty();
         }
-        if (obj instanceof SparseArray && ((SparseArray) obj).size() == 0) {
-            return true;
+        if (obj instanceof SparseArray ) {
+            return ((SparseArray) obj).size() == 0;
         }
-        if (obj instanceof SparseBooleanArray && ((SparseBooleanArray) obj).size() == 0) {
-            return true;
+        if (obj instanceof SparseBooleanArray ) {
+            return ((SparseBooleanArray) obj).size() == 0;
         }
-        if (obj instanceof SparseIntArray && ((SparseIntArray) obj).size() == 0) {
-            return true;
+        if (obj instanceof SparseIntArray) {
+            return ((SparseIntArray) obj).size() == 0;
         }
-        if (obj.getClass().isArray() && Array.getLength(obj) == 0) {
-            return true;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            return obj instanceof SparseLongArray && ((SparseLongArray) obj).size() == 0;
+        if (obj.getClass().isArray() ) {
+            return Array.getLength(obj) == 0;
         }
         return false;
     }
@@ -68,7 +63,6 @@ class EmptyUtils {
     public static boolean isNotEmpty(Object obj) {
         return !isEmpty(obj);
     }
-
 
     public static void checkNull(Object obj) {
         if (obj == null) {
@@ -87,9 +81,8 @@ class EmptyUtils {
             return true;
         }
         if (obj instanceof CharSequence) {
-            if (TextUtils.isEmpty((CharSequence) obj) || "null".equals(obj)) {//后台可能会返回“null”
-                return true;
-            }
+            //后台可能会返回“null”
+            return TextUtils.isEmpty((CharSequence) obj) || "null".equals(obj);
         }
         return false;
     }

@@ -8,19 +8,7 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 
 public final class ByteData implements Serializable {
-    private byte[] data;
-
-    public static ByteData build(byte[] data) {
-        return new ByteData(data);
-    }
-
-    public static ByteData build(String data) {
-        return new ByteData(data);
-    }
-
-    public static ByteData build(String data, Type type) {
-        return new ByteData(data, type);
-    }
+    private final byte[] data;
 
     public ByteData(byte[] data) {
         this.data = data;
@@ -32,6 +20,18 @@ public final class ByteData implements Serializable {
 
     public ByteData(String data) {
         this.data = data.getBytes();
+    }
+
+    public static ByteData build(byte[] data) {
+        return new ByteData(data);
+    }
+
+    public static ByteData build(String data) {
+        return new ByteData(data);
+    }
+
+    public static ByteData build(String data, Type type) {
+        return new ByteData(data, type);
     }
 
     public byte[] byteData() {

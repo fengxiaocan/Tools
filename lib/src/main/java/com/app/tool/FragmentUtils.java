@@ -62,6 +62,7 @@ class FragmentUtils {
     public static boolean hasFragmentByTag(@NonNull FragmentManager fragmentManager, String tag) {
         return fragmentManager.findFragmentByTag(tag) != null;
     }
+
     /**
      * 新增fragment
      *

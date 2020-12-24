@@ -10,41 +10,41 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.view.View;
 
-class PaintUtils{
+class PaintUtils {
     private Paint mPaint;
 
-    public PaintUtils(){
+    public PaintUtils() {
         this.mPaint = new TextPaint();
         init();
     }
 
-    public PaintUtils(Paint paint){
+    public PaintUtils(Paint paint) {
         this.mPaint = paint;
         init();
     }
 
-    public static float getTextWidth(Paint paint,CharSequence text){
-        if(text == null){
+    public static float getTextWidth(Paint paint, CharSequence text) {
+        if (text == null) {
             return 0f;
-        } else{
+        } else {
             return paint.measureText(text.toString());
         }
     }
 
-    public static String cropTextEnd(Paint paint,String text,int maxWidth){
-        float textWidth = getTextWidth(paint,text);
-        if(textWidth <= maxWidth){
+    public static String cropTextEnd(Paint paint, String text, int maxWidth) {
+        float textWidth = getTextWidth(paint, text);
+        if (textWidth <= maxWidth) {
             return text;
-        } else{
-            float endWidth = getTextWidth(paint,"...");
+        } else {
+            float endWidth = getTextWidth(paint, "...");
             char[] chars = text.toCharArray();
             float width = endWidth;
-            for(int i = 0;i < chars.length;i++){
+            for (int i = 0; i < chars.length; i++) {
                 String value = String.valueOf(chars[i]);
                 float widthTemp = paint.measureText(value);
                 width += widthTemp;
-                if(width > maxWidth){
-                    return text.substring(0,i) + "...";
+                if (width > maxWidth) {
+                    return text.substring(0, i) + "...";
                 }
             }
         }
@@ -59,32 +59,32 @@ class PaintUtils{
      * @param view
      * @param paint
      */
-    public static void drawTextOnCenter(Canvas canvas,String text,View view,Paint paint){
+    public static void drawTextOnCenter(Canvas canvas, String text, View view, Paint paint) {
         paint.setTextAlign(Paint.Align.CENTER);
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float v = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
 
         float x = view.getMeasuredWidth() / 2f;
         float y = view.getMeasuredHeight() / 2 + v;
-        canvas.drawText(text,x,y,paint);
+        canvas.drawText(text, x, y, paint);
     }
 
-    public static void drawTextOnCenter(Canvas canvas,String text,Rect rect,Paint paint){
+    public static void drawTextOnCenter(Canvas canvas, String text, Rect rect, Paint paint) {
         paint.setTextAlign(Paint.Align.CENTER);
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float v = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
         float x = rect.centerX();
         float y = rect.centerY() + v;
-        canvas.drawText(text,x,y,paint);
+        canvas.drawText(text, x, y, paint);
     }
 
-    public static void drawTextOnCenter(Canvas canvas,String text,RectF rect,Paint paint){
+    public static void drawTextOnCenter(Canvas canvas, String text, RectF rect, Paint paint) {
         paint.setTextAlign(Paint.Align.CENTER);
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float v = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
         float x = rect.centerX();
         float y = rect.centerY() + v;
-        canvas.drawText(text,x,y,paint);
+        canvas.drawText(text, x, y, paint);
     }
 
     /**
@@ -94,36 +94,36 @@ class PaintUtils{
      * @param drawable
      * @param view
      */
-    public static void drawableCenter(Canvas canvas,Drawable drawable,View view){
+    public static void drawableCenter(Canvas canvas, Drawable drawable, View view) {
         int dx = view.getMeasuredWidth() / 2 - drawable.getBounds().width() / 2;
         int dy = view.getMeasuredHeight() / 2 - drawable.getBounds().height() / 2;
         canvas.save();
-        canvas.translate(dx,dy);
+        canvas.translate(dx, dy);
         drawable.draw(canvas);
         canvas.restore();
     }
 
 
-    private void init(){
+    private void init() {
         mPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
     }
 
-    public void setBold(boolean isbold){
-        if(isbold){
+    public void setBold(boolean isbold) {
+        if (isbold) {
             mPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        } else{
+        } else {
             mPaint.setTypeface(Typeface.DEFAULT);
         }
     }
 
-    public void setColor(int color){
+    public void setColor(int color) {
         mPaint.setColor(color);
     }
 
-    public Paint getPaint(){
+    public Paint getPaint() {
         return mPaint;
     }
 
@@ -133,11 +133,11 @@ class PaintUtils{
      * @param text
      * @param bound
      */
-    public void getTextBounds(CharSequence text,Rect bound){
-        if(text == null){
+    public void getTextBounds(CharSequence text, Rect bound) {
+        if (text == null) {
             bound.setEmpty();
-        } else{
-            mPaint.getTextBounds(text.toString(),0,text.length(),bound);
+        } else {
+            mPaint.getTextBounds(text.toString(), 0, text.length(), bound);
         }
     }
 
@@ -147,10 +147,10 @@ class PaintUtils{
      * @param text
      * @return
      */
-    public float getTextWidth(CharSequence text){
-        if(text == null){
+    public float getTextWidth(CharSequence text) {
+        if (text == null) {
             return 0f;
-        } else{
+        } else {
             return mPaint.measureText(text.toString());
         }
     }
@@ -162,19 +162,19 @@ class PaintUtils{
      * @param maxWidth
      * @return
      */
-    public String cropText(String text,int maxWidth){
+    public String cropText(String text, int maxWidth) {
         float textWidth = getTextWidth(text);
-        if(textWidth <= maxWidth){
+        if (textWidth <= maxWidth) {
             return text;
-        } else{
+        } else {
             char[] chars = text.toCharArray();
             int width = 0;
-            for(int i = 0;i < chars.length;i++){
+            for (int i = 0; i < chars.length; i++) {
                 String value = String.valueOf(chars[i]);
                 float widthTemp = mPaint.measureText(value);
                 width += widthTemp;
-                if(width > maxWidth){
-                    return text.substring(0,i);
+                if (width > maxWidth) {
+                    return text.substring(0, i);
                 }
             }
         }
@@ -188,20 +188,20 @@ class PaintUtils{
      * @param maxWidth
      * @return
      */
-    public String cropTextEnd(String text,int maxWidth){
+    public String cropTextEnd(String text, int maxWidth) {
         float textWidth = getTextWidth(text);
-        if(textWidth <= maxWidth){
+        if (textWidth <= maxWidth) {
             return text;
-        } else{
+        } else {
             float endWidth = getTextWidth("...");
             char[] chars = text.toCharArray();
             float width = endWidth;
-            for(int i = 0;i < chars.length;i++){
+            for (int i = 0; i < chars.length; i++) {
                 String value = String.valueOf(chars[i]);
                 float widthTemp = mPaint.measureText(value);
                 width += widthTemp;
-                if(width > maxWidth){
-                    return text.substring(0,i) + "...";
+                if (width > maxWidth) {
+                    return text.substring(0, i) + "...";
                 }
             }
         }
@@ -215,11 +215,20 @@ class PaintUtils{
      * @param text
      * @param view
      */
-    public void drawTextOnCenter(Canvas canvas,String text,View view){
+    public void drawTextOnCenter(Canvas canvas, String text, View view) {
         mPaint.setTextAlign(Paint.Align.CENTER);
         float x = view.getMeasuredWidth() / 2f;
-        float y = view.getMeasuredHeight() / 2 + getFontDistanceAhalf();
-        canvas.drawText(text,x,y,mPaint);
+        float y = view.getMeasuredHeight() / 2 + getFontDistanceHalf();
+        canvas.drawText(text, x, y, mPaint);
+    }
+
+    /**
+     * @param canvas
+     * @param text
+     */
+    public void drawTextOnCenter(Canvas canvas, String text, int x, float y) {
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(text, x, y, mPaint);
     }
 
     /**
@@ -227,17 +236,17 @@ class PaintUtils{
      * @param text
      * @param yTop   y坐标的字体最顶点
      */
-    public void drawTextOnCenterX(Canvas canvas,String text,View view,int yTop){
+    public void drawTextOnCenterX(Canvas canvas, String text, View view, int yTop) {
         mPaint.setTextAlign(Paint.Align.CENTER);
         float x = view.getMeasuredWidth() / 2;
         float y = yTop + getFontDistance();
-        canvas.drawText(text,x,y,mPaint);
+        canvas.drawText(text, x, y, mPaint);
     }
 
-    public void drawTextOnCenterY(Canvas canvas,String text,View view,int x){
+    public void drawTextOnCenterY(Canvas canvas, String text, View view, int x) {
         mPaint.setTextAlign(Paint.Align.CENTER);
-        float y = view.getMeasuredHeight() / 2 + getFontDistanceAhalf();
-        canvas.drawText(text,x,y,mPaint);
+        float y = view.getMeasuredHeight() / 2 + getFontDistanceHalf();
+        canvas.drawText(text, x, y, mPaint);
     }
 
     /**
@@ -245,7 +254,7 @@ class PaintUtils{
      *
      * @return
      */
-    public float getFontDistance(){
+    public float getFontDistance() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return (fontMetrics.bottom - fontMetrics.top);
     }
@@ -255,41 +264,41 @@ class PaintUtils{
      *
      * @return
      */
-    public float getFontDistanceAhalf(){
+    public float getFontDistanceHalf() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
     }
 
-    public float getFontTop(){
+    public float getFontTop() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.top;
     }
 
-    public float getFontBottom(){
+    public float getFontBottom() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.bottom;
     }
 
-    public float getFontAscent(){
+    public float getFontAscent() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.ascent;
     }
 
-    public float getFontDescent(){
+    public float getFontDescent() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.descent;
     }
 
-    public float getFontLeading(){
+    public float getFontLeading() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.leading;
     }
 
-    public void setSpTextSize(Context context,float spPx){
-        mPaint.setTextSize(SizeUtils.sp2px(context,spPx));
+    public void setSpTextSize(Context context, float spPx) {
+        mPaint.setTextSize(SizeUtils.sp2px(context, spPx));
     }
 
-    public void setDpTextSize(Context context,float dpPx){
-        mPaint.setTextSize(SizeUtils.dp2px(context,dpPx));
+    public void setDpTextSize(Context context, float dpPx) {
+        mPaint.setTextSize(SizeUtils.dp2px(context, dpPx));
     }
 }

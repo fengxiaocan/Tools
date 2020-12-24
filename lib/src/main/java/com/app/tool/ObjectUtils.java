@@ -18,17 +18,6 @@ import java.io.Serializable;
 class ObjectUtils {
 
     /**
-     * Return whether object1 is equals to object2.
-     *
-     * @param o1 The first object.
-     * @param o2 The second object.
-     * @return {@code true}: yes<br>{@code false}: no
-     */
-    public static boolean equals(final Object o1, final Object o2) {
-        return o1 == o2 || (o1 != null && o1.equals(o2));
-    }
-
-    /**
      * Require the object is not null.
      *
      * @param object  The object.
@@ -40,21 +29,6 @@ class ObjectUtils {
     public static <T> T requireNonNull(final T object, final String message) {
         if (object == null) {
             throw new NullPointerException(message);
-        }
-        return object;
-    }
-
-    /**
-     * Return the nonnull object or default object.
-     *
-     * @param object        The object.
-     * @param defaultObject The default object to use with the object is null.
-     * @param <T>           The value type.
-     * @return the nonnull object or default object
-     */
-    public static <T> T getOrDefault(final T object, final T defaultObject) {
-        if (object == null) {
-            return defaultObject;
         }
         return object;
     }
@@ -76,8 +50,8 @@ class ObjectUtils {
      * @param value the value
      */
     public static void save(File file, Serializable value) {
-        if (!FileUtils.isFileExists(file)){
-            return ;
+        if (!FileUtils.isFileExists(file)) {
+            return;
         }
         FileOutputStream fos = null;
         ObjectOutputStream os = null;
@@ -111,7 +85,7 @@ class ObjectUtils {
      * @return the t
      */
     public static <T extends Serializable> T get(File file) {
-        if (!FileUtils.isFileExists(file)){
+        if (!FileUtils.isFileExists(file)) {
             return null;
         }
         FileInputStream fis = null;

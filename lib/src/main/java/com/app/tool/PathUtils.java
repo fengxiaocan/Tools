@@ -102,7 +102,7 @@ class PathUtils extends Util {
      *
      * @return 照片和视频目录
      */
-    public static String getExtDcimPath() {
+    public static String getExtDCIMPath() {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
     }
 
@@ -173,7 +173,7 @@ class PathUtils extends Util {
      *
      * @return Podcasts 目录
      */
-    public static String getExtPodcastsPath() {
+    public static String getExtPodCastsPath() {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS).getAbsolutePath();
     }
 
@@ -183,7 +183,7 @@ class PathUtils extends Util {
      *
      * @return 下载目录
      */
-    public static String getExtRingtonesPath() {
+    public static String getExtRingTonesPath() {
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).getAbsolutePath();
     }
 
@@ -223,7 +223,7 @@ class PathUtils extends Util {
      *
      * @return 此应用在外置储存中的相机目录
      */
-    public static String getAppExtDcimPath() {
+    public static String getAppExtDCIMPath() {
         return getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM).getAbsolutePath();
     }
 
@@ -294,7 +294,7 @@ class PathUtils extends Util {
      *
      * @return 此应用在外置储存中的 Podcasts 目录
      */
-    public static String getAppExtPodcastsPath() {
+    public static String getAppExtPodCastsPath() {
         return getContext().getExternalFilesDir(Environment.DIRECTORY_PODCASTS).getAbsolutePath();
     }
 
@@ -304,7 +304,7 @@ class PathUtils extends Util {
      *
      * @return 此应用在外置储存中的铃声目录
      */
-    public static String getAppExtRingtonesPath() {
+    public static String getAppExtRingTonesPath() {
         return getContext().getExternalFilesDir(Environment.DIRECTORY_RINGTONES).getAbsolutePath();
     }
 

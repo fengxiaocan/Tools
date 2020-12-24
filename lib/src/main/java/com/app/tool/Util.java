@@ -4,11 +4,11 @@ import android.app.Application;
 import android.content.Context;
 
 class Util {
-    protected static Context getContext(){
+    protected static Context getContext() {
         return Tools.getContext();
     }
 
-    protected static Application getApplication(){
+    protected static Application getApplication() {
         return Tools.getApplication();
     }
 }

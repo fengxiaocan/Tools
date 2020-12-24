@@ -1,11 +1,11 @@
 package com.app.tool;
 
-import android.graphics.*;
+import android.graphics.PointF;
 
 /**
  * Created by MQ on 2017/6/16.
  */
-class MathUtil{
+class MathUtil {
 
 
     /**
@@ -15,8 +15,8 @@ class MathUtil{
      * @param p2 PointF
      * @return 两点之间的直线距离 two point distance
      */
-    public static float getTwoPointDistance(PointF p1,PointF p2){
-        return (float)Math.sqrt(Math.pow(p1.x - p2.x,2) + Math.pow(p1.y - p2.y,2));
+    public static float getTwoPointDistance(PointF p1, PointF p2) {
+        return (float) Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     }
 
     /**
@@ -28,8 +28,8 @@ class MathUtil{
      * @param y2 y2
      * @return 斜率 line slope
      */
-    public static Float getLineSlope(float x1,float x2,float y1,float y2){
-        if(x2 - x1 == 0){
+    public static Float getLineSlope(float x1, float x2, float y1, float y2) {
+        if (x2 - x1 == 0) {
             return null;
         }
         return (y2 - y1) / (x2 - x1);
@@ -42,8 +42,8 @@ class MathUtil{
      * @param p2 PointF
      * @return 返回斜率 line slope
      */
-    public static Float getLineSlope(PointF p1,PointF p2){
-        if(p2.x - p1.x == 0){
+    public static Float getLineSlope(PointF p1, PointF p2) {
+        if (p2.x - p1.x == 0) {
             return null;
         }
         return (p2.y - p1.y) / (p2.x - p1.x);
@@ -57,8 +57,8 @@ class MathUtil{
      * @param p2 PointF
      * @return 中点 middle point
      */
-    public static PointF getMiddlePoint(PointF p1,PointF p2){
-        return new PointF((p1.x + p2.x) / 2.0f,(p1.y + p2.y) / 2.0f);
+    public static PointF getMiddlePoint(PointF p1, PointF p2) {
+        return new PointF((p1.x + p2.x) / 2.0f, (p1.y + p2.y) / 2.0f);
     }
 
 
@@ -71,20 +71,20 @@ class MathUtil{
      * @param lineK   The slope of line which cross the pMiddle.
      * @return point f [ ]
      */
-    public static PointF[] getIntersectionPoints(PointF pMiddle,float radius,Float lineK){
+    public static PointF[] getIntersectionPoints(PointF pMiddle, float radius, Float lineK) {
         PointF[] points = new PointF[2];
 
         float radian, xOffset = 0, yOffset = 0;
-        if(lineK != null){
-            radian = (float)Math.atan(lineK);
-            xOffset = (float)(Math.sin(radian) * radius);
-            yOffset = (float)(Math.cos(radian) * radius);
-        } else{
+        if (lineK != null) {
+            radian = (float) Math.atan(lineK);
+            xOffset = (float) (Math.sin(radian) * radius);
+            yOffset = (float) (Math.cos(radian) * radius);
+        } else {
             xOffset = radius;
             yOffset = 0;
         }
-        points[0] = new PointF(pMiddle.x + xOffset,pMiddle.y - yOffset);
-        points[1] = new PointF(pMiddle.x - xOffset,pMiddle.y + yOffset);
+        points[0] = new PointF(pMiddle.x + xOffset, pMiddle.y - yOffset);
+        points[1] = new PointF(pMiddle.x - xOffset, pMiddle.y + yOffset);
 
         return points;
     }
@@ -95,10 +95,10 @@ class MathUtil{
      * @param value the value
      * @return int
      */
-    public static int string2Int(String value){
-        try{
+    public static int string2Int(String value) {
+        try {
             return Integer.valueOf(value);
-        } catch(Exception e){
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -112,16 +112,15 @@ class MathUtil{
      * @param height    the height
      * @return confine scaling
      */
-    public static float getConfineScaling(float maxWidth,float maxHeight,float width,float height)
-    {
-        if(maxWidth == 0 || maxHeight == 0 || width == 0 || height == 0){
+    public static float getConfineScaling(float maxWidth, float maxHeight, float width, float height) {
+        if (maxWidth == 0 || maxHeight == 0 || width == 0 || height == 0) {
             return 0;
         }
         float a = maxWidth / maxHeight;
         float b = width / height;
-        if(a > b){
+        if (a > b) {
             return maxHeight / height;
-        } else{
+        } else {
             return maxWidth / width;
         }
     }
@@ -136,8 +135,8 @@ class MathUtil{
      * @param height    the height
      * @return the confine scaling
      */
-    public static float getConfineScaling(int maxWidth,int maxHeight,int width,int height){
-        return getConfineScaling((float)maxWidth,(float)maxHeight,(float)width,(float)height);
+    public static float getConfineScaling(int maxWidth, int maxHeight, int width, int height) {
+        return getConfineScaling((float) maxWidth, (float) maxHeight, (float) width, (float) height);
     }
 
 }

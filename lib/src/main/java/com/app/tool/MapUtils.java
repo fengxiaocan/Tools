@@ -1,9 +1,9 @@
 package com.app.tool;
 
-import java.util.*;
+import java.util.Map;
 
-class MapUtils{
-    MapUtils(){
+class MapUtils {
+    MapUtils() {
     }
 
     /**
@@ -16,16 +16,16 @@ class MapUtils{
      * @param <V>
      * @return
      */
-    public static <K,V> boolean putNoNull(Map<K,V> map,K key,V value){
-        if(map != null && key != null && value != null){
-            map.put(key,value);
+    public static <K, V> boolean putNoNull(Map<K, V> map, K key, V value) {
+        if (map != null && key != null && value != null) {
+            map.put(key, value);
             return true;
         }
         return false;
     }
 
-    public static boolean clear(Map map){
-        if(map != null){
+    public static boolean clear(Map map) {
+        if (map != null) {
             map.clear();
             return true;
         }

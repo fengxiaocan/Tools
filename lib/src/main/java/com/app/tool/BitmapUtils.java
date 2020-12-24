@@ -453,7 +453,7 @@ class BitmapUtils extends Util {
         view.buildDrawingCache();
         Bitmap b1 = view.getDrawingCache();
         view.destroyDrawingCache();
-        if (b1 == null){
+        if (b1 == null) {
             return view2Bitmap(view);
         }
         return b1;

@@ -19,9 +19,9 @@ public class StreamUtils {
         }
         try {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
-            byte[] b = new byte[1024*8];
+            byte[] b = new byte[1024 * 8];
             int len;
-            while ((len = is.read(b, 0, 1024*8)) != -1) {
+            while ((len = is.read(b, 0, 1024 * 8)) != -1) {
                 os.write(b, 0, len);
             }
             return os;

@@ -146,7 +146,7 @@ class PhoneUtils extends Util {
      * SubscriberId(IMSI) = 460030419724900<br>
      * VoiceMailNumber = *86<br>
      */
-    @RequiresPermission(allOf = {Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE})
+    @RequiresPermission(allOf = {Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_PHONE_STATE})
     public static String getPhoneStatus() {
         TelephonyManager tm = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
         String str = "";
@@ -227,7 +227,7 @@ class PhoneUtils extends Util {
      *
      * @return 联系人链表
      */
-    @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_CONTACTS})
+    @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS})
     public static List<HashMap<String, String>> getAllContactInfo() {
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         // 1.获取内容解析者

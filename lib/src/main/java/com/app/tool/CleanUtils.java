@@ -8,7 +8,7 @@ package com.app.tool;
  *     desc  : 清除相关工具类
  * </pre>
  */
-class CleanUtils extends Util{
+class CleanUtils extends Util {
 
 
     /**
@@ -17,7 +17,7 @@ class CleanUtils extends Util{
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanInternalCache(){
+    public static boolean cleanInternalCache() {
         return FileUtils.deleteDir(getContext().getCacheDir());
     }
 
@@ -27,7 +27,7 @@ class CleanUtils extends Util{
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanInternalFiles(){
+    public static boolean cleanInternalFiles() {
         return FileUtils.deleteDir(getContext().getFilesDir());
     }
 
@@ -37,7 +37,7 @@ class CleanUtils extends Util{
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanInternalDatabases(){
+    public static boolean cleanInternalDatabases() {
         return FileUtils.deleteDir(AppUtils.getInternalDatabaseDir());
     }
 
@@ -48,7 +48,7 @@ class CleanUtils extends Util{
      * @param dbName 数据库名称
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean deleteInternalDatabases(String dbName){
+    public static boolean deleteInternalDatabases(String dbName) {
         return getContext().deleteDatabase(dbName);
     }
 
@@ -58,7 +58,7 @@ class CleanUtils extends Util{
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanPreferences(){
+    public static boolean cleanPreferences() {
         return FileUtils.deleteDir(AppUtils.getPreferencesDir());
     }
 
@@ -68,16 +68,17 @@ class CleanUtils extends Util{
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanExternalCache(){
+    public static boolean cleanExternalCache() {
         return SDCardUtils.sdCardExist() && FileUtils.deleteDir(AppUtils.getExternalCacheDir());
     }
+
     /**
      * 清除外部数据
      * <p>/storage/emulated/0/android/data/com.xxx.xxx/files</p>
      *
      * @return {@code true}: 清除成功<br>{@code false}: 清除失败
      */
-    public static boolean cleanExternalFiles(){
+    public static boolean cleanExternalFiles() {
         return SDCardUtils.sdCardExist() && FileUtils.deleteDir(AppUtils.getExternalFilesDir());
     }
 }

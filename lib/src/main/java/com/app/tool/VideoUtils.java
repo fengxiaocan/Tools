@@ -14,6 +14,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+
 import static android.media.ThumbnailUtils.OPTIONS_RECYCLE_INPUT;
 import static android.media.ThumbnailUtils.extractThumbnail;
 

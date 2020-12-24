@@ -28,41 +28,41 @@ import javax.crypto.spec.SecretKeySpec;
  * AES/GCM/NOPADDING
  */
 public enum AES implements ICipher {
-    AES("AES",128),
+    AES("AES", 128),
     ECB_NOPADDING("AES/ECB/NOPADDING", false, true),
-    ECB_PKCS5PADDING("AES/ECB/PKCS5PADDING",128),
-    ECB_PKCS7PADDING("AES/ECB/PKCS7PADDING",128),
+    ECB_PKCS5PADDING("AES/ECB/PKCS5PADDING", 128),
+    ECB_PKCS7PADDING("AES/ECB/PKCS7PADDING", 128),
 
     CBC_NOPADDING("AES/CBC/NOPADDING", true, true),
     CBC_PKCS5PADDING("AES/CBC/PKCS5PADDING", true, false),
     CBC_PKCS7PADDING("AES/CBC/PKCS7PADDING", true, false),
 
-    _128_GCM_NOPADDING("AES_128/GCM/NOPADDING", true, true,12,128),
+    _128_GCM_NOPADDING("AES_128/GCM/NOPADDING", true, true, 12, 128),
     _128_CBC_NOPADDING("AES_128/CBC/NOPADDING", true, true),
     _128_CBC_PKCS5PADDING("AES_128/CBC/PKCS5PADDING", true, false),
     _128_ECB_NOPADDING("AES_128/ECB/NOPADDING", false, true),
-    _128_ECB_PKCS5PADDING("AES_128/ECB/PKCS5PADDING",128),
+    _128_ECB_PKCS5PADDING("AES_128/ECB/PKCS5PADDING", 128),
 
-    _256_GCM_NOPADDING("AES_256/GCM/NOPADDING", true, true,12,256),
-    _256_ECB_NOPADDING("AES_256/ECB/NOPADDING", false, true,16,256),
-    _256_ECB_PKCS5PADDING("AES_256/ECB/PKCS5PADDING",128),
-    _256_CBC_NOPADDING("AES_256/CBC/NOPADDING", true, true,16,256),
-    _256_CBC_PKCS5PADDING("AES_256/CBC/PKCS5PADDING", true, false,16,256),
+    _256_GCM_NOPADDING("AES_256/GCM/NOPADDING", true, true, 12, 256),
+    _256_ECB_NOPADDING("AES_256/ECB/NOPADDING", false, true, 16, 256),
+    _256_ECB_PKCS5PADDING("AES_256/ECB/PKCS5PADDING", 128),
+    _256_CBC_NOPADDING("AES_256/CBC/NOPADDING", true, true, 16, 256),
+    _256_CBC_PKCS5PADDING("AES_256/CBC/PKCS5PADDING", true, false, 16, 256),
 
-    WRAP("AESWRAP",128),
+    WRAP("AESWRAP", 128),
     CTR_NOPADDING("AES/CTR/NOPADDING", true, true),
     GCM_NOPADDING("AES/GCM/NOPADDING", true, true);
 
     public static final String algorithm = "AES";
 
-    private String transformation;
+    private final String transformation;
     private boolean isParameterMode = false;
     private boolean isNoPadding = false;
     private int vectorSize = 16;//12/16
     private int keySize = 128;//128,192,256
 
 
-    AES(String transformation,int keySize) {
+    AES(String transformation, int keySize) {
         this.transformation = transformation;
         this.keySize = keySize;
     }
@@ -81,12 +81,12 @@ public enum AES implements ICipher {
         this.keySize = keySize;
     }
 
-    public Key getKey() {
-        return getKey(keySize);
+    public static Key getKey(int keySize) {
+        return CipherCoder.createKey(algorithm, keySize);
     }
 
-    public static Key getKey(int keySize) {
-        return CipherCoder.createKey(algorithm,keySize);
+    public Key getKey() {
+        return getKey(keySize);
     }
 
     @Override
@@ -120,7 +120,7 @@ public enum AES implements ICipher {
 
     @Override
     public Key toKey(byte[] key) {
-        return new SecretKeySpec(key,algorithm);
+        return new SecretKeySpec(key, algorithm);
     }
 
     /*************************  加密  *************************/

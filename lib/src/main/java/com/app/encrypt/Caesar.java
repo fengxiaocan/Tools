@@ -1,16 +1,12 @@
-package com.app.tool;
+package com.app.encrypt;
 
 /**
  * The type Caesar utils.
  *
  * @name： FingerprintLoader
- * @package： com.evil.fingerprintloader
- * @author: Noah.冯 QQ:1066537317
- * @time: 19 :08
- * @version: 1.1
  * @desc： 凯撒密码算法
  */
- class CaesarUtils{
+public final class Caesar {
 
     /**
      * 加密
@@ -19,17 +15,17 @@ package com.app.tool;
      * @param key   秘钥，即偏移量
      * @return 返回加密后的数据 string
      */
-    public static String encrypt(String input,int key){
+    public static String encrypt(String input, int key) {
         //得到字符串里的每一个字符
         char[] array = input.toCharArray();
 
-        for(int i = 0;i < array.length;++ i){
+        for (int i = 0; i < array.length; ++i) {
             //字符转换成ASCII 码值
             int ascii = array[i];
             //字符偏移，例如a->b
             ascii = ascii + key;
             //ASCII 码值转换为char
-            char newChar = (char)ascii;
+            char newChar = (char) ascii;
             //替换原有字符
             array[i] = newChar;
 
@@ -48,16 +44,16 @@ package com.app.tool;
      * @param key   秘钥，即偏移量
      * @return 返回解密后的数据 string
      */
-    public static String decrypt(String input,int key){
+    public static String decrypt(String input, int key) {
         //得到字符串里的每一个字符
         char[] array = input.toCharArray();
-        for(int i = 0;i < array.length;++ i){
+        for (int i = 0; i < array.length; ++i) {
             //字符转换成ASCII 码值
             int ascii = array[i];
             //恢复字符偏移，例如b->a
             ascii = ascii - key;
             //ASCII 码值转换为char
-            char newChar = (char)ascii;
+            char newChar = (char) ascii;
             //替换原有字符
             array[i] = newChar;
 

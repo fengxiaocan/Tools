@@ -6,13 +6,14 @@ import android.hardware.Camera;
 
 import java.io.IOException;
 
+
 import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
 import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
 
 /**
  * 闪光灯
  */
-class FlashlightUtils extends Util{
+class FlashlightUtils extends Util {
 
 
     private Camera mCamera;
@@ -22,7 +23,7 @@ class FlashlightUtils extends Util{
      *
      * @return the single {@link FlashlightUtils} instance
      */
-    public static FlashlightUtils getInstance(){
+    public static FlashlightUtils getInstance() {
         return LazyHolder.INSTANCE;
     }
 
@@ -31,7 +32,7 @@ class FlashlightUtils extends Util{
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isFlashlightEnable(){
+    public static boolean isFlashlightEnable() {
         return getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
     }
 
@@ -40,21 +41,21 @@ class FlashlightUtils extends Util{
      *
      * @return {@code true}: success<br>{@code false}: fail
      */
-    public boolean register(){
-        try{
+    public boolean register() {
+        try {
             mCamera = Camera.open(0);
-        } catch(Throwable t){
+        } catch (Throwable t) {
             t.printStackTrace();
             return false;
         }
-        if(mCamera == null){
+        if (mCamera == null) {
             return false;
         }
-        try{
+        try {
             mCamera.setPreviewTexture(new SurfaceTexture(0));
             mCamera.startPreview();
             return true;
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
@@ -63,8 +64,8 @@ class FlashlightUtils extends Util{
     /**
      * Unregister the utils of flashlight.
      */
-    public void unregister(){
-        if(mCamera == null)
+    public void unregister() {
+        if (mCamera == null)
             return;
         mCamera.stopPreview();
         mCamera.release();
@@ -73,12 +74,12 @@ class FlashlightUtils extends Util{
     /**
      * Turn on the flashlight.
      */
-    public void setFlashlightOn(){
-        if(mCamera == null){
+    public void setFlashlightOn() {
+        if (mCamera == null) {
             return;
         }
         Camera.Parameters parameters = mCamera.getParameters();
-        if(! FLASH_MODE_TORCH.equals(parameters.getFlashMode())){
+        if (!FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(FLASH_MODE_TORCH);
             mCamera.setParameters(parameters);
         }
@@ -87,12 +88,12 @@ class FlashlightUtils extends Util{
     /**
      * Turn off the flashlight.
      */
-    public void setFlashlightOff(){
-        if(mCamera == null){
+    public void setFlashlightOff() {
+        if (mCamera == null) {
             return;
         }
         Camera.Parameters parameters = mCamera.getParameters();
-        if(FLASH_MODE_TORCH.equals(parameters.getFlashMode())){
+        if (FLASH_MODE_TORCH.equals(parameters.getFlashMode())) {
             parameters.setFlashMode(FLASH_MODE_OFF);
             mCamera.setParameters(parameters);
         }
@@ -103,15 +104,15 @@ class FlashlightUtils extends Util{
      *
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public boolean isFlashlightOn(){
-        if(mCamera == null){
+    public boolean isFlashlightOn() {
+        if (mCamera == null) {
             return false;
         }
         Camera.Parameters parameters = mCamera.getParameters();
         return FLASH_MODE_TORCH.equals(parameters.getFlashMode());
     }
 
-    private static final class LazyHolder{
+    private static final class LazyHolder {
         private static final FlashlightUtils INSTANCE = new FlashlightUtils();
     }
 }

@@ -1,6 +1,7 @@
 package com.app.tool;
 
-import android.os.*;
+import android.os.Handler;
+import android.os.Message;
 
 /**
  * <pre>
@@ -10,7 +11,7 @@ import android.os.*;
  *     desc  : Handler相关工具类
  * </pre>
  */
-class HandlerUtils extends Util{
+class HandlerUtils extends Util {
 
     private static Handler sHandler;
 
@@ -19,7 +20,7 @@ class HandlerUtils extends Util{
      *
      * @param message the message
      */
-    public static void sendMessage(Message message){
+    public static void sendMessage(Message message) {
         getHandler().sendMessage(message);
     }
 
@@ -28,7 +29,7 @@ class HandlerUtils extends Util{
      *
      * @param what the what
      */
-    public static void sendEmptyMessage(int what){
+    public static void sendEmptyMessage(int what) {
         getHandler().sendEmptyMessage(what);
     }
 
@@ -38,8 +39,8 @@ class HandlerUtils extends Util{
      * @param what        the what
      * @param delayMillis the delay millis
      */
-    public static void sendEmptyMessageDelayed(int what,long delayMillis){
-        getHandler().sendEmptyMessageDelayed(what,delayMillis);
+    public static void sendEmptyMessageDelayed(int what, long delayMillis) {
+        getHandler().sendEmptyMessageDelayed(what, delayMillis);
     }
 
     /**
@@ -48,8 +49,8 @@ class HandlerUtils extends Util{
      * @param what        the what
      * @param delayMillis the delay millis
      */
-    public static void sendEmptyMessageAtTime(int what,long delayMillis){
-        getHandler().sendEmptyMessageAtTime(what,delayMillis);
+    public static void sendEmptyMessageAtTime(int what, long delayMillis) {
+        getHandler().sendEmptyMessageAtTime(what, delayMillis);
     }
 
     /**
@@ -58,8 +59,8 @@ class HandlerUtils extends Util{
      * @param msg         the msg
      * @param delayMillis the delay millis
      */
-    public static void sendMessageDelayed(Message msg,long delayMillis){
-        getHandler().sendMessageDelayed(msg,delayMillis);
+    public static void sendMessageDelayed(Message msg, long delayMillis) {
+        getHandler().sendMessageDelayed(msg, delayMillis);
     }
 
     /**
@@ -68,8 +69,8 @@ class HandlerUtils extends Util{
      * @param msg         the msg
      * @param delayMillis the delay millis
      */
-    public static void sendMessageAtTime(Message msg,long delayMillis){
-        getHandler().sendMessageAtTime(msg,delayMillis);
+    public static void sendMessageAtTime(Message msg, long delayMillis) {
+        getHandler().sendMessageAtTime(msg, delayMillis);
     }
 
     /**
@@ -77,7 +78,7 @@ class HandlerUtils extends Util{
      *
      * @param runnable the runnable
      */
-    public static void post(Runnable runnable){
+    public static void post(Runnable runnable) {
         getHandler().post(runnable);
     }
 
@@ -87,8 +88,8 @@ class HandlerUtils extends Util{
      * @param runnable    the runnable
      * @param delayMillis the delay millis
      */
-    public static void postDelayed(Runnable runnable,long delayMillis){
-        getHandler().postDelayed(runnable,delayMillis);
+    public static void postDelayed(Runnable runnable, long delayMillis) {
+        getHandler().postDelayed(runnable, delayMillis);
     }
 
     /**
@@ -97,8 +98,8 @@ class HandlerUtils extends Util{
      * @param runnable    the runnable
      * @param delayMillis the delay millis
      */
-    public static void postAtTime(Runnable runnable,long delayMillis){
-        getHandler().postAtTime(runnable,delayMillis);
+    public static void postAtTime(Runnable runnable, long delayMillis) {
+        getHandler().postAtTime(runnable, delayMillis);
     }
 
     /**
@@ -107,7 +108,7 @@ class HandlerUtils extends Util{
      * @param what the what
      * @return the boolean
      */
-    public static boolean hasMessages(int what){
+    public static boolean hasMessages(int what) {
         return getHandler().hasMessages(what);
     }
 
@@ -116,7 +117,7 @@ class HandlerUtils extends Util{
      *
      * @return the message
      */
-    public static Message obtainMessage(){
+    public static Message obtainMessage() {
         return getHandler().obtainMessage();
     }
 
@@ -126,7 +127,7 @@ class HandlerUtils extends Util{
      * @param what the what
      * @return the message
      */
-    public static Message obtainMessage(int what){
+    public static Message obtainMessage(int what) {
         return getHandler().obtainMessage(what);
     }
 
@@ -135,10 +136,10 @@ class HandlerUtils extends Util{
      *
      * @return the handler
      */
-    public static Handler getHandler(){
-        synchronized(Handler.class){
-            if(sHandler == null){
-                synchronized(Handler.class){
+    public static Handler getHandler() {
+        synchronized (Handler.class) {
+            if (sHandler == null) {
+                synchronized (Handler.class) {
                     sHandler = new Handler(getContext().getMainLooper());
                 }
             }
@@ -151,7 +152,7 @@ class HandlerUtils extends Util{
      *
      * @param runnable the runnable
      */
-    public static void removeCallbacks(Runnable runnable){
+    public static void removeCallbacks(Runnable runnable) {
         getHandler().removeCallbacks(runnable);
     }
 
@@ -161,8 +162,8 @@ class HandlerUtils extends Util{
      * @param r     the r
      * @param token the token
      */
-    public static void removeCallbacks(Runnable r,Object token){
-        getHandler().removeCallbacks(r,token);
+    public static void removeCallbacks(Runnable r, Object token) {
+        getHandler().removeCallbacks(r, token);
     }
 
     /**
@@ -170,7 +171,7 @@ class HandlerUtils extends Util{
      *
      * @param what the what
      */
-    public static void removeMessages(int what){
+    public static void removeMessages(int what) {
         getHandler().removeMessages(what);
     }
 
@@ -180,8 +181,8 @@ class HandlerUtils extends Util{
      * @param what   the what
      * @param object the object
      */
-    public static void removeMessages(int what,Object object){
-        getHandler().removeMessages(what,object);
+    public static void removeMessages(int what, Object object) {
+        getHandler().removeMessages(what, object);
     }
 
 }

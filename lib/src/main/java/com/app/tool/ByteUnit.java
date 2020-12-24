@@ -883,34 +883,34 @@ public enum ByteUnit {
     /*以下是String类型的转换*/
 
     public String toBit(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format(toDoubleBit(size),accuracy);
+        return DataUtils.format(toDoubleBit(size), accuracy);
     }
 
     public String toB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format(toDoubleB(size),accuracy);
+        return DataUtils.format(toDoubleB(size), accuracy);
     }
 
     public String toKB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format( toDoubleKB(size),accuracy);
+        return DataUtils.format(toDoubleKB(size), accuracy);
     }
 
     public String toMB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format(toDoubleMB(size),accuracy);
+        return DataUtils.format(toDoubleMB(size), accuracy);
     }
 
     public String toGB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format(toDoubleGB(size),accuracy);
+        return DataUtils.format(toDoubleGB(size), accuracy);
     }
 
     public String toTB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format( toDoubleTB(size),accuracy);
+        return DataUtils.format(toDoubleTB(size), accuracy);
     }
 
     public String toPB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format(toDoublePB(size),accuracy);
+        return DataUtils.format(toDoublePB(size), accuracy);
     }
 
     public String toEB(long size, @IntRange(from = 0, to = 9) int accuracy) {
-        return DataUtils.format( toDoubleEB(size),accuracy);
+        return DataUtils.format(toDoubleEB(size), accuracy);
     }
 }

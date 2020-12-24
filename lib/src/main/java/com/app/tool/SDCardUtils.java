@@ -65,7 +65,7 @@ class SDCardUtils extends PathUtils {
         StatFs stat = getSDCardInfo();
         long availableBlocks = stat.getAvailableBlocksLong();
         long blockSize = stat.getBlockSizeLong();
-        return Formatter.formatFileSize(getContext(),availableBlocks * blockSize);
+        return Formatter.formatFileSize(getContext(), availableBlocks * blockSize);
     }
 
     /**
@@ -98,11 +98,10 @@ class SDCardUtils extends PathUtils {
 
     /**
      * 复制沙盒私有文件到Download公共目录下
-     *
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(String filePath, String displayName, String title, String mimeType, PublicDirectory type,String dir) {
-        androidQCopyFileToPublic(new File(filePath), displayName, title, mimeType, type,dir);
+    public static void androidQCopyFileToPublic(String filePath, String displayName, String title, String mimeType, PublicDirectory type, String dir) {
+        androidQCopyFileToPublic(new File(filePath), displayName, title, mimeType, type, dir);
     }
 
     /**
@@ -113,8 +112,8 @@ class SDCardUtils extends PathUtils {
      * @param mimeType    类型
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(File filePath, String displayName, String mimeType, PublicDirectory type,String dir) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, mimeType, type,dir);
+    public static void androidQCopyFileToPublic(File filePath, String displayName, String mimeType, PublicDirectory type, String dir) {
+        androidQCopyFileToPublic(filePath, displayName, displayName, mimeType, type, dir);
     }
 
     /**
@@ -125,8 +124,8 @@ class SDCardUtils extends PathUtils {
      * @param mimeType    类型
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(String filePath, String displayName, String mimeType,PublicDirectory type,String dir) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, mimeType,  type,dir);
+    public static void androidQCopyFileToPublic(String filePath, String displayName, String mimeType, PublicDirectory type, String dir) {
+        androidQCopyFileToPublic(filePath, displayName, displayName, mimeType, type, dir);
     }
 
     /**
@@ -136,8 +135,8 @@ class SDCardUtils extends PathUtils {
      * @param displayName 展示的名字
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(File filePath, String displayName,PublicDirectory type,String dir) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), type,dir);
+    public static void androidQCopyFileToPublic(File filePath, String displayName, PublicDirectory type, String dir) {
+        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), type, dir);
     }
 
     /**
@@ -147,8 +146,8 @@ class SDCardUtils extends PathUtils {
      * @param displayName 展示的名字
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(String filePath, String displayName, PublicDirectory type,String dir) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), type,dir);
+    public static void androidQCopyFileToPublic(String filePath, String displayName, PublicDirectory type, String dir) {
+        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), type, dir);
     }
 
     /**
@@ -159,7 +158,7 @@ class SDCardUtils extends PathUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public static void androidQCopyFileToPublicDownload(String filePath, String displayName) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), PublicDirectory.Download,AppUtils.getAppPackageName());
+        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), PublicDirectory.Download, AppUtils.getAppPackageName());
     }
 
     /**
@@ -170,7 +169,7 @@ class SDCardUtils extends PathUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public static void androidQCopyFileToPublicDownload(File filePath, String displayName) {
-        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath),PublicDirectory.Download,AppUtils.getAppPackageName());
+        androidQCopyFileToPublic(filePath, displayName, displayName, FileType.getMimeType(filePath), PublicDirectory.Download, AppUtils.getAppPackageName());
     }
 
 
@@ -181,17 +180,17 @@ class SDCardUtils extends PathUtils {
      * @param displayName 展示的名字
      * @param title       标题
      * @param mimeType    类型
-     * @param type  Environment type {@link Environment.DIRECTORY_DOWNLOADS}+ DirName
+     * @param type        Environment type {@link Environment.DIRECTORY_DOWNLOADS}+ DirName
      *                    ,{@link Environment.DIRECTORY_DOCUMENTS}+ DirName
      *                    ,{@link Environment.DIRECTORY_MOVIES}+ DirName
      *                    ,{@link Environment.DIRECTORY_DCIM}+ DirName
      *                    ,{@link Environment.DIRECTORY_MUSIC}+ DirName
      *                    ,{@link Environment.DIRECTORY_PICTURES}+ DirName
      *                    ,{@link Environment.DIRECTORY_SCREENSHOTS}+ DirName
-     * @param dir 需要新建的文件夹名字
+     * @param dir         需要新建的文件夹名字
      */
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static void androidQCopyFileToPublic(File filePath, String displayName, String title, String mimeType, PublicDirectory type,String dir) {
+    public static void androidQCopyFileToPublic(File filePath, String displayName, String title, String mimeType, PublicDirectory type, String dir) {
         if (filePath == null || !filePath.exists()) {
             return;
         }
@@ -199,7 +198,7 @@ class SDCardUtils extends PathUtils {
         values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, displayName);
         values.put(MediaStore.Files.FileColumns.MIME_TYPE, mimeType);
         values.put(MediaStore.Files.FileColumns.TITLE, title);
-        values.put(MediaStore.Images.Media.RELATIVE_PATH, type.getDirectory()+"/"+dir);
+        values.put(MediaStore.Images.Media.RELATIVE_PATH, type.getDirectory() + "/" + dir);
 
         Uri external = MediaStore.Downloads.EXTERNAL_CONTENT_URI;
         ContentResolver resolver = getContext().getContentResolver();
@@ -221,7 +220,6 @@ class SDCardUtils extends PathUtils {
                 }
             }
         } catch (IOException e) {
-            Log.e("noah", e.getMessage());
             e.printStackTrace();
         } finally {
             CloseUtils.closeIO(ist, ost);

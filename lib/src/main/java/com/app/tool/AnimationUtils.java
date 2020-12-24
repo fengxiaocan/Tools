@@ -22,62 +22,64 @@ import java.lang.reflect.Field;
  * @描述： 动画
  */
 
-class AnimationUtils{
+class AnimationUtils {
 
     /**
      * 如果动画被禁用，则重置动画缩放时长
      */
-    public static void resetDurationScaleIfDisable(){
-        if(getDurationScale() == 0){ resetDurationScale(); }
+    public static void resetDurationScaleIfDisable() {
+        if (getDurationScale() == 0) {
+            resetDurationScale();
+        }
     }
 
     /**
      * 重置动画缩放时长
      */
-    public static void resetDurationScale(){
-        try{
-            Field field=ValueAnimator.class.getDeclaredField("sDurationScale");
+    public static void resetDurationScale() {
+        try {
+            Field field = ValueAnimator.class.getDeclaredField("sDurationScale");
             field.setAccessible(true);
-            field.setFloat(null,1);
-        } catch(Exception e){
+            field.setFloat(null, 1);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static float getDurationScale(){
-        try{
-            Field field=ValueAnimator.class.getDeclaredField("sDurationScale");
+    private static float getDurationScale() {
+        try {
+            Field field = ValueAnimator.class.getDeclaredField("sDurationScale");
             field.setAccessible(true);
             return field.getFloat(null);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
     }
 
 
-    public static ObjectAnimator translationY(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"translationY",values);
+    public static ObjectAnimator translationY(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "translationY", values);
     }
 
-    public static ObjectAnimator translationX(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"translationX",values);
+    public static ObjectAnimator translationX(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "translationX", values);
     }
 
-    public static ObjectAnimator rotation(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"rotation",values);
+    public static ObjectAnimator rotation(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "rotation", values);
     }
 
-    public static ObjectAnimator scaleX(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"scaleX",values);
+    public static ObjectAnimator scaleX(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "scaleX", values);
     }
 
-    public static ObjectAnimator scaleY(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"scaleY",values);
+    public static ObjectAnimator scaleY(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "scaleY", values);
     }
 
-    public static ObjectAnimator alpha(View view,float... values){
-        return ObjectAnimator.ofFloat(view,"alpha",values);
+    public static ObjectAnimator alpha(View view, float... values) {
+        return ObjectAnimator.ofFloat(view, "alpha", values);
     }
 
     /**
@@ -85,16 +87,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveToBottom(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      1.0f);
+    public static TranslateAnimation moveToBottom(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                1.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         //如果不添加setFillEnabled和setFillAfter则动画执行结束后会自动回到远点
@@ -107,16 +109,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveToTop(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      -1.0f);
+    public static TranslateAnimation moveToTop(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                -1.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         //如果不添加setFillEnabled和setFillAfter则动画执行结束后会自动回到远点
@@ -129,16 +131,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveToLeft(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      -1.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveToLeft(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                -1.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         //如果不添加setFillEnabled和setFillAfter则动画执行结束后会自动回到远点
@@ -151,16 +153,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveToRight(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      1.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveToRight(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                1.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         //如果不添加setFillEnabled和setFillAfter则动画执行结束后会自动回到远点
@@ -173,16 +175,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveFromBottomToLocation(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      1.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveFromBottomToLocation(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                1.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         ani.setDuration(duration);
@@ -192,16 +194,16 @@ class AnimationUtils{
     /**
      * 从控件的上面移动到控件所在位置
      */
-    public static TranslateAnimation moveFromTopToLocation(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      -1.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveFromTopToLocation(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                -1.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         ani.setDuration(duration);
@@ -214,16 +216,16 @@ class AnimationUtils{
      *
      * @return
      */
-    public static TranslateAnimation moveFromLeftToLocation(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      -1.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveFromLeftToLocation(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                -1.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         ani.setDuration(duration);
@@ -237,16 +239,16 @@ class AnimationUtils{
      * @param isFill
      * @return
      */
-    public static TranslateAnimation moveFromRightToLocation(long duration,boolean isFill){
-        final int relativeToSelf=Animation.RELATIVE_TO_SELF;
-        TranslateAnimation ani=new TranslateAnimation(relativeToSelf,
-                                                      1.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f,
-                                                      relativeToSelf,
-                                                      0.0f);
+    public static TranslateAnimation moveFromRightToLocation(long duration, boolean isFill) {
+        final int relativeToSelf = Animation.RELATIVE_TO_SELF;
+        TranslateAnimation ani = new TranslateAnimation(relativeToSelf,
+                1.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f,
+                relativeToSelf,
+                0.0f);
         ani.setFillEnabled(isFill);//使其可以填充效果从而不回到原地
         ani.setFillAfter(!isFill);//不回到起始位置
         ani.setDuration(duration);
@@ -257,8 +259,8 @@ class AnimationUtils{
     /**
      * 隐藏
      */
-    public static AlphaAnimation hideAlpha(long duration){
-        AlphaAnimation mHiddenAction=new AlphaAnimation(1.0f,0.0f);
+    public static AlphaAnimation hideAlpha(long duration) {
+        AlphaAnimation mHiddenAction = new AlphaAnimation(1.0f, 0.0f);
         mHiddenAction.setDuration(duration);
         return mHiddenAction;
     }
@@ -266,8 +268,8 @@ class AnimationUtils{
     /**
      * 隐藏
      */
-    public static AlphaAnimation showAlpha(long duration){
-        AlphaAnimation mHiddenAction=new AlphaAnimation(0.0f,1.0f);
+    public static AlphaAnimation showAlpha(long duration) {
+        AlphaAnimation mHiddenAction = new AlphaAnimation(0.0f, 1.0f);
         mHiddenAction.setDuration(duration);
         return mHiddenAction;
     }
@@ -277,13 +279,13 @@ class AnimationUtils{
      *
      * @return
      */
-    public static void moveViewToBottom(final View view,final int visibility,long duration){
-        if(view != null){
-            ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(view,"TranslationY",0,view.getMeasuredHeight());
+    public static void moveViewToBottom(final View view, final int visibility, long duration) {
+        if (view != null) {
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "TranslationY", 0, view.getMeasuredHeight());
             objectAnimator.setDuration(duration);
-            objectAnimator.addListener(new AnimationImpl(){
+            objectAnimator.addListener(new AnimationImpl() {
                 @Override
-                public void onAnimationEnd(Animator animator){
+                public void onAnimationEnd(Animator animator) {
                     view.setVisibility(visibility);
                 }
             });
@@ -291,13 +293,13 @@ class AnimationUtils{
         }
     }
 
-    public static void moveViewToTop(final View view,final int visibility,long duration){
-        if(view != null){
-            ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(view,"TranslationY",0,-view.getMeasuredHeight());
+    public static void moveViewToTop(final View view, final int visibility, long duration) {
+        if (view != null) {
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "TranslationY", 0, -view.getMeasuredHeight());
             objectAnimator.setDuration(duration);
-            objectAnimator.addListener(new AnimationImpl(){
+            objectAnimator.addListener(new AnimationImpl() {
                 @Override
-                public void onAnimationEnd(Animator animation){
+                public void onAnimationEnd(Animator animation) {
                     view.setVisibility(visibility);
                 }
             });
@@ -309,8 +311,8 @@ class AnimationUtils{
     /**
      * 隐藏
      */
-    public static void hideAlpha(View view,long duration){
-        if(view != null){
+    public static void hideAlpha(View view, long duration) {
+        if (view != null) {
             view.setVisibility(View.GONE);
             view.setAnimation(hideAlpha(duration));
         }
@@ -319,8 +321,8 @@ class AnimationUtils{
     /**
      * 隐藏
      */
-    public static void showAlpha(View view,long duration){
-        if(view != null){
+    public static void showAlpha(View view, long duration) {
+        if (view != null) {
             view.setVisibility(View.VISIBLE);
             view.setAnimation(showAlpha(duration));
         }
@@ -329,9 +331,9 @@ class AnimationUtils{
     /**
      * 给视图添加点击效果,让背景变深
      */
-    public static void addTouchDrak(View view,View.OnClickListener listener){
+    public static void addTouchDrak(View view, View.OnClickListener listener) {
         view.setOnTouchListener(new ViewTouchDark());
-        if(listener != null){
+        if (listener != null) {
             view.setOnClickListener(listener);
         }
     }
@@ -339,9 +341,9 @@ class AnimationUtils{
     /**
      * 给视图添加点击效果,让背景变暗
      */
-    public static void addTouchLight(View view,View.OnClickListener listener){
+    public static void addTouchLight(View view, View.OnClickListener listener) {
         view.setOnTouchListener(new ViewTouchLight());
-        if(listener != null){
+        if (listener != null) {
             view.setOnClickListener(listener);
         }
     }
@@ -349,30 +351,27 @@ class AnimationUtils{
     /**
      * 让控件点击时，颜色变深
      */
-    public static class ViewTouchDark implements View.OnTouchListener{
+    public static class ViewTouchDark implements View.OnTouchListener {
 
-        public final float[] BT_SELECTED=new float[]{1,0,0,0,-50,0,1,0,0,-50,0,0,1,0,-50,0,0,0,1,0};
-        public final float[] BT_NOT_SELECTED=new float[]{1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0};
+        public final float[] BT_SELECTED = new float[]{1, 0, 0, 0, -50, 0, 1, 0, 0, -50, 0, 0, 1, 0, -50, 0, 0, 0, 1, 0};
+        public final float[] BT_NOT_SELECTED = new float[]{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0};
 
         @SuppressWarnings("deprecation")
         @Override
-        public boolean onTouch(View v,MotionEvent event){
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
-                if(v instanceof ImageView){
-                    ImageView iv=(ImageView)v;
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (v instanceof ImageView) {
+                    ImageView iv = (ImageView) v;
                     iv.setColorFilter(new ColorMatrixColorFilter(BT_SELECTED));
-                }
-                else{
+                } else {
                     v.getBackground().setColorFilter(new ColorMatrixColorFilter(BT_SELECTED));
                     v.setBackgroundDrawable(v.getBackground());
                 }
-            }
-            else if(event.getAction() == MotionEvent.ACTION_UP){
-                if(v instanceof ImageView){
-                    ImageView iv=(ImageView)v;
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (v instanceof ImageView) {
+                    ImageView iv = (ImageView) v;
                     iv.setColorFilter(new ColorMatrixColorFilter(BT_NOT_SELECTED));
-                }
-                else{
+                } else {
                     v.getBackground().setColorFilter(new ColorMatrixColorFilter(BT_NOT_SELECTED));
                     v.setBackgroundDrawable(v.getBackground());
                 }
@@ -384,31 +383,28 @@ class AnimationUtils{
     /**
      * 让控件点击时，颜色变暗
      */
-    public static class ViewTouchLight implements View.OnTouchListener{
-        public final float[] BT_SELECTED=new float[]{1,0,0,0,50,0,1,0,0,50,0,0,1,0,50,0,0,0,1,0};
-        public final float[] BT_NOT_SELECTED=new float[]{1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0};
+    public static class ViewTouchLight implements View.OnTouchListener {
+        public final float[] BT_SELECTED = new float[]{1, 0, 0, 0, 50, 0, 1, 0, 0, 50, 0, 0, 1, 0, 50, 0, 0, 0, 1, 0};
+        public final float[] BT_NOT_SELECTED = new float[]{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0};
 
         @SuppressWarnings("deprecation")
         @Override
-        public boolean onTouch(View v,MotionEvent event){
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
-                if(v instanceof ImageView){
-                    ImageView iv=(ImageView)v;
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (v instanceof ImageView) {
+                    ImageView iv = (ImageView) v;
                     iv.setDrawingCacheEnabled(true);
 
                     iv.setColorFilter(new ColorMatrixColorFilter(BT_SELECTED));
-                }
-                else{
+                } else {
                     v.getBackground().setColorFilter(new ColorMatrixColorFilter(BT_SELECTED));
                     v.setBackgroundDrawable(v.getBackground());
                 }
-            }
-            else if(event.getAction() == MotionEvent.ACTION_UP){
-                if(v instanceof ImageView){
-                    ImageView iv=(ImageView)v;
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (v instanceof ImageView) {
+                    ImageView iv = (ImageView) v;
                     iv.setColorFilter(new ColorMatrixColorFilter(BT_NOT_SELECTED));
-                }
-                else{
+                } else {
                     v.getBackground().setColorFilter(new ColorMatrixColorFilter(BT_NOT_SELECTED));
                     v.setBackgroundDrawable(v.getBackground());
                 }
@@ -418,25 +414,25 @@ class AnimationUtils{
     }
 
 
-    static class AnimationImpl implements Animator.AnimatorListener{
+    static class AnimationImpl implements Animator.AnimatorListener {
 
         @Override
-        public void onAnimationStart(Animator animator){
+        public void onAnimationStart(Animator animator) {
 
         }
 
         @Override
-        public void onAnimationEnd(Animator animator){
+        public void onAnimationEnd(Animator animator) {
 
         }
 
         @Override
-        public void onAnimationCancel(Animator animator){
+        public void onAnimationCancel(Animator animator) {
 
         }
 
         @Override
-        public void onAnimationRepeat(Animator animator){
+        public void onAnimationRepeat(Animator animator) {
 
         }
     }

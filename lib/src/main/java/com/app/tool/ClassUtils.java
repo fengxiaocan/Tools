@@ -49,6 +49,7 @@ class ClassUtils {
         }
         return null;
     }
+
     /**
      * 直接反射调用构造函数
      *
@@ -56,7 +57,7 @@ class ClassUtils {
      * @param parameter 参数数组
      * @return
      */
-    public static <T> T newInstance(Class aClass, Object ... parameter) {
+    public static <T> T newInstance(Class aClass, Object... parameter) {
         Class<?>[] parameterTypes = null;
         if (parameter != null) {
             parameterTypes = new Class[parameter.length];
@@ -231,25 +232,7 @@ class ClassUtils {
         Field field = getField(aClass, fieldName);
         if (field != null) {
             try {
-//                if (value instanceof Boolean) {
-//                    field.setBoolean(object, (Boolean) value);
-//                } else if (value instanceof Byte) {
-//                    field.setByte(object, (Byte) value);
-//                } else if (value instanceof Character) {
-//                    field.setChar(object, (Character) value);
-//                } else if (value instanceof Double) {
-//                    field.setDouble(object, (Double) value);
-//                } else if (value instanceof Float) {
-//                    field.setFloat(object, (Float) value);
-//                } else if (value instanceof Integer) {
-//                    field.setInt(object, (Integer) value);
-//                } else if (value instanceof Long) {
-//                    field.setLong(object, (Long) value);
-//                } else if (value instanceof Short) {
-//                    field.setLong(object, (Short) value);
-//                } else {
                 field.set(object, value);
-//                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

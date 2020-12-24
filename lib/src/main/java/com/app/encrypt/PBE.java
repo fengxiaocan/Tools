@@ -1,10 +1,8 @@
 package com.app.encrypt;
 
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
-import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -57,14 +55,23 @@ public enum PBE implements ICipher {
     MD5ANDRC2("PBEWITHMD5ANDRC2");
 
     public static final String algorithm = "PBE";
-    private String transformation;
-    private boolean isParameterMode = true;
-    private boolean isNoPadding = false;
-    private int vectorSize = 8;
+    private final String transformation;
+    private final boolean isParameterMode = true;
+    private final boolean isNoPadding = false;
+    private final int vectorSize = 8;
     private int iterationCount = 100;//迭代次数默认100
 
     PBE(String transformation) {
         this.transformation = transformation;
+    }
+
+    /**
+     * 随机获取加密时使用的向量
+     *
+     * @return
+     */
+    public static byte[] randomSalt() {
+        return new SecureRandom().generateSeed(8);
     }
 
     /**
@@ -141,15 +148,6 @@ public enum PBE implements ICipher {
         byte[] bytes = new byte[vectorSize];
         System.arraycopy(vectorKey, 0, bytes, 0, Math.min(vectorSize, vectorKey.length));
         return new PBEParameterSpec(bytes, iterationCount);
-    }
-
-    /**
-     * 随机获取加密时使用的向量
-     *
-     * @return
-     */
-    public static byte[] randomSalt() {
-        return new SecureRandom().generateSeed(8);
     }
 
     /**

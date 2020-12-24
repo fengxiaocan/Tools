@@ -2,7 +2,8 @@ package com.app.encrypt;
 
 import android.net.Uri;
 
-import com.app.tool.Tools.*;
+import com.app.tool.Tools.Close;
+import com.app.tool.Tools.Hex;
 import com.app.tool.UriUtils;
 
 import java.io.File;
@@ -23,7 +24,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * keyed-Hash Message Authentication Code
  */
-public enum HMacCoder{
+public enum HMacCoder {
     PBEWithHMacSHA1("PBEWITHHMACSHA1"),
     HMacSHA512("HMACSHA512"),
     PBEWithHMacSHA512("PBEWITHHMACSHA512"),
@@ -37,7 +38,7 @@ public enum HMacCoder{
     HMacSHA224("HMACSHA224"),
     HMacMD5("HMACMD5");
 
-    private String algorithm;
+    private final String algorithm;
 
     HMacCoder(String algorithm) {
         this.algorithm = algorithm;

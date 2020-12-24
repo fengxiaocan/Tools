@@ -5,8 +5,7 @@ import androidx.annotation.IntRange;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 
- class DataUtils {
-
+class DataUtils {
 
     /**
      * 把上面得到的百分比转为字符串类型的小数  保留{accuracy}位小数
@@ -15,7 +14,7 @@ import java.text.NumberFormat;
      * @param accuracy 精度,保留小数点位数
      * @author shw
      */
-    public static String percent(double value, @IntRange(from = 0,to = 9) int accuracy) {
+    public static String percent(double value, @IntRange(from = 0, to = 9) int accuracy) {
         NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(accuracy);
         return nf.format(value / 100);

@@ -17,7 +17,7 @@ import java.io.File;
  * 调用相机工具类
  */
 
- class CameraUtils {
+class CameraUtils {
 
     public static final int CODE_TAKE_PHOTO = 1;
     public static final int CODE_TAKE_PHOTO_ZOOM = 2;
@@ -172,6 +172,7 @@ import java.io.File;
 
     /**
      * 处理图片
+     *
      * @param activity
      * @param data
      * @return
@@ -189,7 +190,7 @@ import java.io.File;
                 } else if ("com.android.provides.downloads.documents".equals(uri.getAuthority())) {
                     Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"),
                             Long.valueOf(docId));
-                   return contentUri;
+                    return contentUri;
                 }
             } else if ("content".equalsIgnoreCase(uri.getScheme())) {
                 // 如果不是document类型的uri，则使用普通方式处理

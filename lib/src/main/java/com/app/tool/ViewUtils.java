@@ -38,35 +38,12 @@ import android.widget.TextView;
 class ViewUtils {
 
     /**
-     * 设置listView的高度为所有子View的高度之和
-     *
-     * @param listView
-     */
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            return;
-        }
-
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
-
-    /**
      * 获取Listview的高度，然后设置ViewPager的高度
      *
      * @param listView
      * @return
      */
-    public static int setListViewHeightBasedOnChildrens(ListView listView) {
+    public static int setListViewHeight(ListView listView) {
         if (listView == null) {
             return 0;
         }
@@ -176,14 +153,17 @@ class ViewUtils {
 
     /**
      * 垂直方向上偏移
+     *
      * @param v
      * @param offset
      */
     public static void offsetVertical(View v, int offset) {
         v.layout(v.getLeft(), v.getTop() + offset, v.getRight(), v.getBottom() + offset);
     }
+
     /**
      * 水平方向上偏移
+     *
      * @param v
      * @param offset
      */
@@ -681,7 +661,7 @@ class ViewUtils {
      * @param inputType
      * @param restrict
      */
-    public static void restrictEditInputType(EditText editText, final int inputType, final char ... restrict) {
+    public static void restrictEditInputType(EditText editText, final int inputType, final char... restrict) {
         editText.setKeyListener(new NumberKeyListener() {
             @Override
             protected char[] getAcceptedChars() {

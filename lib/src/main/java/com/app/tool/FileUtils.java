@@ -817,7 +817,7 @@ class FileUtils extends Util {
             }
             return true;
         } catch (IOException e) {
-            Log.e("noah",e.getMessage());
+            Log.e("noah", e.getMessage());
             return false;
         } finally {
             CloseUtils.closeIO(is, os);
