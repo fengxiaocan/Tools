@@ -47,7 +47,7 @@ class AppUtils extends Util {
      * @return {@code true}: 已安装<br>{@code false}: 未安装
      */
     public static boolean isInstallApp(String packageName) {
-        return !StringUtils.isSpace(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
+        return !StringUtils.isTrimEmpty(packageName) && IntentUtils.getLaunchAppIntent(packageName) != null;
     }
 
     /**
@@ -119,7 +119,7 @@ class AppUtils extends Util {
      * @param packageName 包名
      */
     public static void uninstallApp(String packageName) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
         getContext().startActivity(IntentUtils.getUninstallAppIntent(packageName));
@@ -133,7 +133,7 @@ class AppUtils extends Util {
      * @param requestCode 请求值
      */
     public static void uninstallApp(Activity activity, String packageName, int requestCode) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
         activity.startActivityForResult(IntentUtils.getUninstallAppIntent(packageName), requestCode);
@@ -155,7 +155,7 @@ class AppUtils extends Util {
      * @param packageName 包名
      */
     public static void launchApp(String packageName) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
         getContext().startActivity(IntentUtils.getLaunchAppIntent(packageName));
@@ -169,7 +169,7 @@ class AppUtils extends Util {
      * @param requestCode 请求值
      */
     public static void launchApp(Activity activity, String packageName, int requestCode) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
         activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
@@ -197,7 +197,7 @@ class AppUtils extends Util {
      * @param packageName 包名
      */
     public static void getAppDetailsSettings(String packageName) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
         getContext().startActivity(IntentUtils.getAppDetailsSettingsIntent(packageName));
@@ -219,7 +219,7 @@ class AppUtils extends Util {
      * @return
      */
     public static PackageInfo getPackageInfo(String packageName) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return null;
         }
         try {
@@ -597,7 +597,7 @@ class AppUtils extends Util {
      * @return App签名
      */
     public static Signature[] getAppSignature(String packageName) {
-        if (StringUtils.isSpace(packageName)) {
+        if (StringUtils.isTrimEmpty(packageName)) {
             return null;
         }
         try {
