@@ -1241,12 +1241,12 @@ class AppUtils extends Util {
     }
 
     /**
-     * /storage/emulated/0/Android/data/{包名}/files/{name}
+     * /storage/emulated/0/Android/data/{包名}/files/{fileName}
      *
      * @return
      */
-    public static File getExternalFile(String name) {
-        return getContext().getExternalFilesDir(name);
+    public static File getExternalFile(String fileName) {
+        return new File(getExternalFilesDir(""), fileName);
     }
 
     /**
