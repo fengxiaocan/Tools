@@ -252,6 +252,7 @@ class ToastUtils extends Util {
         if (gravity > 0) {
             toast.setGravity(gravity, xOffset, yOffset);
         }
+        toast.setText(text);
         toast.show();
     }
 

@@ -707,35 +707,7 @@ class TimeUtils {
     public static String formatSimpleEnglishMonth(long time) {
         return formatMonth(time, new String[]{"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"});
     }
-
-    /**
-     * 获取时长
-     */
-    public static String formatTimeDuration(long time) {
-        if (time <= 0) {
-            return "0秒";
-        }
-
-        long dTime = time / 1000;
-
-        if (dTime <= 60) {
-            return dTime + "秒";
-        }
-
-        dTime = dTime / 60;
-        if (dTime >= 0 && dTime < 60) {
-            return dTime + "分钟" + (dTime % 60) + "秒";
-        }
-
-        dTime = dTime / 60;
-        if (dTime < 24) {
-            return dTime + "小时" + (dTime % 60) + "分钟";
-        }
-
-        dTime = dTime / 24;
-        long dHour = dTime % 24;
-        return dTime + "天" + dHour + "小时";
-    }
+    
 
     /**
      * 提取一个月中的最后一天
