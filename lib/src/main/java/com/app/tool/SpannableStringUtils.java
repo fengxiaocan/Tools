@@ -50,39 +50,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
-/**
- * <pre>
- *     desc  : SpannableString相关工具类
- *     start： 指定Span的开始位置
- * end： 指定Span的结束位置，并不包括这个位置。
- * flags：取值有如下四个
- * Spannable. SPAN_INCLUSIVE_EXCLUSIVE：前面包括，后面不包括，即在文本前插入新的文本会应用该样式，而在文本后插入新文本不会应用该样式
- * Spannable. SPAN_INCLUSIVE_INCLUSIVE：前面包括，后面包括，即在文本前插入新的文本会应用该样式，而在文本后插入新文本也会应用该样式
- * Spannable. SPAN_EXCLUSIVE_EXCLUSIVE：前面不包括，后面不包括
- * Spannable. SPAN_EXCLUSIVE_INCLUSIVE：前面不包括，后面包括
- * what： 对应的各种Span，不同的Span对应不同的样式。已知的可用类有：
- * BackgroundColorSpan : 文本背景色
- * ForegroundColorSpan : 文本颜色
- * MaskFilterSpan : 修饰效果，如模糊(BlurMaskFilter)浮雕
- * RasterizerSpan : 光栅效果
- * StrikethroughSpan : 删除线
- * SuggestionSpan : 相当于占位符
- * UnderlineSpan : 下划线
- * AbsoluteSizeSpan : 文本字体（绝对大小）
- * DynamicDrawableSpan : 设置图片，基于文本基线或底部对齐。
- * ImageSpan : 图片
- * RelativeSizeSpan : 相对大小（文本字体）
- * ScaleXSpan : 基于x轴缩放
- * StyleSpan : 字体样式：粗体、斜体等
- * SubscriptSpan : 下标（数学公式会用到）
- * SuperscriptSpan : 上标（数学公式会用到）
- * TextAppearanceSpan : 文本外貌（包括字体、大小、样式和颜色）
- * TypefaceSpan : 文本字体
- * URLSpan : 文本超链接
- * ClickableSpan : 点击事件
- *
- * </pre>
- */
 public final class SpannableStringUtils extends Util {
 
     public static final int ALIGN_BOTTOM = 0;

@@ -3,10 +3,6 @@ package com.app.tool;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author 风小灿
- * @date 2016-6-25
- */
 class CharSequenceUtils {
 
 

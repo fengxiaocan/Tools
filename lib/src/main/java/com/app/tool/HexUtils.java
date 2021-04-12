@@ -1,8 +1,6 @@
 package com.app.tool;
 
 class HexUtils {
-
-
     /**
      * byteArr转hexString
      * <p>例如：</p>

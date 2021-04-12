@@ -4,9 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.IntRange;
 
-/**
- * The type Stack trace utils.
- */
 class StackTraceUtils {
 
     public static void printStackTraces(@IntRange(from = Log.VERBOSE, to = Log.ASSERT) int priority, String tag) {

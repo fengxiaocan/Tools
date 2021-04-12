@@ -13,13 +13,6 @@ import androidx.annotation.RequiresPermission;
 
 import java.util.List;
 
-/**
- * @项目名： Advertisement
- * @包名：
- * @创建者: feng
- * @时间: 13:52
- * @描述： wifi创建器
- */
 class WifiConnect {
 
     public static WifiManager getWifiManager() {

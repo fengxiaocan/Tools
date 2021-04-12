@@ -12,11 +12,6 @@ import android.provider.MediaStore;
 
 import java.io.File;
 
-/**
- * Created by sam on 2017/6/1.
- * 调用相机工具类
- */
-
 class CameraUtils {
 
     public static final int CODE_TAKE_PHOTO = 1;

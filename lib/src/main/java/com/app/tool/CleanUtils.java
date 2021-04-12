@@ -1,13 +1,5 @@
 package com.app.tool;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/27
- *     desc  : 清除相关工具类
- * </pre>
- */
 class CleanUtils extends Util {
 
 

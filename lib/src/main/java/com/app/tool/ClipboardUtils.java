@@ -6,14 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/25
- *     desc  : 剪贴板相关工具类
- * </pre>
- */
 class ClipboardUtils extends Util {
 
 
@@ -30,7 +22,11 @@ class ClipboardUtils extends Util {
      * @param text
      */
     public static void copyText(CharSequence text) {
-        getManager().setPrimaryClip(ClipData.newPlainText("text", text));
+        try {
+            getManager().setPrimaryClip(ClipData.newPlainText("text", text));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -39,7 +35,11 @@ class ClipboardUtils extends Util {
      * @param data
      */
     public static void copyData(ClipData data) {
-        getManager().setPrimaryClip(data);
+        try {
+            getManager().setPrimaryClip(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -61,7 +61,11 @@ class ClipboardUtils extends Util {
      * @param uri uri
      */
     public static void copyUri(Uri uri) {
-        getManager().setPrimaryClip(ClipData.newUri(getContext().getContentResolver(), "uri", uri));
+        try {
+            getManager().setPrimaryClip(ClipData.newUri(getContext().getContentResolver(), "uri", uri));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

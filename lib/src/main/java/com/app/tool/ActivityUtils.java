@@ -5,25 +5,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.PowerManager;
 import android.provider.Settings;
-import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
-import androidx.fragment.app.Fragment;
-
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 class ActivityUtils {
 
@@ -100,101 +91,6 @@ class ActivityUtils {
         }
         context.startActivity(intent);
     }
-
-    /**
-     * 打开一个等待返回结果的界面
-     */
-    public static void startActivityForResult(Activity activity, Class<? extends Activity> clazz, Bundle extras,
-                                              int requestCode) {
-        Intent intent = new Intent(activity, clazz);
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        activity.startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 打开一个等待返回结果的界面
-     */
-    public static void startActivityForResult(Activity activity, Class<? extends Activity> clazz, int requestCode) {
-        startActivityForResult(activity, clazz, null, requestCode);
-    }
-
-
-    /**
-     * 打开一个等待返回结果的界面
-     */
-    public static void startActivityForResult(Fragment fragment, Class<? extends Activity> clazz, Bundle extras,
-                                              int requestCode) {
-        Intent intent = new Intent(fragment.getContext(), clazz);
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        fragment.startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 打开一个等待返回结果的界面
-     */
-    public static void startActivityForResult(Fragment fragment, Class<? extends Activity> clazz, int requestCode) {
-        startActivityForResult(fragment, clazz, null, requestCode);
-    }
-
-
-    /**
-     * 获取launcher activity
-     *
-     * @param packageName 包名
-     * @return launcher activity
-     */
-    public static String getLauncherActivity(Context context, String packageName) {
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PackageManager pm = context.getPackageManager();
-        List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
-        for (ResolveInfo aInfo : info) {
-            if (aInfo.activityInfo.packageName.equals(packageName)) {
-                return aInfo.activityInfo.name;
-            }
-        }
-        return "no " + packageName;
-    }
-
-
-    /**
-     * 获取栈顶Activity
-     *
-     * @return 栈顶Activity
-     */
-    public static Activity getTopActivity() {
-        try {
-            Class activityThreadClass = Class.forName("android.app.ActivityThread");
-            Object activityThread = activityThreadClass.getMethod("currentActivityThread").invoke(null);
-            Field activitiesField = activityThreadClass.getDeclaredField("mActivities");
-            activitiesField.setAccessible(true);
-            Map activities = null;
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                activities = (HashMap) activitiesField.get(activityThread);
-            } else {
-                activities = (ArrayMap) activitiesField.get(activityThread);
-            }
-            for (Object activityRecord : activities.values()) {
-                Class activityRecordClass = activityRecord.getClass();
-                Field pausedField = activityRecordClass.getDeclaredField("paused");
-                pausedField.setAccessible(true);
-                if (!pausedField.getBoolean(activityRecord)) {
-                    Field activityField = activityRecordClass.getDeclaredField("activity");
-                    activityField.setAccessible(true);
-                    return (Activity) activityField.get(activityRecord);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
     /**
      * 打开本应用的设置界面

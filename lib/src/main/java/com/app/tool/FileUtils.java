@@ -28,14 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/05/03
- *     desc  : 文件相关工具类
- * </pre>
- */
 class FileUtils extends Util {
 
     public static final String LINE_SEP = System.getProperty("line.separator");

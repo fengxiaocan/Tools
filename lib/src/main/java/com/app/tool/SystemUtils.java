@@ -23,12 +23,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * @author
- * @version 1.0
- * @date 2018/2/8 0008
- */
-
 class SystemUtils extends Util {
 
     /**

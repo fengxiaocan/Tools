@@ -9,14 +9,6 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/28
- *     desc  : 判空相关工具类
- * </pre>
- */
 class EmptyUtils {
 
 

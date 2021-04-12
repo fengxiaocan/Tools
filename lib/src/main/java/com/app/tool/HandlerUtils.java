@@ -3,14 +3,6 @@ package com.app.tool;
 import android.os.Handler;
 import android.os.Message;
 
-/**
- * <pre>
- *
- *
- *     time  : 16/11/01
- *     desc  : Handler相关工具类
- * </pre>
- */
 class HandlerUtils extends Util {
 
     private static Handler sHandler;

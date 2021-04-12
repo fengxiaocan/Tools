@@ -7,14 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/12/24
- *     desc  : utils about object
- * </pre>
- */
 class ObjectUtils {
 
     /**

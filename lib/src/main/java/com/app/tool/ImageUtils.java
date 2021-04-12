@@ -4,14 +4,6 @@ import android.media.ExifInterface;
 
 import java.io.IOException;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/12
- *     desc  : 图片相关工具类
- * </pre>
- */
 class ImageUtils {
 
     /**

@@ -8,14 +8,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 键盘相关工具类
- * </pre>
- */
 class KeyboardUtils extends Util {
 
     /**
@@ -24,11 +16,13 @@ class KeyboardUtils extends Util {
      * @param mContext 上下文
      */
     public static void openKeyboard(Context mContext) {
+        if (mContext == null) return;
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public static void showKeyboard(View view) {
+        if (view == null) return;
         view.requestFocus();
         InputMethodManager inputManager =
                 (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -42,7 +36,7 @@ class KeyboardUtils extends Util {
      * @param mContext  上下文
      */
     public static void hideKeyboard(Context mContext, EditText mEditText) {
-        if (mEditText.requestFocus()) {
+        if (mEditText != null && mEditText.requestFocus()) {
             InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
             mEditText.clearFocus();
@@ -72,11 +66,13 @@ class KeyboardUtils extends Util {
      * @param view    视图
      */
     public static void hideSoftInput(Context context, View view) {
+        if (context == null || view == null) return;
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     public static void hideSoftInput(View view) {
+        if (view == null) return;
         InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -91,17 +87,20 @@ class KeyboardUtils extends Util {
     }
 
     public static void hideSoftInput(Context context) {
+        if (context == null) return;
         InputMethodManager inputMgr = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMgr.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
     }
 
     public static boolean isActive(View view) {
+        if (view == null) return false;
         InputMethodManager inputMgr =
                 (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         return inputMgr.isActive(view);
     }
 
     public static void showSoftInput(Window window) {
+        if (window == null) return;
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 }

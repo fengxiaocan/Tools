@@ -21,15 +21,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 网络相关工具类
- * </pre>
- */
 class NetworkUtils extends Util {
     private static final int NETWORK_TYPE_GSM = 16;
     private static final int NETWORK_TYPE_TD_SCDMA = 17;

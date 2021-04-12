@@ -12,14 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/27
- *     desc  : 崩溃相关工具类
- * </pre>
- */
 public final class CrashUtils extends Util implements UncaughtExceptionHandler {
 
     private volatile static CrashUtils mInstance;

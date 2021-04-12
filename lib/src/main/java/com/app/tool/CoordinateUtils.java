@@ -2,9 +2,6 @@ package com.app.tool;
 
 import static java.lang.Math.PI;
 
-/**
- * desc  : 坐标相关工具类
- */
 class CoordinateUtils {
 
     private final static double X_PI = 3.14159265358979324 * 3000.0 / 180.0;

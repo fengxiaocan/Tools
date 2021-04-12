@@ -8,14 +8,6 @@ import android.content.ServiceConnection;
 
 import java.util.List;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 服务相关工具类
- * </pre>
- */
 class ServiceUtils extends Util {
 
     /**

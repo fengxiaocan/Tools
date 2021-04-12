@@ -14,14 +14,6 @@ import android.widget.ImageView;
 
 import java.lang.reflect.Field;
 
-/**
- * @项目名： FileChooser
- * @包名： com.evil.chooser.utils
- * @创建者: Noah.冯
- * @时间: 18:25
- * @描述： 动画
- */
-
 class AnimationUtils {
 
     /**

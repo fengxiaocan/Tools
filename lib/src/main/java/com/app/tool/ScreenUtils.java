@@ -13,14 +13,6 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 屏幕相关工具类
- * </pre>
- */
 class ScreenUtils extends Util {
     public static final int screenWidth = getScreenWidth();
     public static final int screenHeight = getScreenHeight();
@@ -99,13 +91,12 @@ class ScreenUtils extends Util {
             Point point = new Point();
             display.getRealSize(point);
             screenH = point.y;
-            return screenH;
         } else {
             DisplayMetrics dm = new DisplayMetrics();
             windowManager.getDefaultDisplay().getMetrics(dm);
             screenH = dm.heightPixels; //得到高度
-            return screenH;
         }
+        return screenH;
     }
 
     /**

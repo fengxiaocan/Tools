@@ -6,14 +6,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 尺寸相关工具类
- * </pre>
- */
 class SizeUtils {
 
     /**

@@ -3,14 +3,6 @@ package com.app.tool;
 import java.io.Closeable;
 import java.io.IOException;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/10/09
- *     desc  : 关闭相关工具类
- * </pre>
- */
 class CloseUtils {
 
     /**

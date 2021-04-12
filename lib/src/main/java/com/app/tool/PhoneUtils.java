@@ -21,14 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 手机相关工具类
- * </pre>
- */
 class PhoneUtils extends Util {
 
     /**

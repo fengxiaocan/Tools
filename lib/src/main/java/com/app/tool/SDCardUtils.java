@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import android.text.format.Formatter;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -21,12 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * <pre>
- *     time  : 2016/08/11
- *     desc  : SD卡相关工具类
- * </pre>
- */
 class SDCardUtils extends PathUtils {
 
     /**

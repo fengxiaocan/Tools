@@ -30,14 +30,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : App相关工具类
- * </pre>
- */
 class AppUtils extends Util {
 
     /**
@@ -187,8 +179,8 @@ class AppUtils extends Util {
     /**
      * 获取App具体设置
      */
-    public static void getAppDetailsSettings() {
-        getAppDetailsSettings(getAppPackageName());
+    public static void openAppDetailsSettings() {
+        openAppDetailsSettings(getAppPackageName());
     }
 
     /**
@@ -196,7 +188,7 @@ class AppUtils extends Util {
      *
      * @param packageName 包名
      */
-    public static void getAppDetailsSettings(String packageName) {
+    public static void openAppDetailsSettings(String packageName) {
         if (StringUtils.isTrimEmpty(packageName)) {
             return;
         }
@@ -801,9 +793,9 @@ class AppUtils extends Util {
         if (runningApps == null) {
             return null;
         }
-        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
-            if (procInfo.pid == pid) {
-                return procInfo.processName;
+        for (ActivityManager.RunningAppProcessInfo info : runningApps) {
+            if (info.pid == pid) {
+                return info.processName;
             }
         }
         return null;

@@ -8,16 +8,9 @@ import android.view.View;
 
 import java.io.File;
 
-/**
- * 后台截屏工具类
- */
 class ShotUtil {
     /**
      * 截屏
-     *
-     * @param activity
-     * @param filePath
-     * @return
      */
     public static void screenshot(Activity activity, File filePath) {
         if (FileUtils.isFileExists(filePath)) {

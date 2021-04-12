@@ -1,20 +1,10 @@
 package com.app.tool;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 正则相关工具类
- * </pre>
- */
 class RegexUtils {
 
 

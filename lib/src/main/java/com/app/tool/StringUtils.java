@@ -24,12 +24,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-/**
- * <pre>
- *     time  : 2016/08/16
- *     desc  : 字符串相关工具类
- * </pre>
- */
 class StringUtils extends CharSequenceUtils {
 
 

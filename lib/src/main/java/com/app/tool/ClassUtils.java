@@ -7,10 +7,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-/**
- * @name： BaseApp
- */
-
 class ClassUtils {
     /**
      * 获取构造方法

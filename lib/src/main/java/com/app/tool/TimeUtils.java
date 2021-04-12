@@ -9,14 +9,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/02
- *     desc  : 时间相关工具类
- * </pre>
- */
 class TimeUtils {
 
     /**
@@ -176,8 +168,6 @@ class TimeUtils {
      * </pre>
      * 注意：SimpleDateFormat不是线程安全的，线程安全需用{@code ThreadLocal<SimpleDateFormat>}
      */
-
-
     /**
      * 格式:2016-08-20 11:11:11
      */

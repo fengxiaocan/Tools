@@ -1,13 +1,5 @@
 package com.app.tool;
 
-/**
- * <pre>
- *
- *
- *     time  : 16/11/16
- *     desc  : 拼音相关工具类
- * </pre>
- */
 class PinyinUtils {
 
     /**

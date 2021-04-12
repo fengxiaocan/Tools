@@ -50,12 +50,6 @@ import java.io.InputStream;
 import java.net.URI;
 
 
-/**
- * @项目名： shanren
- * @创建者: Noah.冯
- * @时间: 15:04
- */
-
 class BitmapUtils extends Util {
 
     /**

@@ -11,17 +11,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 
 import java.lang.reflect.Field;
 
-/**
- * @Description:主要功能: Drawable 着色工具类
- * @Prject: CommonUtilLibrary
- * @Package: com.jingewenku.abrahamcaijin.commonutil
- * @author: AbrahamCaiJin
- * @date: 2017年07月20日 17:05
- * @Copyright: 个人版权所有
- * @Company:
- * @version: 1.0.0
- */
-
 class TintUtils {
     /**
      * 给ImageView着色

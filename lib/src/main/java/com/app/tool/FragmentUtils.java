@@ -17,14 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <pre>
- *
- *
- *     time  : 2017/01/17
- *     desc  : Fragment相关工具类
- * </pre>
- */
 class FragmentUtils {
 
     private static final int TYPE_ADD_FRAGMENT = 0x01;

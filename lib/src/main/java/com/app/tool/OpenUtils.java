@@ -4,9 +4,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 
-/**
- *
- */
 class OpenUtils extends Util {
 
     private static final String taobaoName = "com.taobao.taobao";

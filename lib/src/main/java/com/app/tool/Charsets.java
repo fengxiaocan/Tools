@@ -3,10 +3,6 @@ package com.app.tool;
 import java.nio.charset.Charset;
 
 
-/**
- * @author 风小灿
- * @date 2016-6-25
- */
 class Charsets {
     /**
      * Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the

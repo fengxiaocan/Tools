@@ -33,11 +33,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * <pre>
- *     desc  : 缓存相关工具类
- * </pre>
- */
 class CacheUtils extends Util {
 
     private static final String LINE_SEP = System.getProperty("line.separator");

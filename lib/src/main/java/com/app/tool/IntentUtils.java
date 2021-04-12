@@ -11,14 +11,6 @@ import androidx.core.content.FileProvider;
 
 import java.io.File;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/23
- *     desc  : 意图相关工具类
- * </pre>
- */
 class IntentUtils extends Util {
 
     /**

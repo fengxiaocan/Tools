@@ -58,14 +58,6 @@ import java.lang.ref.WeakReference;
 
 import static android.graphics.BlurMaskFilter.Blur;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 16/12/13
- *     desc  : utils about span
- * </pre>
- */
 public final class SpanUtils extends Util {
 
     public static final int ALIGN_BOTTOM = 0;

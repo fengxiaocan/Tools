@@ -19,14 +19,6 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/08/27
- *     desc  : 压缩相关工具类
- * </pre>
- */
 class ZipUtils {
 
     /**

@@ -21,14 +21,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-/**
- * Author: Mr.xiao on 2017/3/15
- *
- * @mail:xhb_199409@163.com
- * @github:https://github.com/xiaohaibin
- * @describe: https工具类
- */
-
 class HttpsUtils extends Util {
 
 

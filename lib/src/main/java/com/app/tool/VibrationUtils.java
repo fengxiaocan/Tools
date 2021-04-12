@@ -6,12 +6,6 @@ import android.os.Vibrator;
 
 import androidx.annotation.RequiresPermission;
 
-/**
- * <pre>
- *     time  : 2016/09/29
- *     desc  : 震动相关工具类
- * </pre>
- */
 class VibrationUtils {
 
     /**

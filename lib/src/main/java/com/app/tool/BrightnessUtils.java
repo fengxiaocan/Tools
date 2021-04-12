@@ -11,14 +11,6 @@ import android.view.WindowManager;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2018/02/08
- *     desc  : 亮度相关工具类
- * </pre>
- */
 class BrightnessUtils extends Util {
 
     /**

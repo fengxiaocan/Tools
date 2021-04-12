@@ -12,9 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * The type Image type.
- */
 class ImageType extends Util {
 
     /**

@@ -1,11 +1,5 @@
 package com.app.tool;
 
-/**
- * @author noah
- * @email fengxiaocan@gmail.com
- * @create 25/6/18
- * @desc ...
- */
 class CompareUtils {
 
     /**

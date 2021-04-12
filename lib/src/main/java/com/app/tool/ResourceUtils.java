@@ -10,12 +10,6 @@ import android.util.DisplayMetrics;
 
 import androidx.annotation.RequiresApi;
 
-/**
- * Created by sam on 2017/4/17.
- * 有关UI的工具类，如获取资源(颜色，字符串，drawable等)，
- * 屏幕宽高，dp与px转换
- */
-
 class ResourceUtils extends Util {
 
     public static Resources getResources() {

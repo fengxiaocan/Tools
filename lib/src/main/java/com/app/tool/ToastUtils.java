@@ -13,14 +13,6 @@ import java.lang.ref.SoftReference;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.LENGTH_SHORT;
 
-/**
- * <pre>
- *
- *
- *     time  : 2016/09/29
- *     desc  : 吐司相关工具类
- * </pre>
- */
 class ToastUtils extends Util {
     private static SoftReference<Toast> sToast;
     private static boolean canShow = true;
