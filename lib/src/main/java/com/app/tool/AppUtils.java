@@ -27,7 +27,6 @@ import androidx.annotation.RequiresPermission;
 import com.app.encrypt.SHACoder;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 class AppUtils extends Util {
@@ -705,27 +704,27 @@ class AppUtils extends Util {
         return new AppInfo(packageName, name, icon, packagePath, versionName, versionCode, isSystem);
     }
 
-    /**
-     * 获取所有已安装App信息
-     * <p>{@link #getBean(PackageManager, PackageInfo)}（名称，图标，包名，包路径，版本号，版本Code，是否系统应用）</p>
-     * <p>依赖上面的getBean方法</p>
-     *
-     * @return 所有已安装的AppInfo列表
-     */
-    public static List<AppInfo> getAppsInfo() {
-        List<AppInfo> list = new ArrayList<>();
-        PackageManager pm = getPackageManager();
-        // 获取系统中安装的所有软件信息
-        List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
-        for (PackageInfo pi : installedPackages) {
-            AppInfo ai = getBean(pm, pi);
-            if (ai == null) {
-                continue;
-            }
-            list.add(ai);
-        }
-        return list;
-    }
+//    /**
+//     * 获取所有已安装App信息
+//     * <p>{@link #getBean(PackageManager, PackageInfo)}（名称，图标，包名，包路径，版本号，版本Code，是否系统应用）</p>
+//     * <p>依赖上面的getBean方法</p>
+//     *
+//     * @return 所有已安装的AppInfo列表
+//     */
+//    public static List<AppInfo> getAppsInfo() {
+//        List<AppInfo> list = new ArrayList<>();
+//        PackageManager pm = getPackageManager();
+//        // 获取系统中安装的所有软件信息
+//        List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
+//        for (PackageInfo pi : installedPackages) {
+//            AppInfo ai = getBean(pm, pi);
+//            if (ai == null) {
+//                continue;
+//            }
+//            list.add(ai);
+//        }
+//        return list;
+//    }
 
     /**
      * 清除App所有数据

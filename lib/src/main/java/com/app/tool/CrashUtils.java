@@ -1,20 +1,8 @@
 package com.app.tool;
 
-import android.content.pm.PackageInfo;
-import android.os.Build;
+public final class CrashUtils extends Util /*implements UncaughtExceptionHandler*/ {
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.Thread.UncaughtExceptionHandler;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public final class CrashUtils extends Util implements UncaughtExceptionHandler {
-
-    private volatile static CrashUtils mInstance;
+  /*  private volatile static CrashUtils mInstance;
 
     private UncaughtExceptionHandler mHandler;
 
@@ -25,13 +13,13 @@ public final class CrashUtils extends Util implements UncaughtExceptionHandler {
     private CrashUtils() {
     }
 
-    /**
+    *//**
      * 获取单例
      * <p>在Application中初始化{@code CrashUtils.getInstance().init(this);}</p>
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>}</p>
      *
      * @return 单例
-     */
+     *//*
     public static CrashUtils getInstance() {
         if (mInstance == null) {
             synchronized (CrashUtils.class) {
@@ -43,11 +31,11 @@ public final class CrashUtils extends Util implements UncaughtExceptionHandler {
         return mInstance;
     }
 
-    /**
+    *//**
      * 初始化
      *
      * @return {@code true}: 成功<br>{@code false}: 失败
-     */
+     *//*
     public boolean init() {
         if (mInitialized)
             return true;
@@ -90,11 +78,11 @@ public final class CrashUtils extends Util implements UncaughtExceptionHandler {
         }
     }
 
-    /**
+    *//**
      * 获取崩溃头
      *
      * @return 崩溃头
-     */
+     *//*
     private String getCrashHead() {
         return "\n************* Crash Log Head ****************" + "\nDevice Manufacturer: " + Build.MANUFACTURER +
                 // 设备厂商
@@ -103,5 +91,5 @@ public final class CrashUtils extends Util implements UncaughtExceptionHandler {
                 "\nAndroid SDK        : " + Build.VERSION.SDK_INT +// SDK版本
                 "\nApp VersionName    : " + versionName + "\nApp VersionCode    : " + versionCode +
                 "\n************* Crash Log Head ****************\n\n";
-    }
+    }*/
 }
