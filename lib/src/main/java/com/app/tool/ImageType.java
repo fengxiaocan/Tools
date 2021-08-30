@@ -3,7 +3,6 @@ package com.app.tool;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 
 import java.io.Closeable;
@@ -25,7 +24,7 @@ class ImageType extends Util {
         if (mimeType != null) {
             return String.format("image/%s", mimeType);
         } else {
-            return "file/*";
+            return "image/jpg";
         }
     }
 
@@ -38,7 +37,7 @@ class ImageType extends Util {
     public static String getImageType(String fileOrUri) {
         String type = readType(fileOrUri);
         if (type == null) {
-            return "file";
+            return "jpg";
         } else {
             return type;
         }
@@ -264,25 +263,18 @@ class ImageType extends Util {
             if (TextUtils.isEmpty(fileOrUri)) {
                 return null;
             }
-            long lenght;
             if (UriUtils.isUriContent(fileOrUri)) {
                 //转化成Uri类型
                 Uri uri = Uri.parse(fileOrUri);
                 ContentResolver contentResolver = getContext().getContentResolver();
                 ParcelFileDescriptor descriptor = contentResolver.openFileDescriptor(uri, "r");
                 //获取Uri文件的长度
-                lenght = descriptor.getStatSize();
-                if (lenght <= 0) {
-                    //获取不到的时候查询数据库
-                    UriUtils.queryUriColumnV1(uri, MediaStore.Images.ImageColumns.SIZE);
-                }
                 fis = new FileInputStream(descriptor.getFileDescriptor());
             } else {
                 File file = new File(fileOrUri);
                 fis = new FileInputStream(file);
-                lenght = file.length();
             }
-            return getImageType(fis, lenght);
+            return getImageType(fis);
         } catch (Exception e) {
             return null;
         } finally {
@@ -302,17 +294,10 @@ class ImageType extends Util {
             if (uri == null) {
                 return null;
             }
-            long lenght;
             ContentResolver contentResolver = getContext().getContentResolver();
             ParcelFileDescriptor descriptor = contentResolver.openFileDescriptor(uri, "r");
-            //获取Uri文件的长度
-            lenght = descriptor.getStatSize();
-            if (lenght <= 0) {
-                //获取不到的时候查询数据库
-                UriUtils.queryUriColumnV1(uri, MediaStore.Images.ImageColumns.SIZE);
-            }
             fis = new FileInputStream(descriptor.getFileDescriptor());
-            return getImageType(fis, lenght);
+            return getImageType(fis);
         } catch (Exception e) {
             return null;
         } finally {
@@ -332,9 +317,8 @@ class ImageType extends Util {
             if (file == null) {
                 return null;
             }
-            long lenght = file.length();
             fis = new FileInputStream(file);
-            return getImageType(fis, lenght);
+            return getImageType(fis);
         } catch (Exception e) {
             return null;
         } finally {
@@ -346,18 +330,13 @@ class ImageType extends Util {
      * 获取文件类型
      *
      * @param fis
-     * @param fileLenght
      * @return
      * @throws IOException
      */
-    private static String getImageType(InputStream fis, long fileLenght) throws IOException {
-        byte[] bufHeaders = readInputStreamAt(fis, 0, 8);
-        if (isJPEGHeader(bufHeaders)) {
-            long skiplength = fileLenght - 2 - 8; //第一次读取时已经读了8个byte,因此需要减掉
-            byte[] bufFooters = readInputStreamAt(fis, skiplength, 2);
-            if (isJPEGFooter(bufFooters)) {
-                return "jpeg";
-            }
+    private static String getImageType(InputStream fis) throws IOException {
+        byte[] bufHeaders = readInputStreamAt(fis, 0, 12);
+        if (isJPEG(bufHeaders)) {
+            return "jpeg";
         }
         if (isPNG(bufHeaders)) {
             return "png";
@@ -373,6 +352,12 @@ class ImageType extends Util {
         }
         if (isICON(bufHeaders)) {
             return "ico";
+        }
+        if (isHeic(bufHeaders)) {
+            return "heic";
+        }
+        if (isHeif(bufHeaders)) {
+            return "heif";
         }
         return null;
     }
@@ -416,16 +401,30 @@ class ImageType extends Util {
         return compare(buf, markBuf);
     }
 
-    private static boolean isJPEGHeader(byte[] buf) {
+    private static boolean isJPEG(byte[] buf) {
         byte[] markBuf = {(byte) 0xff, (byte) 0xd8}; //JPEG开始符
         return compare(buf, markBuf);
     }
 
-    private static boolean isJPEGFooter(byte[] buf)//JPEG结束符
-    {
-        byte[] markBuf = {(byte) 0xff, (byte) 0xd9};
-        return compare(buf, markBuf);
+
+    private static boolean isTIFF(byte[] buf) {
+        return buf[0] == 0x49 || buf[0] == 0x4D;
     }
+
+    private static boolean isHeic(byte[] buf) {
+        byte arr2[] = new byte[6];
+        System.arraycopy(arr2, 0, buf, 4, 6);
+        byte markBuf[] = "ftyphe".getBytes();
+        return compare(arr2, markBuf);
+    }
+
+    private static boolean isHeif(byte[] buf) {
+        byte arr2[] = new byte[5];
+        System.arraycopy(arr2, 0, buf, 4, 5);
+        byte markBuf[] = "ftypm".getBytes();
+        return compare(arr2, markBuf);
+    }
+
 
 
     /**
