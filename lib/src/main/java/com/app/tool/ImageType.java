@@ -413,14 +413,18 @@ class ImageType extends Util {
 
     private static boolean isHeic(byte[] buf) {
         byte arr2[] = new byte[6];
-        System.arraycopy(arr2, 0, buf, 4, 6);
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = buf[i + 4];
+        }
         byte markBuf[] = "ftyphe".getBytes();
         return compare(arr2, markBuf);
     }
 
     private static boolean isHeif(byte[] buf) {
         byte arr2[] = new byte[5];
-        System.arraycopy(arr2, 0, buf, 4, 5);
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = buf[i + 4];
+        }
         byte markBuf[] = "ftypm".getBytes();
         return compare(arr2, markBuf);
     }
