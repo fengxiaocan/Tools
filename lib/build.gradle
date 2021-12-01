@@ -24,9 +24,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:latest.release'
-    implementation 'com.google.android.material:material:latest.release'
-    //implementation 'android.lib.snackbar:Snackbar:latest.release'
+    compileOnly 'androidx.appcompat:appcompat:latest.release'
+    compileOnly 'com.google.android.material:material:latest.release'
+    compileOnly 'android.lib.snackbar:Snackbar:latest.release'
 }
 
 //删除之前打出的包，默认将包打在'build/libs/'下
